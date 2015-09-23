@@ -394,6 +394,7 @@ function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $
  *
  * @param null|WP_User $user The WP_User object being authenticated.
  *
+ * @uses is_wp_error() To for a WP_Error object.
  * @uses tba_bp_is_user_blocked() To check if specified user is blocked.
  * @uses tba_bp_get_blocked_user_expiration() To get the blocked user expiration time.
  * @uses WP_Error() To add the `tba_bp_authentication_blocked` error message.
@@ -404,27 +405,29 @@ function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $
  */
 function tba_bp_prevent_blocked_user_login( $user ) {
 
+	// Bail early if login has already failed.
+	if ( is_wp_error( $user ) || empty( $user ) ) {
+		return $user;
+	}
+
 	// Bail if no user id.
-	if ( empty( $user->ID ) ) {
+	if ( ! ( $user instanceof WP_User ) ) {
 		return $user;
 	}
 
 	// Set the user id.
 	$user_id = (int) $user->ID;
 
-	// Is the user blocked?
-	$blocked = tba_bp_is_user_blocked( $user_id );
-
 	// If the user is blocked, set the wp-login.php error message.
-	if ( $blocked ) {
+	if ( tba_bp_is_user_blocked( $user_id ) ) {
 
 		// Set the default message.
-		$message = __( 'This account has been blocked.', 'bp-block-users' );
+		$message = __( '<strong>ERROR</strong>: This account has been blocked.', 'bp-block-users' );
 
 		// Check to see if this is a temporary block.
 		$expiration = tba_bp_get_blocked_user_expiration( $user_id, true );
 		if ( ! empty( $expiration ) ) {
-			$message = __( 'This account has been temporarily blocked.', 'bp-block-users' );
+			$message = __( '<strong>ERROR</strong>: This account has been temporarily blocked.', 'bp-block-users' );
 		}
 
 		// Set an error object to short-circuit the authentication process.
@@ -432,18 +435,15 @@ function tba_bp_prevent_blocked_user_login( $user ) {
 	}
 
 	/**
-	 * Fires before the authenticating user object is returned.
+	 * Filters the return of the authenticating user object.
 	 *
-	 * @since 0.1.0
+	 * @since 0.2.0
 	 *
-	 * @param int              $update Whether this is a user update.
-	 * @param WP_User|WP_Error &$user  WP_User object if not blocked. WP_Error
-	 *                                 object, otherwise. Passed by reference.
-	 * @param string           $update Whether this is a user update.
+	 * @param WP_User|WP_Error $user    WP_User object if not blocked. WP_Error
+	 *                                  object, otherwise.
+	 * @param int              $user_id Whether this is a user update.
 	 */
-	do_action_ref_array( 'tba_bp_prevent_blocked_user_login', array( $user_id, &$user ) );
-
-	return $user;
+	return apply_filters( 'tba_bp_prevent_blocked_user_login', $user, $user_id );
 }
 
 /** Sub-nav/Admin Bar Menus ***************************************************/
