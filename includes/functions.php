@@ -42,7 +42,7 @@ function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param int      $user_id The blocked user id.
+	 * @param int $user_id The blocked user id.
 	 */
 	do_action( 'tba_bp_blocked_user', $user_id );
 
