@@ -35,7 +35,7 @@ function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
 	tba_bp_update_blocked_user_expiration( $user_id, $length, $unit );
 
 	// Log the user out of all sessions.
-	bp_delete_user_meta( $user_id, 'session_tokens' );
+	tba_bp_destroy_blocked_user_sessions( $user_id );
 
 	/**
 	 * Fires after a user is blocked.
@@ -288,6 +288,30 @@ function tba_bp_get_blocked_user_ids() {
 	 * @param array $user_ids The array of blocked user ids.
 	 */
 	return (array) apply_filters( 'tba_bp_get_blocked_user_ids', $user_ids );
+}
+
+/**
+ * tba_bp_destroy_blocked_user_sessions function.
+ *
+ * @since 0.2.0
+ *
+ * @param int $user_id The blocked user.
+ *
+ * @uses WP_Session_Tokens::get_instance() To get the specified user's sessions object.
+ * @uses WP_Session_Tokens::destroy_all() To destroy all the user's sessions.
+ *
+ * @return void
+ */
+function tba_bp_destroy_blocked_user_sessions( $user_id = 0) {
+
+	// Bail if no user id.
+	if ( empty( $user_id ) ) {
+		return;
+	}
+
+	// Get the user's sessions object and destroy all session.
+	$manager = WP_Session_Tokens::get_instance( $user_id );
+	$manager->destroy_all();
 }
 
 /** Notification Emails *******************************************************/
