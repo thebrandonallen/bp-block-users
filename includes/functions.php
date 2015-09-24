@@ -446,6 +446,106 @@ function tba_bp_prevent_blocked_user_login( $user ) {
 	return apply_filters( 'tba_bp_prevent_blocked_user_login', $user, $user_id );
 }
 
+/**
+ * Logs out a currently logged in user who was blocked during an active session.
+ *
+ * This function is here for the WP 3.8 and 3.9 branches which don't use the
+ * session tokens introduced in WP 4.0. When the minimum WP version reaches 4.0
+ * this function will be deprecated.
+ *
+ * @since 0.2.0
+ *
+ * @uses is_user_logged_in() To check if current user is logged in.
+ * @uses bp_loggedin_user_id() To get the logged in user id.
+ * @uses tba_bp_is_user_blocked() To check if specified user is blocked.
+ * @uses tba_bp_is_user_blocked() To get the blocked user expiration time.
+ * @uses wp_login_url() To get the login url.
+ * @uses add_query_arg() To add our forced logout query args.
+ * @uses wp_redirect() To redirect to the login page.
+ *
+ * @return void
+ */
+function tba_bp_stop_live_blocked_user() {
+
+	// Check to see if we're already on wp-login.php to prevent redirect loop.
+	$is_login = false;
+	if ( isset( $GLOBALS['pagenow'] ) && ( false !== strpos( $GLOBALS['pagenow'], 'wp-login.php' ) ) ) {
+		$is_login = true;
+	} elseif ( isset( $_SERVER['SCRIPT_NAME'] ) && false !== strpos( $_SERVER['SCRIPT_NAME'], 'wp-login.php' ) ) {
+		$is_login = true;
+	}
+
+	// Bail if we're already on wp-login.php.
+	if ( $is_login ) {
+		return;
+	}
+
+	// Bail if user isn't logged in.
+	if ( ! is_user_logged_in() ) {
+		return;
+	}
+
+	// If user is blocked, redirect to wp-login.php and reauthorize.
+	if ( tba_bp_is_user_blocked( bp_loggedin_user_id() ) ) {
+
+		// Get user block expiration time.
+		$expiration = tba_bp_get_blocked_user_expiration( $user_id, true );
+
+		// Set our action.
+		$action = 'tba-bp-blocked-user';
+		if ( empty( $expiration ) ) {
+			$action = 'tba-bp-blocked-user-temp';
+		}
+
+		// Setup our login args.
+		$args = array(
+			// Custom action used to throw an error message.
+			'action' => $action,
+
+			// Force user to reauthorize.
+			'reauth' => 1
+		);
+
+		/**
+		 * Filters the URL used for redirection for a logged in blocked user.
+		 *
+		 * @since 0.2.0
+		 *
+		 * @param string $value URL to redirect user to.
+		 */
+		$login_url = apply_filters( 'bp_live_blocked_user_redirect', add_query_arg( $args, wp_login_url() ) );
+
+		// Redirect user to login page.
+		wp_redirect( $login_url );
+		die();
+	}
+}
+
+/**
+ * Show a custom error message when a logged-in user is blocked.
+ *
+ * @since 0.2.0
+ *
+ * @global $error WP_Error The WP_Error object.
+ *
+ * @uses current_filter() To get the current action.
+ * @uses add_action() To attach `wp_shake_js` to `login_head`.
+ *
+ * @return void
+ */
+function tba_bp_live_blocked_user_login_error() {
+	global $error;
+
+	// Set the appropriate error message.
+	$error = __( '<strong>ERROR</strong>: This account has been blocked.', 'bp-block-users' );
+	if ( 'login_form_tba-bp-blocked-user-temp' === current_filter() ) {
+		$error = __( '<strong>ERROR</strong>: This account has been temporarily blocked.', 'bp-block-users' );
+	}
+
+	// Shake shake shake!
+	add_action( 'login_head', 'wp_shake_js', 12 );
+}
+
 /** Sub-nav/Admin Bar Menus ***************************************************/
 
 /**

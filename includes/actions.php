@@ -38,3 +38,10 @@ add_action( 'admin_bar_menu', 'tba_bp_block_users_admin_bar_admin_menu', 100 );
 
 // Block/unblock user when editing from profile.
 add_action( 'bp_actions', 'tba_bp_settings_action_block_user' );
+
+// Logout a currently logged-in user that was just blocked.
+add_action( 'bp_init', 'tba_bp_stop_live_blocked_user', 5 );
+
+// Set a custom error message when a logged-in user is blocked and redirected.
+add_action( 'login_form_tba-bp-blocked-user',      'tba_bp_live_blocked_user_login_error' );
+add_action( 'login_form_tba-bp-blocked-user-temp', 'tba_bp_live_blocked_user_login_error' );
