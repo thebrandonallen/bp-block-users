@@ -291,7 +291,7 @@ function tba_bp_get_blocked_user_ids() {
 }
 
 /**
- * tba_bp_destroy_blocked_user_sessions function.
+ * Destroys all the user sessions for the specified user.
  *
  * @since 0.2.0
  *
@@ -302,14 +302,14 @@ function tba_bp_get_blocked_user_ids() {
  *
  * @return void
  */
-function tba_bp_destroy_blocked_user_sessions( $user_id = 0) {
+function tba_bp_destroy_blocked_user_sessions( $user_id = 0 ) {
 
 	// Bail if no user id.
 	if ( empty( $user_id ) ) {
 		return;
 	}
 
-	// Get the user's sessions object and destroy all session.
+	// Get the user's sessions object and destroy all sessions.
 	$manager = WP_Session_Tokens::get_instance( $user_id );
 	$manager->destroy_all();
 }
@@ -388,7 +388,7 @@ function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $
 /** Authentication ************************************************************/
 
 /**
- * bp_prevent_blocked_user_login function.
+ * Prevents the login of a blocked user.
  *
  * @since 0.1.0
  *
