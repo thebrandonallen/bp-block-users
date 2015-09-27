@@ -489,7 +489,7 @@ function tba_bp_stop_live_blocked_user() {
 	if ( tba_bp_is_user_blocked( bp_loggedin_user_id() ) ) {
 
 		// Get user block expiration time.
-		$expiration = tba_bp_get_blocked_user_expiration( $user_id, true );
+		$expiration = tba_bp_get_blocked_user_expiration( bp_loggedin_user_id(), true );
 
 		// Set our action.
 		$action = 'tba-bp-blocked-user';
