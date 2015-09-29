@@ -83,13 +83,13 @@ module.exports = function(grunt) {
 					domainPath: '/languages',
 					mainFile: 'bp-block-users.php',
 					exclude: ['build/.*'],
-					potComments: 'Copyright (C) ' + CURRENT_YEAR + ' Brandon Allen\nThis file is distributed under the same license as the BP Block Users package.\nSend translations to <wp_plugins [at] brandonallen (dot) me>.',
+					potComments: 'Copyright (C) ' + CURRENT_YEAR + ' Brandon Allen\nThis file is distributed under the same license as the BP Block Users package.',
 					potFilename: 'bp-block-users.pot',
 					potHeaders: {
 						poedit: true,
 						'report-msgid-bugs-to': 'https://github.com/thebrandonallen/bp-block-users/issues',
-						'last-translator': 'BRANDON ALLEN <wp_plugins@brandonallen.me>',
-						'language-team': 'ENGLISH <wp_plugins@brandonallen.me>'
+						'last-translator': 'BRANDON ALLEN <plugins@brandonallen.me>',
+						'language-team': 'ENGLISH <plugins@brandonallen.me>'
 					},
 					processPot: function( pot ) {
 						var translation, // Exclude meta data from pot.
