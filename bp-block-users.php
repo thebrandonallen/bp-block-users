@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function tba_bp_block_users_init() {
 
-	// Only supported in BP 1.7+
+	// Only supported in BP 2.0.3+
 	if ( version_compare( bp_get_version(), '2.0.3', '>=' ) ) {
 
 		$includes = plugin_dir_path( __FILE__ ) . 'includes/';
