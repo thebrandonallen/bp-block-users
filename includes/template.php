@@ -29,8 +29,9 @@ function tba_bp_block_user_settings_message( $user_id = 0 ) {
  * @uses bp_displayed_user_id() To get the displayed user id.
  * @uses tba_bp_is_user_blocked() To check if specified user is blocked.
  * @uses tba_bp_get_blocked_user_expiration() To get the blocked user expiration time.
- * @uses get_option() To get the `date_format` and `time_format` options.
- * @uses get_date_from_gmt() To get the localized date from GMT date.
+ * @uses bp_get_option() To get the `date_format` and `time_format` options.
+ * @uses date_i18n() To get the localized date from GMT date.
+ * @uses get_date_from_gmt() To get the localized time from GMT date.
  *
  * @return string The `block-user` settings page message.
  */
@@ -51,17 +52,18 @@ function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
 
 	// Get the user block expiration time.
 	$expiration = tba_bp_get_blocked_user_expiration( $user_id );
+	$expiration_int = strtotime( $expiration );
 
 	// If the expiration is not a timestamp, the user is blocked indefinitely.
 	if ( empty( $expiration ) ) {
 		$message = __( 'This user is blocked indefinitely.', 'bp-block-users' );
 
 	// Display when the user's block will expire.
-	} elseif ( time() < strtotime( $expiration ) ) {
+	} elseif ( $expiration_int > time() ) {
 
 		// Set the date and time of the block expiration.
-		$date = get_date_from_gmt( $expiration, get_option( 'date_format' ) );
-		$time = get_date_from_gmt( $expiration, get_option( 'time_format' ) );
+		$date = date_i18n( bp_get_option( 'date_format' ), $expiration_int );
+		$time = get_date_from_gmt( $expiration, bp_get_option( 'time_format' ) );
 
 		// Set the message with expiration time.
 		$message = sprintf( __( 'This user is blocked until %1$s at %2$s.', 'bp-block-users' ), $date, $time );
