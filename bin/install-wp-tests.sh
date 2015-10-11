@@ -10,11 +10,11 @@ DB_USER=$2
 DB_PASS=$3
 DB_HOST=${4-localhost}
 WP_VERSION=${5-latest}
-BP_VERSION=${6-latest}
+BP_VERSION=${6-master}
 
 WP_TESTS_DIR=${WP_TESTS_DIR-/tmp/wordpress-tests-lib}
-WP_CORE_DIR=${WP_CORE_DIR-/tmp/wordpress/}
-PLUGINS_DIR=${PLUGINS_DIR-/tmp/wordpress/wp-content/plugins}
+WP_CORE_DIR=${WP_CORE_DIR-/tmp/wordpress}
+BP_CORE_DIR=${BP_CORE_DIR-/tmp/wordpress/src/wp-content/plugins/buddypress}
 
 set -ex
 
@@ -29,28 +29,13 @@ download() {
 install_wp() {
 	mkdir -p $WP_CORE_DIR
 
-	if [ $WP_VERSION == 'latest' ]; then
-		local ARCHIVE_NAME='latest'
-	else
-		local ARCHIVE_NAME="wordpress-$WP_VERSION"
-	fi
-
-	download https://wordpress.org/${ARCHIVE_NAME}.tar.gz  /tmp/wordpress.tar.gz
-	tar --strip-components=1 -zxmf /tmp/wordpress.tar.gz -C $WP_CORE_DIR
-
-	download https://raw.github.com/markoheijnen/wp-mysqli/master/db.php $WP_CORE_DIR/wp-content/db.php
+	git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_CORE_DIR
 }
 
 install_bp() {
+	mkdir -p $BP_CORE_DIR
 
-	if [ $BP_VERSION == 'trunk' ]; then
-		local BRANCH_NAME='trunk'
-	else
-		local BRANCH_NAME="branches/$BP_VERSION"
-	fi
-
-	cd $PLUGINS_DIR
-	svn co --quiet https://buddypress.svn.wordpress.org/$BP_VERSION buddypress
+	git clone --depth=1 --branch="$BP_VERSION" git://buddypress.git.wordpress.org/ $BP_CORE_DIR
 }
 
 install_test_suite() {
@@ -62,12 +47,13 @@ install_test_suite() {
 	fi
 
 	# set up testing suite
-	mkdir -p $WP_TESTS_DIR
-	cd $WP_TESTS_DIR
-	svn co --quiet https://develop.svn.wordpress.org/trunk/tests/phpunit/includes/
+	#mkdir -p $WP_TESTS_DIR
+	cd $WP_CORE_DIR
+	#svn co --quiet https://develop.svn.wordpress.org/trunk/tests/phpunit/includes/
 
-	download https://develop.svn.wordpress.org/trunk/wp-tests-config-sample.php wp-tests-config.php
-	sed $ioption "s:dirname( __FILE__ ) . '/src/':'$WP_CORE_DIR':" wp-tests-config.php
+	#download https://develop.svn.wordpress.org/trunk/wp-tests-config-sample.php wp-tests-config.php
+	cp wp-tests-config-sample.php wp-tests-config.php
+	#sed $ioption "s:dirname( __FILE__ ) . '/src/':'$WP_CORE_DIR':" wp-tests-config.php
 	sed $ioption "s/youremptytestdbnamehere/$DB_NAME/" wp-tests-config.php
 	sed $ioption "s/yourusernamehere/$DB_USER/" wp-tests-config.php
 	sed $ioption "s/yourpasswordhere/$DB_PASS/" wp-tests-config.php
