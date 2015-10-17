@@ -27,7 +27,7 @@ env:
     - WP_VERSION=3.8 BP_VERSION=2.3
 
 matrix:
-  fast_finish: true
+  #fast_finish: true
   include:
     - php: 5.2
       env: WP_VERSION=master BP_VERSION=master
