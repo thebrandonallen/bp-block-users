@@ -24,18 +24,9 @@ function tba_bp_block_users_init() {
 	// Only supported in BP 2.0.3+
 	if ( version_compare( bp_get_version(), '2.0.3', '>=' ) ) {
 
-		$includes = plugin_dir_path( __FILE__ ) . 'includes/';
+		require plugin_dir_path( __FILE__ ) . 'bp-block-users-component.php';
 
-		require $includes . 'actions.php';
-		require $includes . 'functions.php';
-		require $includes . 'template.php';
-		require $includes . 'theme-compat.php';
-
-		if ( is_admin() ) {
-			require $includes . 'admin.php';
-		}
-
-	// Show admin notice for users on BP 1.9.x and below.
+	// Show admin notice for users on BP 2.0.2 and below.
 	} else {
 
 		$older_version_notice = sprintf( __( 'Hey! BP Block Users requires BuddyPress 2.0.3 or higher.', 'bp-block-users' ) );
