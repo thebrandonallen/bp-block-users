@@ -270,12 +270,13 @@ function tba_bp_get_blocked_user_ids() {
 	$expiration_key = bp_get_user_meta_key( 'tba_bp_user_blocked_expiration' );
 
 	// Setup the query.
-	$sql = "SELECT DISTINCT e.`user_id`
-			FROM {$wpdb->usermeta} AS e
-			WHERE `user_id` IN
-					( SELECT `b`.`user_id` FROM {$wpdb->usermeta} AS b WHERE `b`.`meta_key` = '{$blocked_key}' AND `b`.`meta_value` = '1' )
-				AND
-					`e`.`meta_key` = '{$expiration_key}' AND ( CAST(`e`.`meta_value` AS DATETIME) > UTC_TIMESTAMP() OR `e`.`meta_value` = '0' );";
+	$sql = "SELECT DISTINCT `m1`.`user_id`
+			FROM {$wpdb->usermeta} AS `m1`
+			INNER JOIN {$wpdb->usermeta} AS `m2` ON `m1`.`user_id` = `m2`.`user_id`
+			WHERE `m1`.`meta_key` = '{$blocked_key}'
+				AND `m1`.`meta_value` = '1'
+				AND `m2`.`meta_key` = '{$expiration_key}'
+				AND ( CAST(`m2`.`meta_value` AS DATETIME) > UTC_TIMESTAMP() OR `m2`.`meta_value` = '0' );";
 
 	// Get the ids of all blocked users.
 	$user_ids = $wpdb->get_col( $sql );
