@@ -43,7 +43,7 @@ function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
 	}
 
 	// Set the default message.
-	$message = __( 'This user is not currently blocked.', 'bp-block-users' );
+	$message = __( 'This member is not currently blocked.', 'bp-block-users' );
 
 	// If the user is not blocked, bail.
 	if ( ! tba_bp_is_user_blocked( $user_id ) ) {
@@ -56,7 +56,7 @@ function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
 
 	// If the expiration is not a timestamp, the user is blocked indefinitely.
 	if ( empty( $expiration ) ) {
-		$message = __( 'This user is blocked indefinitely.', 'bp-block-users' );
+		$message = __( 'This member is blocked indefinitely.', 'bp-block-users' );
 
 	// Display when the user's block will expire.
 	} elseif ( $expiration_int > time() ) {
@@ -66,7 +66,7 @@ function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
 		$time = get_date_from_gmt( $expiration, bp_get_option( 'time_format' ) );
 
 		// Set the message with expiration time.
-		$message = sprintf( __( 'This user is blocked until %1$s at %2$s.', 'bp-block-users' ), $date, $time );
+		$message = sprintf( __( 'This member is blocked until %1$s at %2$s.', 'bp-block-users' ), $date, $time );
 	}
 
 	/**
