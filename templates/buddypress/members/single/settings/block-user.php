@@ -16,7 +16,7 @@ do_action( 'bp_before_member_settings_template' ); ?>
 
 	<label for="block-user">
 		<input type="checkbox" name="block-user" id="block-user" value="1" <?php checked( tba_bp_is_user_blocked( bp_displayed_user_id() ) ); ?> />
-		 <?php esc_html_e( 'Block this user?', 'bp-block-users' ); ?>
+		 <?php esc_html_e( 'Block this member?', 'bp-block-users' ); ?>
 	</label>
 
 	<label><?php esc_html_e( 'Length of time a member should be blocked.', 'bp-block-users' ); ?></label>
