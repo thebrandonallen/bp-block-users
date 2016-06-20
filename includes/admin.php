@@ -39,15 +39,15 @@ function tba_bp_block_users_settings_fields( $user ) {
 
 	?>
 
-	<h2><?php esc_html_e( 'Block User', 'bp-block-users' ); ?></h2>
-	<p><?php esc_html_e( 'Block this user indefinitely or for a specified amount of time.', 'bp-block-users' ); ?> <br /><span class="description"><?php esc_html_e( 'If "Indefinitely" is chosen, the time-length field will be ignored.', 'bp-block-users' ); ?></span></p>
+	<h2><?php esc_html_e( 'Block member', 'bp-block-users' ); ?></h2>
+	<p><?php esc_html_e( 'Block this member indefinitely or for a specified amount of time.', 'bp-block-users' ); ?> <br /><span class="description"><?php esc_html_e( 'If "Indefinitely" is chosen, the time-length field will be ignored.', 'bp-block-users' ); ?></span></p>
 	<table class="form-table">
 		<tbody><tr>
-			<th scope="row"><?php esc_html_e( 'Block User', 'bp-block-users' ); ?></th>
+			<th scope="row"><?php esc_html_e( 'Block member', 'bp-block-users' ); ?></th>
 			<td>
 				<label for="block-user">
 					<input type="checkbox" name="block-user" id="block-user" value="1" <?php checked( tba_bp_is_user_blocked( $user->ID ) ); ?> />
-					<?php esc_html_e( 'Block this user?', 'bp-block-users' ); ?>
+					<?php esc_html_e( 'Block this member?', 'bp-block-users' ); ?>
 				</label>
 				<p class="description"><?php tba_bp_block_user_settings_message( $user->ID ); ?></p>
 			</td>
@@ -55,10 +55,10 @@ function tba_bp_block_users_settings_fields( $user ) {
 		<tbody><tr>
 			<th scope="row"><?php esc_html_e( 'Expiration', 'bp-block-users' ); ?></th>
 			<td>
-				<label for="block-user-length" class="screen-reader-text"><?php esc_html_e( 'Numeric length of time user should be blocked.', 'bp-block-users' ); ?></label>
+				<label for="block-user-length" class="screen-reader-text"><?php esc_html_e( 'Numeric length of time member should be blocked.', 'bp-block-users' ); ?></label>
 				<input type="text" name="block-user-length" id="block-user-length" value="0" size="3" />
 
-				<label for="block-user-unit" class="screen-reader-text"><?php esc_html_e( 'Unit of time a user should be blocked.', 'bp-block-users' ); ?></label>
+				<label for="block-user-unit" class="screen-reader-text"><?php esc_html_e( 'Unit of time a member should be blocked.', 'bp-block-users' ); ?></label>
 				<select name="block-user-unit" id="block-user-unit">
 					<option value="minutes"><?php esc_html_e( 'minute(s)', 'bp-block-users' ); ?></option>
 					<option value="hours"><?php esc_html_e( 'hour(s)', 'bp-block-users' ); ?></option>
