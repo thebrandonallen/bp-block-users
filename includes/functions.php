@@ -635,7 +635,7 @@ function tba_bp_block_users_admin_bar_admin_menu() {
 		$wp_admin_bar->add_menu( array(
 			'parent' => $bp->user_admin_menu_id,
 			'id'     => $bp->user_admin_menu_id . '-block-user',
-			'title'  => __( 'Block User', 'bp-block-users' ),
+			'title'  => __( 'Block member', 'bp-block-users' ),
 			'href'   => bp_displayed_user_domain() . 'settings/block-user/'
 		) );
 	}

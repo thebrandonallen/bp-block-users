@@ -16,15 +16,15 @@ do_action( 'bp_before_member_settings_template' ); ?>
 
 	<label for="block-user">
 		<input type="checkbox" name="block-user" id="block-user" value="1" <?php checked( tba_bp_is_user_blocked( bp_displayed_user_id() ) ); ?> />
-		 <?php esc_html_e( 'Block this user?', 'bp-block-users' ); ?>
+		 <?php esc_html_e( 'Block this member?', 'bp-block-users' ); ?>
 	</label>
 
-	<label><?php esc_html_e( 'Length of time user should be blocked.', 'bp-block-users' ); ?></label>
+	<label><?php esc_html_e( 'Length of time a member should be blocked.', 'bp-block-users' ); ?></label>
 
-	<label for="block-user-length" class="bp-screen-reader-text"><?php esc_html_e( 'Numeric length of time user should be blocked.', 'bp-block-users' ); ?></label>
+	<label for="block-user-length" class="bp-screen-reader-text"><?php esc_html_e( 'Numeric length of time a member should be blocked.', 'bp-block-users' ); ?></label>
 	<input type="text" name="block-user-length" id="block-user-length" value="0" style="width: 25%" />
 
-	<label for="block-user-unit" class="bp-screen-reader-text"><?php esc_html_e( 'Unit of time a user should be blocked.', 'bp-block-users' ); ?></label>
+	<label for="block-user-unit" class="bp-screen-reader-text"><?php esc_html_e( 'Unit of time a member should be blocked.', 'bp-block-users' ); ?></label>
 	<select name="block-user-unit" id="block-user-unit">
 		<option value="minutes"><?php esc_html_e( 'minute(s)', 'bp-block-users' ); ?></option>
 		<option value="hours"><?php esc_html_e( 'hour(s)', 'bp-block-users' ); ?></option>
