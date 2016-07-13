@@ -142,7 +142,7 @@ module.exports = function(grunt) {
 			build: {
 				files: {
 					'bp-block-users.php': 'bp-block-users.php',
-					'readme.md': 'readme.md',
+					'README.md': 'README.md',
 					'readme.txt': 'readme.txt'
 				},
 				options: {
@@ -166,11 +166,20 @@ module.exports = function(grunt) {
 				files: ['Gruntfile.js'],
 				tasks: ['jshint']
 			}
+		},
+		wp_readme_to_markdown: {
+			your_target: {
+				files: {
+					'README.md': 'readme.txt'
+				}
+			}
 		}
 	});
 
+	grunt.registerTask( 'readme', ['wp_readme_to_markdown'] );
+
 	// Build tasks.
-	grunt.registerTask( 'build', [ 'clean:all', 'checktextdomain', 'string-replace:build', 'makepot', 'copy:files' ] );
+	grunt.registerTask( 'build', [ 'clean:all', 'readme', 'checktextdomain', 'string-replace:build', 'makepot', 'copy:files' ] );
 
 	// PHPUnit test task.
 	grunt.registerMultiTask( 'phpunit', 'Runs PHPUnit tests, including the multisite tests.', function() {
