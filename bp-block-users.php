@@ -1,17 +1,16 @@
 <?php
-
-/*
-Plugin Name: BP Block Users
-Plugin URI:  http://github.com/thebrandonallen/bp-block-users/
-Description: Allows BuddyPress administrators to block users indefinitely, or for a specified period of time.
-Version:     0.1.0
-Author:      Brandon Allen
-Author URI:  http://github.com/thebrandonallen/
-License:     GPLv2 or later (license.txt)
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Domain Path: /languages
-Text Domain: bp-block-users
-*/
+/**
+ * Plugin Name:     BP Block Users
+ * Plugin URI:      https://github.com/thebrandonallen/bp-block-users
+ * Description:     Allows BuddyPress administrators to block users indefinitely, or for a specified period of time.
+ * Author:          Brandon Allen
+ * Author URI:      https://github.com/thebrandonallen
+ * Text Domain:     bp-block-users
+ * Domain Path:     /languages
+ * Version:         0.1.0
+ *
+ * @package BP_Block_Users
+ */
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
