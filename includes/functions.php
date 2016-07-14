@@ -35,24 +35,27 @@ function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
 	}
 
 	// Set the user as blocked.
-	bp_update_user_meta( $user_id, 'tba_bp_user_blocked', 1 );
+	$blocked = bp_update_user_meta( $user_id, 'tba_bp_user_blocked', 1 );
+	if ( $blocked ) {
 
-	// Set the user block expiration date.
-	tba_bp_update_blocked_user_expiration( $user_id, $length, $unit );
+		// Set the user block expiration date.
+		tba_bp_update_blocked_user_expiration( $user_id, $length, $unit );
 
-	// Log the user out of all sessions.
-	tba_bp_destroy_blocked_user_sessions( $user_id );
+		// Log the user out of all sessions.
+		tba_bp_destroy_blocked_user_sessions( $user_id );
+	}
 
 	/**
 	 * Fires after a user is blocked.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param int $user_id The blocked user id.
+	 * @param int  $user_id The blocked user id.
+	 * @param bool $blocked True on success, false on failure.
 	 */
-	do_action( 'tba_bp_blocked_user', $user_id );
+	do_action( 'tba_bp_blocked_user', $user_id, $blocked );
 
-	return true;
+	return $blocked;
 }
 
 /**
@@ -75,8 +78,8 @@ function tba_bp_unblock_user( $user_id = 0 ) {
 	}
 
 	// Unblock the user.
-	$deleted = bp_delete_user_meta( $user_id, 'tba_bp_user_blocked' );
-	if ( $deleted ) {
+	$unblocked = bp_delete_user_meta( $user_id, 'tba_bp_user_blocked' );
+	if ( $unblocked ) {
 		bp_delete_user_meta( $user_id, 'tba_bp_user_blocked_expiration' );
 	}
 
@@ -85,12 +88,12 @@ function tba_bp_unblock_user( $user_id = 0 ) {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param int  $user_id The unblocked user id.
-	 * @param bool $deleted True on success, false on failure.
+	 * @param int  $user_id   The unblocked user id.
+	 * @param bool $unblocked True on success, false on failure.
 	 */
-	do_action( 'tba_bp_unblocked_user', $user_id, $deleted );
+	do_action( 'tba_bp_unblocked_user', $user_id, $unblocked );
 
-	return $deleted;
+	return $unblocked;
 }
 
 /**
