@@ -1,4 +1,10 @@
 <?php
+/**
+ * BP Block Users Functions.
+ *
+ * @package BP_Block_Users
+ * @subpackage Functions
+ */
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -269,17 +275,25 @@ function tba_bp_get_blocked_user_ids() {
 	$blocked_key    = bp_get_user_meta_key( 'tba_bp_user_blocked' );
 	$expiration_key = bp_get_user_meta_key( 'tba_bp_user_blocked_expiration' );
 
-	// Setup the query.
-	$sql = "SELECT DISTINCT `m1`.`user_id`
-			FROM {$wpdb->usermeta} AS `m1`
-			INNER JOIN {$wpdb->usermeta} AS `m2` ON `m1`.`user_id` = `m2`.`user_id`
-			WHERE `m1`.`meta_key` = '{$blocked_key}'
-				AND `m1`.`meta_value` = '1'
-				AND `m2`.`meta_key` = '{$expiration_key}'
-				AND ( CAST(`m2`.`meta_value` AS DATETIME) > UTC_TIMESTAMP() OR `m2`.`meta_value` = '0' );";
+	// Check the cache first.
+	$user_ids = wp_cache_get( 'user_ids', 'bp_block_users' );
 
-	// Get the ids of all blocked users.
-	$user_ids = $wpdb->get_col( $sql );
+	// If the cache is empty, pull from the database.
+	if ( false === $user_ids ) {
+		$sql = "SELECT DISTINCT `m1`.`user_id`
+				FROM {$wpdb->usermeta} AS `m1`
+				INNER JOIN {$wpdb->usermeta} AS `m2` ON `m1`.`user_id` = `m2`.`user_id`
+				WHERE `m1`.`meta_key` = '{$blocked_key}'
+					AND `m1`.`meta_value` = '1'
+					AND `m2`.`meta_key` = '{$expiration_key}'
+					AND ( CAST(`m2`.`meta_value` AS DATETIME) > UTC_TIMESTAMP() OR `m2`.`meta_value` = '0' );";
+
+		// Get the ids of all blocked users.
+		$user_ids = array_map( 'absint', $wpdb->get_col( $sql ) );
+
+		// Add the user ids to the cache.
+		wp_cache_set( 'user_ids', $user_ids, 'bp_block_users' );
+	}
 
 	/**
 	 * Filters the return of the blocked user ids array.
@@ -430,3 +444,11 @@ function tba_bp_settings_action_block_user() {
 	);
 	buddypress()->block_users->block_user_settings_action();
 }
+
+/** Cache *********************************************************************/
+
+function tba_bp_block_users_clean_user_id_cache() {
+	wp_cache_delete( 'user_ids', 'bp_block_users' );
+}
+add_action( 'tba_bp_blocked_user', 'tba_bp_block_users_clean_user_id_cache' );
+add_action( 'tba_bp_unblocked_user', 'tba_bp_block_users_clean_user_id_cache' );

@@ -209,6 +209,23 @@ class BP_Block_Users_Component extends BP_Component {
 		}
 	}
 
+	/** Cache *****************************************************************/
+
+	/**
+	 * Setup cache groups
+	 *
+	 * @since 0.2.0
+	 */
+	public function setup_cache_groups() {
+
+		// Global groups.
+		wp_cache_add_global_groups( array(
+			'bp_block_users'
+		) );
+
+		parent::setup_cache_groups();
+	}
+
 	/** Notification Emails ***************************************************/
 
 	/**
