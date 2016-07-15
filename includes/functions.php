@@ -311,36 +311,41 @@ function tba_bp_get_blocked_user_ids() {
 /**
  * Returns an array of blocked user `WP_User` objects.
  *
- * This function is a wrapper for `get_users()` that only returns results for
+ * This function is a wrapper for `WP_User_Query` that only returns results for
  * users that are blocked. Any ids passed in the `includes` parameter that don't
  * belong to a blocked user will be filtered out.
  *
  * @since 0.2.0
  *
- * @param array $args Arguments to pass to `get_users()`.
+ * @param array $args Arguments to pass to `WP_User_Query`.
  *
- * @return array
+ * @return WP_User_Query
  */
 function tba_bp_get_blocked_users( $args = array() ) {
 
 	// Get the blocked user ids.
 	$user_ids = tba_bp_get_blocked_user_ids();
 
-	// Bail early if no users are blocked.
-	if ( empty( $user_ids ) ) {
-		return array();
+	// Set a default user query args.
+	$r = array();
+
+	// Set query vars if we have blocked users.
+	if ( ! empty( $user_ids ) ) {
+
+		// Make sure we have an array.
+		$r = wp_parse_args( $args, array( 'count_total' => true ) );
+
+		// Set the `includes` parameter to get our blocked user objects.
+		if ( isset( $r['include'] ) ) {
+			$r['include'] = array_intersect( (array) $r['include'], $user_ids );
+			$r['include'] = array_unique( array_filter( $r['include'] ) );
+		} else {
+			$r['include'] = $user_ids;
+		}
 	}
 
-	// Make sure we have an array.
-	$r = wp_parse_args( $args, array() );
-
-	// Set the `includes` parameter to get our blocked user objects.
-	if ( isset( $r['include'] ) ) {
-		$r['include'] = array_intersect( (array) $r['include'], $user_ids );
-		$r['include'] = array_unique( array_filter( $r['include'] ) );
-	} else {
-		$r['include'] = $user_ids;
-	}
+	// Run the user query.
+	$users = new WP_User_Query( $r );
 
 	/**
 	 * Filters the return of the blocked user objects array.
@@ -349,7 +354,7 @@ function tba_bp_get_blocked_users( $args = array() ) {
 	 *
 	 * @param array $users The array of blocked user objects.
 	 */
-	return (array) apply_filters( 'tba_bp_get_blocked_users', get_users( $r ) );
+	return apply_filters( 'tba_bp_get_blocked_users', $users );
 }
 
 /**
