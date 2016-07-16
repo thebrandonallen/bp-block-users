@@ -503,10 +503,15 @@ function tba_bp_settings_action_block_user() {
 	buddypress()->block_users->block_user_settings_action();
 }
 
-/** Cache *********************************************************************/
+/* Cache **********************************************************************/
 
-function tba_bp_block_users_clean_user_id_cache() {
+/**
+ * Clean the BP Block Users cache.
+ *
+ * @since 0.2.0
+ */
+function bp_block_users_clean_cache() {
 	wp_cache_delete( 'user_ids', 'bp_block_users' );
 }
-add_action( 'tba_bp_blocked_user', 'tba_bp_block_users_clean_user_id_cache' );
-add_action( 'tba_bp_unblocked_user', 'tba_bp_block_users_clean_user_id_cache' );
+add_action( 'tba_bp_blocked_user', 'bp_block_users_clean_cache' );
+add_action( 'tba_bp_unblocked_user', 'bp_block_users_clean_cache' );
