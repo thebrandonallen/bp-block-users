@@ -263,6 +263,9 @@ function tba_bp_is_user_blocked( $user_id = 0 ) {
  *
  * @since 0.1.0
  *
+ * @todo This should use WP_User_Query with a multi-relational meta query
+ *       when WP 4.1 is the minimum.
+ *
  * @global wpdb The WP database object.
  *
  * @uses bp_get_user_meta_key() To get a filtered version of the meta key.
@@ -283,13 +286,17 @@ function tba_bp_get_blocked_user_ids() {
 
 	// If the cache is empty, pull from the database.
 	if ( false === $user_ids ) {
-		$sql = "SELECT DISTINCT `m1`.`user_id`
+		$sql = $wpdb->prepare(
+			"SELECT DISTINCT `m1`.`user_id`
 				FROM {$wpdb->usermeta} AS `m1`
 				INNER JOIN {$wpdb->usermeta} AS `m2` ON `m1`.`user_id` = `m2`.`user_id`
-				WHERE `m1`.`meta_key` = '{$blocked_key}'
+				WHERE `m1`.`meta_key` = %s
 					AND `m1`.`meta_value` = '1'
-					AND `m2`.`meta_key` = '{$expiration_key}'
-					AND ( CAST(`m2`.`meta_value` AS DATETIME) > UTC_TIMESTAMP() OR `m2`.`meta_value` = '0' );";
+					AND `m2`.`meta_key` = %s
+					AND ( CAST(`m2`.`meta_value` AS DATETIME) > UTC_TIMESTAMP() OR `m2`.`meta_value` = '0' );",
+			$blocked_key,
+			$expiration_key
+		);
 
 		// Get the ids of all blocked users.
 		$user_ids = array_map( 'absint', $wpdb->get_col( $sql ) );
