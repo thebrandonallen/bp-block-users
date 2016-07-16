@@ -452,26 +452,3 @@ class BP_Block_Users_Component extends BP_Component {
 		do_action( 'tba_bp_settings_block_user_after_save' );
 	}
 }
-
-/**
- * Loads the Block Users component into the $bp global.
- *
- * @since 0.2.0
- *
- * @uses buddypress() To get the BuddyPress global.
- * @uses do_action() To call the `bp_block_users_loaded` hook.
- *
- * @return void
- */
-function bp_block_users_setup_component() {
-
-	buddypress()->block_users = new BP_Block_Users_Component;
-
-	/**
-	 * Fires after the BP Block Users component is loaded.
-	 *
-	 * @since 0.2.0
-	 */
-	do_action( 'bp_block_users_loaded' );
-}
-add_action( 'bp_loaded', 'bp_block_users_setup_component' );
