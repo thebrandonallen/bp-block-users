@@ -145,7 +145,7 @@ function tba_bp_update_blocked_user_expiration( $user_id = 0, $length = 0, $unit
 	$expiration = 0;
 
 	// Set the expiration time.
-	if ( in_array( $unit, array_keys( $units ) ) ) {
+	if ( in_array( $unit, array_keys( $units ), true ) ) {
 		$expiration = gmdate( 'Y-m-d H:i:s', ( time() + ( $length * $units[ $unit ] ) ) );
 	}
 
