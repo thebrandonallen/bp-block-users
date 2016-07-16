@@ -3,7 +3,7 @@
 /**
  * BP Block Users Component class.
  *
- * @package BPBlockUsers
+ * @package BP_Block_Users
  * @subpackage Component
  */
 
@@ -26,6 +26,15 @@ class BP_Block_Users_Component extends BP_Component {
 	 */
 	public $includes_dir = '';
 
+	/**
+	 * The path to BP Block Users classes.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @var string $classes_dir
+	 */
+	public $classes_dir = '';
+
 	/** Methods ***************************************************************/
 
 	/**
@@ -35,18 +44,22 @@ class BP_Block_Users_Component extends BP_Component {
 	 *
 	 * @uses plugin_dir_path() BP Block Users directory.
 	 * @uses trailingslashit() To add a trailingslash.
+	 *
+	 * @param string $file The main BP Block Users file.
 	 */
-	public function __construct() {
+	public function __construct( $file = '' ) {
 
 		// Let's start the show!
 		parent::start(
 			'block_users',
 			__( 'Block Users', 'bp-block-users' ),
-			plugin_dir_path( __FILE__ ),
+			plugin_dir_path( $file ),
 			array()
 		);
 
-		$this->includes_dir = trailingslashit( $this->path . 'includes' );
+		// Extra directory properties.
+		$this->includes_dir = $this->path . 'includes/';
+		$this->classes_dir  = $this->path . 'classes/';
 
 		// Include our files.
 		$this->includes();
