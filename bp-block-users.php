@@ -23,7 +23,7 @@ function tba_bp_block_users_init() {
 	// Only supported in BP 2.1.2+
 	if ( version_compare( bp_get_version(), '2.1.2', '>=' ) ) {
 
-		require plugin_dir_path( __FILE__ ) . 'bp-block-users-component.php';
+		require plugin_dir_path( __FILE__ ) . 'classes/class-bp-block-users-component.php';
 
 		add_action( 'bp_loaded', 'bp_block_users_setup_component' );
 
