@@ -338,7 +338,6 @@ function tba_bp_get_blocked_users( $args = array() ) {
 		// Set the `includes` parameter to get our blocked user objects.
 		if ( isset( $r['include'] ) ) {
 			$r['include'] = array_intersect( (array) $r['include'], $user_ids );
-			$r['include'] = array_unique( array_filter( $r['include'] ) );
 		} else {
 			$r['include'] = $user_ids;
 		}
