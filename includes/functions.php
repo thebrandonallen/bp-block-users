@@ -246,6 +246,7 @@ function tba_bp_is_user_blocked( $user_id = 0 ) {
  *
  * @todo This should use WP_User_Query with a multi-relational meta query
  *       when WP 4.1 is the minimum.
+ *       {@link https://make.wordpress.org/core/2014/10/20/update-on-query-improvements-in-4-1/}
  *
  * @global wpdb The WP database object.
  *
