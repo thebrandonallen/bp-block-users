@@ -1,6 +1,6 @@
 <?php
 
-class BP_Block_Users_Tests_Admin extends WP_UnitTestCase {
+class BPBU_Tests_Admin extends WP_UnitTestCase {
 
 	function test_tba_bp_block_users_settings_fields() {
 		$this->markTestIncomplete();

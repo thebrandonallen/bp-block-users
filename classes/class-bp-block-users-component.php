@@ -17,7 +17,7 @@ if ( class_exists( 'BP_Component' ) ) {
 	 *
 	 * @since 0.2.0
 	 */
-	class BP_Block_Users_Component extends BP_Component {
+	class BPBU_Component extends BP_Component {
 
 		/**
 		 * The path to BP Block Users includes.

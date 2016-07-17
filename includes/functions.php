@@ -37,7 +37,7 @@ function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
 		tba_bp_update_blocked_user_expiration( $user_id, $length, $unit );
 
 		// Log the user out of all sessions.
-		tba_bp_destroy_blocked_user_sessions( $user_id );
+		bpbu_destroy_user_sessions( $user_id );
 	}
 
 	/**
@@ -305,7 +305,7 @@ function tba_bp_get_blocked_user_ids() {
  *
  * @return WP_User_Query
  */
-function tba_bp_get_blocked_users( $args = array() ) {
+function bpbu_get_blocked_users( $args = array() ) {
 
 	// Get the blocked user ids.
 	$user_ids = tba_bp_get_blocked_user_ids();
@@ -337,7 +337,7 @@ function tba_bp_get_blocked_users( $args = array() ) {
 	 *
 	 * @param array $users The array of blocked user objects.
 	 */
-	return apply_filters( 'tba_bp_get_blocked_users', $users );
+	return apply_filters( 'bpbu_get_blocked_users', $users );
 }
 
 /**
@@ -349,7 +349,7 @@ function tba_bp_get_blocked_users( $args = array() ) {
  *
  * @return void
  */
-function tba_bp_destroy_blocked_user_sessions( $user_id = 0 ) {
+function bpbu_destroy_user_sessions( $user_id = 0 ) {
 
 	// Bail if no user id.
 	if ( empty( $user_id ) ) {
@@ -381,7 +381,7 @@ function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $
 	_deprecated_function(
 		'tba_bp_block_users_block_notifications',
 		'0.2.0',
-		'BP_Block_Users_Component::block_notifications'
+		'BPBU_Component::block_notifications'
 	);
 	return buddypress()->block_users->block_notifications( $retval, $user_id, $meta_key, $single );
 }
@@ -404,7 +404,7 @@ function tba_bp_prevent_blocked_user_login( $user = null ) {
 	_deprecated_function(
 		'tba_bp_prevent_blocked_user_login',
 		'0.2.0',
-		'BP_Block_Users_Component::prevent_blocked_user_login'
+		'BPBU_Component::prevent_blocked_user_login'
 	);
 	return buddypress()->block_users->prevent_blocked_user_login( $user );
 }
@@ -424,7 +424,7 @@ function tba_bp_block_user_settings_sub_nav() {
 	_deprecated_function(
 		'tba_bp_block_user_settings_sub_nav',
 		'0.2.0',
-		'BP_Block_Users_Component::setup_settings_sub_nav'
+		'BPBU_Component::setup_settings_sub_nav'
 	);
 	buddypress()->block_users->setup_settings_sub_nav();
 }
@@ -442,7 +442,7 @@ function tba_bp_block_users_admin_bar_admin_menu() {
 	_deprecated_function(
 		'tba_bp_block_users_admin_bar_admin_menu',
 		'0.2.0',
-		'BP_Block_Users_Component::setup_settings_admin_bar'
+		'BPBU_Component::setup_settings_admin_bar'
 	);
 	buddypress()->block_users->setup_settings_admin_bar();
 }
@@ -462,7 +462,7 @@ function tba_bp_settings_action_block_user() {
 	_deprecated_function(
 		'tba_bp_settings_action_block_user',
 		'0.2.0',
-		'BP_Block_Users_Component::block_user_settings_action'
+		'BPBU_Component::block_user_settings_action'
 	);
 	buddypress()->block_users->block_user_settings_action();
 }
@@ -474,8 +474,8 @@ function tba_bp_settings_action_block_user() {
  *
  * @since 0.2.0
  */
-function bp_block_users_clean_cache() {
+function bpbu_clean_cache() {
 	wp_cache_delete( 'user_ids', 'bp_block_users' );
 }
-add_action( 'tba_bp_blocked_user', 'bp_block_users_clean_cache' );
-add_action( 'tba_bp_unblocked_user', 'bp_block_users_clean_cache' );
+add_action( 'tba_bp_blocked_user', 'bpbu_clean_cache' );
+add_action( 'tba_bp_unblocked_user', 'bpbu_clean_cache' );

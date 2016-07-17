@@ -25,7 +25,7 @@ function tba_bp_block_users_init() {
 
 		require plugin_dir_path( __FILE__ ) . 'classes/class-bp-block-users-component.php';
 
-		add_action( 'bp_loaded', 'bp_block_users_setup_component' );
+		add_action( 'bp_loaded', 'bpbu_setup_component' );
 
 	// Show admin notice for users on BP 2.1.1 and below.
 	} else {
@@ -64,14 +64,14 @@ add_action( 'plugins_loaded', 'tba_bp_block_users_load_textdomain' );
  *
  * @return void
  */
-function bp_block_users_setup_component() {
+function bpbu_setup_component() {
 
-	buddypress()->block_users = new BP_Block_Users_Component( __FILE__ );
+	buddypress()->block_users = new BPBU_Component( __FILE__ );
 
 	/**
 	 * Fires after the BP Block Users component is loaded.
 	 *
 	 * @since 0.2.0
 	 */
-	do_action( 'bp_block_users_loaded' );
+	do_action( 'bpbu_loaded' );
 }

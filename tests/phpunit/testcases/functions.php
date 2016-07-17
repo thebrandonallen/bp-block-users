@@ -1,6 +1,6 @@
 <?php
 
-class BP_Block_Users_Tests_Functions extends WP_UnitTestCase {
+class BPBU_Tests_Functions extends WP_UnitTestCase {
 
 	function test_tba_bp_block_user() {
 		$this->markTestIncomplete();
@@ -26,7 +26,7 @@ class BP_Block_Users_Tests_Functions extends WP_UnitTestCase {
 		$this->markTestIncomplete();
 	}
 
-	function test_tba_bp_destroy_blocked_user_sessions() {
+	function test_bpbu_destroy_user_sessions() {
 		$this->markTestIncomplete();
 	}
 
