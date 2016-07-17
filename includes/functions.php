@@ -20,11 +20,6 @@ defined( 'ABSPATH' ) || exit;
  * @param int    $length  Numeric length of time to block user.
  * @param string $unit    Unit of time to block user.
  *
- * @uses bp_update_user_meta() To update the user meta.
- * @uses tba_bp_update_blocked_user_expiration() To update the blocked user expiration time.
- * @uses bp_delete_user_meta() To delete the user meta.
- * @uses do_action() To call the `tba_bp_blocked_user` hook.
- *
  * @return int|bool True or meta id on success, false on failure.
  */
 function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
@@ -65,9 +60,6 @@ function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
  *
  * @param int $user_id User to block.
  *
- * @uses bp_delete_user_meta() To delete the user meta.
- * @uses do_action() To call the `tba_bp_unblocked_user` hook.
- *
  * @return bool True on success, false on failure.
  */
 function tba_bp_unblock_user( $user_id = 0 ) {
@@ -104,10 +96,6 @@ function tba_bp_unblock_user( $user_id = 0 ) {
  * @param int    $user_id User to block.
  * @param int    $length  Numeric length of time to block user.
  * @param string $unit    Unit of time to block user.
- *
- * @uses apply_filters() To call the `tba_bp_block_users_expiration_units` and
- *                       `tba_bp_block_user_expiration_time` filters.
- * @uses bp_update_user_meta() To update the user meta.
  *
  * @return int|bool True or meta id on success, false on failure.
  */
@@ -173,8 +161,6 @@ function tba_bp_update_blocked_user_expiration( $user_id = 0, $length = 0, $unit
  * @param int  $user_id The blocked user.
  * @param bool $int     Whether to return a Unix timestamp.
  *
- * @uses bp_update_user_meta() To update the user meta.
- *
  * @return mixed MySQL expiration timestamp. Unix if `$int` is true. Zero if
  *               blocked indefinitely. False on failure.
  */
@@ -216,11 +202,6 @@ function tba_bp_get_blocked_user_expiration( $user_id = 0, $int = false ) {
  * @since 0.1.0
  *
  * @param int $user_id User to check for a block.
- *
- * @uses bp_update_user_meta() To update the user meta.
- * @uses tba_bp_get_blocked_user_expiration() To get the blocked user expiration time.
- * @uses tba_bp_unblock_user() To unblock the specified user.
- * @uses apply_filters() To call the `tba_bp_is_user_blocked` filter.
  *
  * @return bool True if user is blocked.
  */
@@ -267,10 +248,6 @@ function tba_bp_is_user_blocked( $user_id = 0 ) {
  *       when WP 4.1 is the minimum.
  *
  * @global wpdb The WP database object.
- *
- * @uses bp_get_user_meta_key() To get a filtered version of the meta key.
- * @uses wpdb::get_col() To get an array of all blocked user ids.
- * @uses apply_filters() To call the `tba_bp_get_blocked_user_ids` filter.
  *
  * @return array An array of blocked user ids.
  */
@@ -370,9 +347,6 @@ function tba_bp_get_blocked_users( $args = array() ) {
  *
  * @param int $user_id The blocked user.
  *
- * @uses WP_Session_Tokens::get_instance() To get the specified user's sessions object.
- * @uses WP_Session_Tokens::destroy_all() To destroy all the user's sessions.
- *
  * @return void
  */
 function tba_bp_destroy_blocked_user_sessions( $user_id = 0 ) {
@@ -401,8 +375,6 @@ function tba_bp_destroy_blocked_user_sessions( $user_id = 0 ) {
  * @param string $meta_key The meta key.
  * @param bool   $single   Whether to return an array, or the the meta value.
  *
- * @uses BP_Block_Users_Component::block_notifications()
- *
  * @return mixed `no` if blocking a user email notification.
  */
 function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $single ) {
@@ -425,8 +397,6 @@ function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $
  *
  * @param null|WP_User $user The WP_User object being authenticated.
  *
- * @uses do_action_ref_array() To call the `tba_bp_authentication_blocked` hook.
- *
  * @return WP_User|WP_Error WP_User object if not blocked. WP_Error object,
  *                          otherwise. Passed by reference.
  */
@@ -448,8 +418,6 @@ function tba_bp_prevent_blocked_user_login( $user = null ) {
  *
  * @deprecated 0.2.0
  *
- * @uses BP_Block_Users_Component::setup_settings_sub_nav()
- *
  * @return void
  */
 function tba_bp_block_user_settings_sub_nav() {
@@ -467,8 +435,6 @@ function tba_bp_block_user_settings_sub_nav() {
  * @since 0.1.0
  *
  * @deprecated 0.2.0
- *
- * @uses BP_Block_Users_Component::setup_settings_admin_bar()
  *
  * @return void
  */
@@ -489,8 +455,6 @@ function tba_bp_block_users_admin_bar_admin_menu() {
  * @since 0.1.0
  *
  * @deprecated 0.2.0
- *
- * @uses BP_Block_Users_Component::block_user_settings_action()
  *
  * @return void
  */

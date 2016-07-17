@@ -10,14 +10,6 @@ defined( 'ABSPATH' ) || exit;
  *
  * @param WP_User $user The WP_User object.
  *
- * @uses get_current_user_id() To get the current logged in user id.
- * @uses current_user_can() To check for the `edit_user` capability.
- * @uses bp_current_user_can() To check the `bp_moderate` capability.
- * @uses esc_html_e() To escape, echo, and translate passed string.
- * @uses tba_bp_is_user_blocked() To check if specified user is blocked.
- * @uses checked() To output the `checked="checked"` HTML.
- * @uses tba_bp_block_user_settings_message() To get the blocked user settings message.
- *
  * @return void
  */
 function tba_bp_block_users_settings_fields( $user ) {
@@ -83,14 +75,6 @@ function tba_bp_block_users_settings_fields( $user ) {
  * @param bool     $update
  * @param WP_User  $user
  *
- * @uses get_current_user_id() To get the current logged in user id.
- * @uses current_user_can() To check for the `edit_user` capability.
- * @uses bp_current_user_can() To check the `bp_moderate` capability.
- * @uses check_admin_referer() To check the `'update-user_' . $user->ID` nonce.
- * @uses sanitize_key() To sanitize the `block-user-unit` $_POST key.
- * @uses tba_bp_block_user() To block the specified user.
- * @uses tba_bp_unblock_user() To unblock the specified user.
- *
  * @return void
  */
 function tba_bp_block_users_update_user_settings( $errors, $update, $user ) {
@@ -138,16 +122,6 @@ function tba_bp_block_users_update_user_settings( $errors, $update, $user ) {
  *
  * @param array        $actions An array of row actions.
  * @param null|WP_User $user    The WP_User object.
- *
- * @uses get_current_user_id() To get the current logged in user id.
- * @uses current_user_can() To check for the `edit_user` capability.
- * @uses bp_current_user_can() To check the `bp_moderate` capability.
- * @uses wp_unslash() To unslash the passed string.
- * @uses tba_bp_is_user_blocked() To check if specified user is blocked.
- * @uses buddypress() To get the BP object.
- * @uses add_query_arg() To add query args to the passed URL.
- * @uses esc_url() To escape the passed URL.
- * @uses esc_html() To escape input for HTML.
  *
  * @return array An array of row actions.
  */

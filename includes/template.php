@@ -10,9 +10,6 @@ defined( 'ABSPATH' ) || exit;
  *
  * @param int $user_id
  *
- * @uses tba_bp_get_block_user_settings_message()
- * @uses esc_html() To escape input for HTML.
- *
  * @return void
  */
 function tba_bp_block_user_settings_message( $user_id = 0 ) {
@@ -25,13 +22,6 @@ function tba_bp_block_user_settings_message( $user_id = 0 ) {
  * @since 0.1.0
  *
  * @param int $user_id
- *
- * @uses bp_displayed_user_id() To get the displayed user id.
- * @uses tba_bp_is_user_blocked() To check if specified user is blocked.
- * @uses tba_bp_get_blocked_user_expiration() To get the blocked user expiration time.
- * @uses bp_get_option() To get the `date_format` and `time_format` options.
- * @uses date_i18n() To get the localized date from GMT date.
- * @uses get_date_from_gmt() To get the localized time from GMT date.
  *
  * @return string The `block-user` settings page message.
  */
@@ -84,9 +74,6 @@ function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
  * Display the block user settings message on the `block-user` settings page.
  *
  * @since 0.1.0
- *
- * @uses bp_is_current_action() To check if we're on the `block-user` action page.
- * @uses tba_bp_block_user_settings_message() To get the blocked user settings message.
  *
  * @return void
  */

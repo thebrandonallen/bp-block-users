@@ -44,9 +44,6 @@ if ( class_exists( 'BP_Component' ) ) {
 		 *
 		 * @since 0.2.0
 		 *
-		 * @uses plugin_dir_path() BP Block Users directory.
-		 * @uses trailingslashit() To add a trailingslash.
-		 *
 		 * @param string $file The main BP Block Users file.
 		 */
 		public function __construct( $file = '' ) {
@@ -97,9 +94,6 @@ if ( class_exists( 'BP_Component' ) ) {
 		 * Set up the actions.
 		 *
 		 * @since 0.2.0
-		 *
-		 * @uses add_action() To add various actions.
-		 * @uses BP_Component::setup_actions() Calls `bp_block_users_setup_actions`.
 		 */
 		public function setup_actions() {
 
@@ -135,15 +129,6 @@ if ( class_exists( 'BP_Component' ) ) {
 		 * Add the BP Block Users settings sub nav.
 		 *
 		 * @since 0.2.0
-		 *
-		 * @uses bp_current_user_can() To check the `bp_moderate` capability.
-		 * @uses bp_is_my_profile() To check if logged in user is viewing own profile.
-		 * @uses bp_displayed_user_domain() To get the displayed user domain.
-		 * @uses bp_get_settings_slug() To get the BP settings slug.
-		 * @uses trailingslashit() To add a trailingslash to the settings link.
-		 * @uses bp_displayed_user_id() To get the displayed user id.
-		 * @uses is_super_admin() To check if current user is super admin.
-		 * @uses bp_core_new_subnav_item() To add the `block-users` sub-nav.
 		 *
 		 * @return void
 		 */
@@ -184,14 +169,6 @@ if ( class_exists( 'BP_Component' ) ) {
 		 * Add the `Block User` link to the WP Admin Bar.
 		 *
 		 * @since 0.2.0
-		 *
-		 * @uses bp_is_user() To check if we're viewing a user page.
-		 * @uses bp_current_user_can() To check the `bp_moderate` capability.
-		 * @uses bp_is_my_profile() To check if logged in user is viewing own profile.
-		 * @uses buddypress() To get the BP object.
-		 * @uses bp_is_active() To check if the `settings` component is active.
-		 * @uses WP_Admin_Bar::add_menu() To add the `Block User` link to the WP Admin Bar.
-		 * @uses bp_displayed_user_domain() To get the displayed user domain.
 		 *
 		 * @return void
 		 */
@@ -252,11 +229,6 @@ if ( class_exists( 'BP_Component' ) ) {
 		 * @param int    $user_id  The user id.
 		 * @param string $meta_key The meta key.
 		 * @param bool   $single   Whether to return an array, or the the meta value.
-		 *
-		 * @uses apply_filters() To call the `tba_bp_block_users_block_notifications_meta_keys`
-		 *                       and `tba_bp_block_users_block_notifications_value` filters.
-		 * @uses bp_get_user_meta_key() To get a filtered version of the meta key.
-		 * @uses tba_bp_is_user_blocked() To check if specified user is blocked.
 		 *
 		 * @return mixed `no` if blocking a user email notification.
 		 */
@@ -321,12 +293,6 @@ if ( class_exists( 'BP_Component' ) ) {
 		 *
 		 * @param null|WP_User $user The WP_User object being authenticated.
 		 *
-		 * @uses is_wp_error() To for a WP_Error object.
-		 * @uses tba_bp_is_user_blocked() To check if specified user is blocked.
-		 * @uses tba_bp_get_blocked_user_expiration() To get the blocked user expiration time.
-		 * @uses WP_Error() To add the `tba_bp_authentication_blocked` error message.
-		 * @uses apply_filters() To call the `tba_bp_prevent_blocked_user_login` hook.
-		 *
 		 * @return WP_User|WP_Error WP_User object if not blocked. WP_Error object,
 		 *                          otherwise. Passed by reference.
 		 */
@@ -379,20 +345,6 @@ if ( class_exists( 'BP_Component' ) ) {
 		 * Block/unblock a user when editing from a BP profile page.
 		 *
 		 * @since 0.2.0
-		 *
-		 * @uses bp_is_settings_component() To check if we're on a settings component page.
-		 * @uses bp_is_current_action() To check if we're on the `block-user` action page.
-		 * @uses bp_action_variables() To check if there are extra action variables.
-		 * @uses bp_do_404() To trigger a 404.
-		 * @uses bp_current_user_can() To check the `bp_moderate` capability.
-		 * @uses bp_is_my_profile() To check if logged in user is viewing own profile.
-		 * @uses check_admin_referer() To check the `block-user` nonce.
-		 * @uses do_action() To call the `tba_bp_settings_block_user_before_save` and
-		 *                   `tba_bp_settings_block_user_after_save` hooks.
-		 * @uses sanitize_key() To sanitize the `block-user-unit` $_POST key.
-		 * @uses bp_displayed_user_id() To get the displayed user id.
-		 * @uses tba_bp_block_user() To block the specified user.
-		 * @uses tba_bp_unblock_user() To unblock the specified user.
 		 *
 		 * @return void
 		 */

@@ -11,11 +11,6 @@ defined( 'ABSPATH' ) || exit;
  * @param string $template
  * @param array  $templates
  *
- * @uses bp_is_settings_component() To check if we're on a settings component page.
- * @uses bp_current_user_can() To check the `bp_moderate` capability.
- * @uses bp_register_template_stack() To register the BP Block Users template directory.
- * @uses locate_template() To locate the `block-user` template.
- *
  * @return string The BP Block Users template path.
  */
 function tba_bp_block_user_settings_load_template_filter( $template, $templates ) {
@@ -67,9 +62,6 @@ function tba_bp_block_user_get_template_directory() {
  *
  * @since 0.1.0
  *
- * @uses do_action() To call the `tba_bp_settings_screen_block_user` hook.
- * @uses bp_core_load_template()
- *
  * @return void
  */
 function tba_bp_settings_screen_block_user() {
@@ -84,4 +76,3 @@ function tba_bp_settings_screen_block_user() {
 	// Load the block user settings template.
 	bp_core_load_template( 'members/single/settings/block-user' );
 }
-

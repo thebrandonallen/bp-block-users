@@ -47,8 +47,6 @@ add_action( 'bp_include', 'tba_bp_block_users_init' );
  * will be removed on BP Block Users updates. If you're creating custom
  * translation files, please use the global language folder (ie - wp-content/languages/plugins).
  *
- * @uses load_plugin_textdomain() To load the textdomain inside the 'plugin/languages' folder.
- *
  * @return void
  */
 function tba_bp_block_users_load_textdomain() {
@@ -63,9 +61,6 @@ add_action( 'plugins_loaded', 'tba_bp_block_users_load_textdomain' );
  * Loads the Block Users component into the $bp global.
  *
  * @since 0.2.0
- *
- * @uses buddypress() To get the BuddyPress global.
- * @uses do_action() To call the `bp_block_users_loaded` hook.
  *
  * @return void
  */
