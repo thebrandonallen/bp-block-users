@@ -1,5 +1,4 @@
 <?php
-
 /**
  * BP Block Users Component class.
  *
@@ -37,7 +36,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		 */
 		public $classes_dir = '';
 
-		/** Methods ***************************************************************/
+		/* Methods ************************************************************/
 
 		/**
 		 * Constructor.
@@ -97,7 +96,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		 */
 		public function setup_actions() {
 
-			/** Filters ***********************************************************/
+			/* Filters ********************************************************/
 
 			// Set all notification emails to "no".
 			add_filter( 'get_user_metadata', array( $this, 'block_notifications' ), 10, 4 );
@@ -105,7 +104,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			// Add the BP Block Users template to template stack.
 			add_filter( 'bp_located_template', 'tba_bp_block_user_settings_load_template_filter', 10, 2 );
 
-			/** Actions ***********************************************************/
+			/* Actions ********************************************************/
 
 			// Add block user settings sub nav.
 			add_action( 'bp_settings_setup_nav', array( $this, 'setup_settings_sub_nav' ) );
@@ -123,7 +122,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			parent::setup_actions();
 		}
 
-		/** Navigation ************************************************************/
+		/* Navigation *********************************************************/
 
 		/**
 		 * Add the BP Block Users settings sub nav.
@@ -196,12 +195,12 @@ if ( class_exists( 'BP_Component' ) ) {
 					'parent' => $user_admin_menu_id,
 					'id'     => $user_admin_menu_id . '-block-user',
 					'title'  => __( 'Block User', 'bp-block-users' ),
-					'href'   => bp_displayed_user_domain() . 'settings/block-user/'
+					'href'   => bp_displayed_user_domain() . 'settings/block-user/',
 				) );
 			}
 		}
 
-		/** Cache *****************************************************************/
+		/* Cache **************************************************************/
 
 		/**
 		 * Setup cache groups
@@ -218,7 +217,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			parent::setup_cache_groups();
 		}
 
-		/** Notification Emails ***************************************************/
+		/* Notification Emails ************************************************/
 
 		/**
 		 * Prevent email notifications for blocked users.
@@ -248,25 +247,28 @@ if ( class_exists( 'BP_Component' ) ) {
 			 */
 			$keys = apply_filters(
 				'tba_bp_block_users_block_notifications_meta_keys',
-				array_map( 'bp_get_user_meta_key', array(
-					'notification_activity_new_mention',
-					'notification_activity_new_reply',
-					'notification_friends_friendship_request',
-					'notification_friends_friendship_accepted',
-					'notification_groups_invite',
-					'notification_groups_group_updated',
-					'notification_groups_admin_promotion',
-					'notification_groups_membership_request',
-					'notification_messages_new_message',
-				) )
+				array_map(
+					'bp_get_user_meta_key',
+					array(
+						'notification_activity_new_mention',
+						'notification_activity_new_reply',
+						'notification_friends_friendship_request',
+						'notification_friends_friendship_accepted',
+						'notification_groups_invite',
+						'notification_groups_group_updated',
+						'notification_groups_admin_promotion',
+						'notification_groups_membership_request',
+						'notification_messages_new_message',
+					)
+				)
 			);
 
 			// Bail if we're not checking a notification key.
-			if ( ! in_array( $meta_key, $keys ) ) {
+			if ( ! in_array( $meta_key, $keys, true ) ) {
 				return $retval;
 			}
 
-			// If the value is not already `no` and the user is blocked, set to `no`.
+			// If the user is blocked, set to `no`.
 			if ( 'no' !== $retval && tba_bp_is_user_blocked( $user_id ) ) {
 				$retval = 'no';
 			}
@@ -284,7 +286,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			return apply_filters( 'tba_bp_block_users_block_notifications_value', $retval, $user_id, $meta_key, $single );
 		}
 
-		/** Authentication ********************************************************/
+		/* Authentication *****************************************************/
 
 		/**
 		 * Prevents the login of a blocked user.
@@ -339,7 +341,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			return apply_filters( 'tba_bp_prevent_blocked_user_login', $user, $user_id );
 		}
 
-		/** Settings Actions ******************************************************/
+		/* Settings Actions ***************************************************/
 
 		/**
 		 * Block/unblock a user when editing from a BP profile page.
