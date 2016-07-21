@@ -67,6 +67,11 @@ if ( class_exists( 'BP_Component' ) ) {
 
 			// Register BP Block Users as an active component.
 			buddypress()->active_components[ $this->id ] = '1';
+
+			// Back-compat for BP < 2.2.0.
+			if ( ! method_exists( 'BP_Component', 'setup_cache_groups' ) ) {
+				$this->setup_cache_groups();
+			}
 		}
 
 		/**
@@ -217,7 +222,12 @@ if ( class_exists( 'BP_Component' ) ) {
 				'bp_block_users'
 			) );
 
-			parent::setup_cache_groups();
+			// Back-compat for BP < 2.2.0.
+			if ( method_exists( 'BP_Component', 'setup_cache_groups' ) ) {
+				parent::setup_cache_groups();
+			} else {
+				add_action( 'bp' . $this->id . 'setup_cache_groups' );
+			}
 		}
 
 		/* Notification Emails ************************************************/
