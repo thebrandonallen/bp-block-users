@@ -388,10 +388,8 @@ if ( class_exists( 'BP_Component' ) ) {
 			 */
 			do_action( 'tba_bp_settings_block_user_before_save' );
 
-			// Sanitize our $_POST variables.
-			$block  = isset( $_POST['block-user'] ) ? absint( $_POST['block-user'] ) : 0;
-			$length = isset( $_POST['block-user-length'] ) ? absint( $_POST['block-user-length'] ) : 0;
-			$unit   = isset( $_POST['block-user-unit'] ) ? sanitize_key( $_POST['block-user-unit'] ) : 'indefintely';
+			// Get the $_POST variables.
+			$post = self::get_block_user_post_vars();
 
 			// Block/unblock the user.
 			if ( ! empty( $block ) ) {
@@ -406,6 +404,37 @@ if ( class_exists( 'BP_Component' ) ) {
 			 * @since 0.1.0
 			 */
 			do_action( 'tba_bp_settings_block_user_after_save' );
+		}
+
+		/**
+		 * Gets and validates our block user $_POST variables.
+		 *
+		 * @since 0.2.0
+		 *
+		 * @return array
+		 */
+		public static function get_block_user_post_vars() {
+
+			// Set the default return array.
+			$retval = array(
+				'block'  => false,
+				'length' => 0,
+				'unit'   => 'indefinitely',
+			);
+
+			if ( isset( $_POST['block-user'] ) && '1' === $_POST['block-user'] ) {
+				$retval['block'] = true;
+			}
+
+			if ( isset( $_POST['block-user-length'] ) ) {
+				$retval['length'] = absint( $_POST['block-user-length'] );
+			}
+
+			if ( isset( $_POST['block-user-unit'] ) ) {
+				$retval['unit'] = sanitize_key( $_POST['block-user-unit'] );
+			}
+
+			return $retval;
 		}
 	}
 } // End class exists.
