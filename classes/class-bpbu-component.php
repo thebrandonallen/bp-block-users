@@ -64,6 +64,9 @@ if ( class_exists( 'BP_Component' ) ) {
 
 			// Setup actions.
 			$this->setup_actions();
+
+			// Register BP Block Users as an active component.
+			buddypress()->active_components[ $this->id ] = '1';
 		}
 
 		/**
