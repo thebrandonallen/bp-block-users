@@ -350,7 +350,7 @@ if ( class_exists( 'BP_Component' ) ) {
 				}
 
 				// Set an error object to short-circuit the authentication process.
-				$user = new WP_Error( 'tba_bp_authentication_blocked', $message );
+				$user = new WP_Error( 'bpbu_authentication_blocked', $message );
 			}
 
 			// Fire the deprecated filter.
