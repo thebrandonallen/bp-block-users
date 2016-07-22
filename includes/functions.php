@@ -213,7 +213,7 @@ function tba_bp_is_user_blocked( $user_id = 0 ) {
 	}
 
 	// Grab the boolean version of the `bp_user_blocked` meta value.
-	$blocked = (bool) absint( bp_get_user_meta( $user_id, 'tba_bp_user_blocked', true ) );
+	$blocked = '1' === bp_get_user_meta( $user_id, 'tba_bp_user_blocked', true );
 
 	// If user is blocked, check the expiration.
 	if ( $blocked ) {
