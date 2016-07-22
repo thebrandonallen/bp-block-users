@@ -418,12 +418,19 @@ if ( class_exists( 'BP_Component' ) ) {
 			// Nonce check.
 			check_admin_referer( 'block-user' );
 
+			bpbu_do_action_deprecated(
+				'tba_bp_settings_block_user_before_save',
+				array(),
+				'0.2.0',
+				'bpbu_settings_block_user_before_save'
+			);
+
 			/**
 			 * Fires before the block user settings have been saved.
 			 *
-			 * @since 0.1.0
+			 * @since 0.2.0
 			 */
-			do_action( 'tba_bp_settings_block_user_before_save' );
+			do_action( 'bpbu_settings_block_user_before_save' );
 
 			// Get the $_POST variables.
 			$post = self::get_block_user_post_vars();
