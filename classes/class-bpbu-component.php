@@ -330,12 +330,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		public function prevent_blocked_user_login( $user = null ) {
 
 			// Bail early if login has already failed.
-			if ( is_wp_error( $user ) || empty( $user ) ) {
-				return $user;
-			}
-
-			// Bail if no user id.
-			if ( ! ( $user instanceof WP_User ) ) {
+			if ( is_wp_error( $user ) || empty( $user->ID ) ) {
 				return $user;
 			}
 
