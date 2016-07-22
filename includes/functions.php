@@ -29,8 +29,14 @@ function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
 		return false;
 	}
 
-	// Set the user as blocked.
-	$blocked = bp_update_user_meta( $user_id, 'tba_bp_user_blocked', 1 );
+	// Only update the user meta if the user isn't blocked.
+	if ( tba_bp_is_user_blocked( $user_id ) ) {
+		$blocked = true;
+	} else {
+		$blocked = bp_update_user_meta( $user_id, 'tba_bp_user_blocked', 1 );
+	}
+
+	// Update the expiration time and clear user sessions.
 	if ( $blocked ) {
 
 		// Set the user block expiration date.
