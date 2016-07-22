@@ -124,8 +124,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			add_action( 'authenticate', array( $this, 'prevent_blocked_user_login' ), 40 );
 
 			// Block/unblock user when editing from profile.
-			add_action( 'bp_actions', array( $this, 'block_user_settings_action' ) );
-
+			add_action( 'bp_actions', array( $this, 'settings_action' ) );
 
 			parent::setup_actions();
 		}
@@ -363,7 +362,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		 *
 		 * @return void
 		 */
-		public function block_user_settings_action() {
+		public function settings_action() {
 
 			// Bail if not a POST action.
 			if ( 'POST' !== strtoupper( $_SERVER['REQUEST_METHOD'] ) ) {
