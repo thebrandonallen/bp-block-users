@@ -442,12 +442,19 @@ if ( class_exists( 'BP_Component' ) ) {
 				tba_bp_unblock_user( bp_displayed_user_id() );
 			}
 
+			bpbu_do_action_deprecated(
+				'tba_bp_settings_block_user_after_save',
+				array(),
+				'0.2.0',
+				'bpbu_settings_block_user_after_save'
+			);
+
 			/**
 			 * Fires after the block user settings have been saved.
 			 *
-			 * @since 0.1.0
+			 * @since 0.2.0
 			 */
-			do_action( 'tba_bp_settings_block_user_after_save' );
+			do_action( 'bpbu_settings_block_user_after_save' );
 		}
 
 		/**
