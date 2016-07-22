@@ -294,17 +294,25 @@ if ( class_exists( 'BP_Component' ) ) {
 				$retval = 'no';
 			}
 
+			// Fire the deprecated filter.
+			$retval = bpbu_apply_filters_deprecated(
+				'tba_bp_block_users_block_notifications_value',
+				array( $retval, $user_id, $meta_key, $single ),
+				'0.2.0',
+				'bpbu_block_notifications_value'
+			);
+
 			/**
 			 * Filters the return of the notification meta value.
 			 *
-			 * @since 0.1.0
+			 * @since 0.2.0
 			 *
 			 * @param mixed  $retval   Null or new short-circuited meta value.
 			 * @param int    $user_id  The user id.
 			 * @param string $meta_key The meta key.
 			 * @param bool   $single   Whether to return an array, or the the meta value.
 			 */
-			return apply_filters( 'tba_bp_block_users_block_notifications_value', $retval, $user_id, $meta_key, $single );
+			return apply_filters( 'bpbu_block_notifications_value', $retval, $user_id, $meta_key, $single );
 		}
 
 		/* Authentication *****************************************************/
