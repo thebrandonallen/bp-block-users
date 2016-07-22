@@ -431,8 +431,8 @@ if ( class_exists( 'BP_Component' ) ) {
 			$post = self::get_block_user_post_vars();
 
 			// Block/unblock the user.
-			if ( ! empty( $block ) ) {
-				tba_bp_block_user( bp_displayed_user_id(), $length, $unit );
+			if ( $post['block'] ) {
+				tba_bp_block_user( bp_displayed_user_id(), $post['length'], $post['unit'] );
 			} else {
 				tba_bp_unblock_user( bp_displayed_user_id() );
 			}
