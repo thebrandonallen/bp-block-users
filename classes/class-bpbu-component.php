@@ -358,16 +358,24 @@ if ( class_exists( 'BP_Component' ) ) {
 				$user = new WP_Error( 'tba_bp_authentication_blocked', $message );
 			}
 
+			// Fire the deprecated filter.
+			$user = bpbu_do_action_deprecated(
+				'tba_bp_prevent_blocked_user_login',
+				array( $user, $user_id ),
+				'0.2.0',
+				'bpbu_prevent_blocked_user_login',
+				__( 'This is now a filter, rather than an action.' )
+			);
+
 			/**
 			 * Filters the return of the authenticating user object.
 			 *
 			 * @since 0.2.0
 			 *
-			 * @param WP_User|WP_Error $user    WP_User object if not blocked. WP_Error
-			 *                                  object, otherwise.
+			 * @param WP_User|WP_Error $user    WP_User object if not blocked. WP_Error object, otherwise.
 			 * @param int              $user_id Whether this is a user update.
 			 */
-			return apply_filters( 'tba_bp_prevent_blocked_user_login', $user, $user_id );
+			return apply_filters( 'bpbu_prevent_blocked_user_login', $user, $user_id );
 		}
 
 		/* Settings Actions ***************************************************/
