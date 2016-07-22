@@ -251,29 +251,37 @@ if ( class_exists( 'BP_Component' ) ) {
 				return $retval;
 			}
 
+			// Set up the default notification keys meta array.
+			$keys = array(
+				'notification_activity_new_mention',
+				'notification_activity_new_reply',
+				'notification_friends_friendship_request',
+				'notification_friends_friendship_accepted',
+				'notification_groups_invite',
+				'notification_groups_group_updated',
+				'notification_groups_admin_promotion',
+				'notification_groups_membership_request',
+				'notification_messages_new_message',
+			);
+
+			// Fire the deprecated filter.
+			$keys = bpbu_apply_filters_deprecated(
+				'tba_bp_block_users_block_notifications_meta_keys',
+				array( $keys ),
+				'0.2.0',
+				'bpbu_block_notifications_meta_keys'
+			);
+
 			/**
 			 * Filters the array of notification meta keys to block.
 			 *
-			 * @since 0.1.0
+			 * @since 0.2.0
 			 *
 			 * @param array $keys MySQL expiration timestamp. Unix if `$int` is
 			 */
 			$keys = apply_filters(
-				'tba_bp_block_users_block_notifications_meta_keys',
-				array_map(
-					'bp_get_user_meta_key',
-					array(
-						'notification_activity_new_mention',
-						'notification_activity_new_reply',
-						'notification_friends_friendship_request',
-						'notification_friends_friendship_accepted',
-						'notification_groups_invite',
-						'notification_groups_group_updated',
-						'notification_groups_admin_promotion',
-						'notification_groups_membership_request',
-						'notification_messages_new_message',
-					)
-				)
+				'bpbu_block_notifications_meta_keys',
+				array_map( 'bp_get_user_meta_key', $keys )
 			);
 
 			// Bail if we're not checking a notification key.
