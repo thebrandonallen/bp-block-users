@@ -62,6 +62,9 @@ if ( class_exists( 'BP_Component' ) ) {
 			// Include our files.
 			$this->includes();
 
+			// Maybe load the admin.
+			$this->load_admin();
+
 			// Setup actions.
 			$this->setup_actions();
 
@@ -91,11 +94,26 @@ if ( class_exists( 'BP_Component' ) ) {
 			require $this->includes_dir . 'template.php';
 			require $this->includes_dir . 'theme-compat.php';
 
-			if ( is_admin() ) {
-				require $this->includes_dir . 'admin.php';
+			parent::includes( $includes );
+		}
+
+		/**
+		 * Loads and initializes the admin when needed.
+		 *
+		 * @since 0.2.0
+		 *
+		 * @return void
+		 */
+		private function load_admin() {
+			if ( ! is_admin() ) {
+				return;
 			}
 
-			parent::includes( $includes );
+			require $this->classes_dir . 'class-bpbu-admin.php';
+			require $this->classes_dir . 'class-bpbu-admin-list-tables.php';
+			require $this->classes_dir . 'class-bpbu-admin-profile.php';
+
+			add_action( 'bp_init', 'BPBU_Admin::get_instance' );
 		}
 
 		/**
