@@ -199,31 +199,33 @@ if ( class_exists( 'BP_Component' ) ) {
 		 */
 		public function setup_settings_admin_bar() {
 
-			// Only show if viewing a user.
-			if ( ! bp_is_user() ) {
+			// Bail if we're not viewing a user, or viewing self-profile.
+			if ( ! bp_is_user() || bp_is_my_profile() ) {
 				return;
 			}
 
-			// Don't show this menu to non site admins or if you're viewing your own profile.
-			if ( ! bp_current_user_can( 'bp_moderate' ) || bp_is_my_profile() ) {
+			// Bail if the user can't moderate.
+			if ( ! bp_current_user_can( 'bp_moderate' ) ) {
+				return;
+			}
+
+			// Bail if the settings component isn't active.
+			if ( ! bp_is_active( 'settings' ) ) {
 				return;
 			}
 
 			global $wp_admin_bar;
 
 			// Set up the BP global.
-			$user_admin_menu_id = buddypress()->user_admin_menu_id;
+			$menu_id = buddypress()->user_admin_menu_id;
 
 			// Add our `Block User` link to the WP admin bar.
-			if ( bp_is_active( 'settings' ) ) {
-				// User Admin > Block User.
-				$wp_admin_bar->add_menu( array(
-					'parent' => $user_admin_menu_id,
-					'id'     => $user_admin_menu_id . '-block-user',
-					'title'  => __( 'Block User', 'bp-block-users' ),
-					'href'   => bp_displayed_user_domain() . 'settings/block-user/',
-				) );
-			}
+			$wp_admin_bar->add_menu( array(
+				'parent' => $menu_id,
+				'id'     => $menu_id . '-block-user',
+				'title'  => __( 'Block User', 'bp-block-users' ),
+				'href'   => trailingslashit( bp_loggedin_user_domain() . bp_get_settings_slug() ) . 'block-user/',
+			) );
 		}
 
 		/* Cache **************************************************************/
