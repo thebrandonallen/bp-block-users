@@ -89,6 +89,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		 */
 		public function includes( $includes = array() ) {
 
+			require $this->includes_dir . 'deprecated.php';
 			require $this->includes_dir . 'functions.php';
 			require $this->includes_dir . 'helpers.php';
 			require $this->includes_dir . 'template.php';
