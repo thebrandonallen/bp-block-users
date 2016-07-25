@@ -20,9 +20,9 @@ if ( ! file_exists( $_tests_dir . '/includes/functions.php' ) ) {
 	die();
 }
 
-require( $_tests_dir . '/includes/functions.php' );
+require_once( $_tests_dir . '/includes/functions.php' );
 
-function _boostrap_bp_block_users() {
+function _bootstrap_bp_block_users() {
 
 	if ( ! defined( 'BP_TESTS_DIR' ) ) {
 		define( 'BP_TESTS_DIR', dirname( __FILE__ ) . '/../../../buddypress/tests/phpunit' );
@@ -36,7 +36,7 @@ function _boostrap_bp_block_users() {
 
 	require dirname( __FILE__ ) . '/../../bp-block-users.php';
 }
-tests_add_filter( 'muplugins_loaded', '_boostrap_bp_block_users' );
+tests_add_filter( 'muplugins_loaded', '_bootstrap_bp_block_users' );
 
 require $_tests_dir . '/includes/bootstrap.php';
 
