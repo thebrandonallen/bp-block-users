@@ -11,4 +11,16 @@
 			<directory suffix=".php">tests/phpunit/testcases/</directory>
 		</testsuite>
 	</testsuites>
+
+	<filter>
+		<blacklist>
+			<directory suffix=".php">.</directory>
+		</blacklist>
+
+		<whitelist>
+			<directory suffix=".php">./includes</directory>
+			<directory suffix=".php">./classes</directory>
+			<file>./bp-block-users.php</file>
+		</whitelist>
+	</filter>
 </phpunit>
