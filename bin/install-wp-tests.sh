@@ -12,9 +12,10 @@ DB_HOST=${4-localhost}
 WP_VERSION=${5-latest}
 BP_VERSION=${6-master}
 
-#WP_TESTS_DIR=${WP_TESTS_DIR-/tmp/wordpress-tests-lib}
-WP_CORE_DIR=${WP_CORE_DIR-/tmp/wordpress}
-BP_CORE_DIR=${BP_CORE_DIR-/tmp/wordpress/src/wp-content/plugins/buddypress}
+WP_CORE_DIR=/tmp/wordpress/
+BP_CORE_DIR=$WP_CORE_DIR/src/wp-content/plugins/buddypress
+BPBU_SLUG=$(basename $(pwd))
+BPBU_DIR=$WP_CORE_DIR/src/wp-content/plugins/$BPBU_SLUG
 
 set -ex
 
@@ -24,6 +25,11 @@ download() {
     elif [ `which wget` ]; then
         wget -nv -O "$2" "$1"
     fi
+}
+
+move_bp_block_users() {
+	cd ..
+	mv $BPBU_SLUG $BPBU_DIR
 }
 
 install_wp() {
@@ -47,13 +53,9 @@ install_test_suite() {
 	fi
 
 	# set up testing suite
-	#mkdir -p $WP_TESTS_DIR
 	cd $WP_CORE_DIR
-	#svn co --quiet https://develop.svn.wordpress.org/trunk/tests/phpunit/includes/
 
-	#download https://develop.svn.wordpress.org/trunk/wp-tests-config-sample.php wp-tests-config.php
 	cp wp-tests-config-sample.php wp-tests-config.php
-	#sed $ioption "s:dirname( __FILE__ ) . '/src/':'$WP_CORE_DIR':" wp-tests-config.php
 	sed $ioption "s/youremptytestdbnamehere/$DB_NAME/" wp-tests-config.php
 	sed $ioption "s/yourusernamehere/$DB_USER/" wp-tests-config.php
 	sed $ioption "s/yourpasswordhere/$DB_PASS/" wp-tests-config.php
@@ -83,5 +85,7 @@ install_db() {
 
 install_wp
 install_bp
+move_bp_block_users
 install_test_suite
 install_db
+cd $BPBU_DIR
