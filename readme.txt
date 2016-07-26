@@ -2,7 +2,7 @@
 Contributors: thebrandonallen
 Donate link: https://brandonallen.me/donate/
 Tags: buddypress, bp, block, users, block users
-Requires at least: 4.1.12 / BP 2.1.2
+Requires at least: 4.2 / BP 2.2.4
 Tested up to: 4.6 / BP 2.6.1.1
 Stable tag: 0.1.0
 License: GPLv2 or later
