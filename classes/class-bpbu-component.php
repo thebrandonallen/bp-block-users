@@ -132,6 +132,9 @@ if ( class_exists( 'BP_Component' ) ) {
 			// Add the BP Block Users template to template stack.
 			add_filter( 'bp_located_template', 'tba_bp_block_user_settings_load_template_filter', 10, 2 );
 
+			// Prevent the login of a blocked user.
+			add_filter( 'authenticate', array( $this, 'prevent_blocked_user_login' ), 40 );
+
 			/* Actions ********************************************************/
 
 			// Add block user settings sub nav.
@@ -139,9 +142,6 @@ if ( class_exists( 'BP_Component' ) ) {
 
 			// Add the our admin bar link.
 			add_action( 'admin_bar_menu', array( $this, 'setup_settings_admin_bar' ), 100 );
-
-			// Prevent the login of a blocked user.
-			add_action( 'authenticate', array( $this, 'prevent_blocked_user_login' ), 40 );
 
 			// Block/unblock user when editing from profile.
 			add_action( 'bp_actions', array( $this, 'settings_action' ) );
@@ -375,9 +375,9 @@ if ( class_exists( 'BP_Component' ) ) {
 			}
 
 			// Fire the deprecated filter.
-			$user = bpbu_do_action_deprecated(
+			bpbu_do_action_deprecated(
 				'tba_bp_prevent_blocked_user_login',
-				array( $user, $user_id ),
+				array( $user_id, &$user ),
 				'0.2.0',
 				'bpbu_prevent_blocked_user_login',
 				__( 'This is now a filter, rather than an action.' )
