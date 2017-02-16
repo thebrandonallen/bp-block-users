@@ -15,7 +15,6 @@ defined( 'ABSPATH' ) || exit;
  * Prevent email notifications for blocked users.
  *
  * @since 0.1.0
- *
  * @deprecated 0.2.0
  *
  * @param mixed  $retval   Null or new short-circuited meta value.
@@ -40,7 +39,6 @@ function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $
  * Prevents the login of a blocked user.
  *
  * @since 0.1.0
- *
  * @deprecated 0.2.0
  *
  * @param null|WP_User $user The WP_User object being authenticated.
@@ -63,7 +61,6 @@ function tba_bp_prevent_blocked_user_login( $user = null ) {
  * Add the BP Block Users settings sub nav.
  *
  * @since 0.1.0
- *
  * @deprecated 0.2.0
  *
  * @return void
@@ -81,7 +78,6 @@ function tba_bp_block_user_settings_sub_nav() {
  * Add the `Block User` link to the WP Admin Bar.
  *
  * @since 0.1.0
- *
  * @deprecated 0.2.0
  *
  * @return void
@@ -101,7 +97,6 @@ function tba_bp_block_users_admin_bar_admin_menu() {
  * Block/unblock a user when editing from a BP profile page.
  *
  * @since 0.1.0
- *
  * @deprecated 0.2.0
  *
  * @return void
