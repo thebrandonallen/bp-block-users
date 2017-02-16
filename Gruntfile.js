@@ -6,7 +6,6 @@ module.exports = function(grunt) {
 		CURRENT_YEAR = CURRENT_TIME.getFullYear(),
 
 		BPBU_EXCLUDED_MISC = [
-			'!**/.idea/**',
 			'!**/bin/**',
 			'!**/build/**',
 			'!**/coverage/**',
