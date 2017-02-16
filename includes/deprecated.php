@@ -107,5 +107,5 @@ function tba_bp_settings_action_block_user() {
 		'0.2.0',
 		'BPBU_Component::settings_action'
 	);
-	buddypress()->block_users->block_user_settings_action();
+	buddypress()->block_users->settings_action();
 }
