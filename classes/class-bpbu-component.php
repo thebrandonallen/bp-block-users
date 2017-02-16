@@ -89,11 +89,14 @@ if ( class_exists( 'BP_Component' ) ) {
 		 */
 		public function includes( $includes = array() ) {
 
+			// Classes.
+			require $this->classes_dir . 'class-bpbu-template-stack.php';
+
+			// Includes.
 			require $this->includes_dir . 'deprecated.php';
 			require $this->includes_dir . 'functions.php';
 			require $this->includes_dir . 'helpers.php';
 			require $this->includes_dir . 'template.php';
-			require $this->includes_dir . 'theme-compat.php';
 
 			parent::includes( $includes );
 		}
@@ -130,7 +133,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			add_filter( 'get_user_metadata', array( $this, 'block_notifications' ), 10, 4 );
 
 			// Add the BP Block Users template to template stack.
-			add_filter( 'bp_located_template', 'tba_bp_block_user_settings_load_template_filter', 10, 2 );
+			add_filter( 'bp_located_template', 'BPBU_Template_Stack::settings_load_template_filter', 10, 2 );
 
 			// Prevent the login of a blocked user.
 			add_filter( 'authenticate', array( $this, 'prevent_blocked_user_login' ), 40 );

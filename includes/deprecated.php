@@ -109,3 +109,57 @@ function tba_bp_settings_action_block_user() {
 	);
 	buddypress()->block_users->settings_action();
 }
+
+/* Theme Compat ***************************************************************/
+
+/**
+ * Adds BP Block Users template files to the BP template stack.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @param string $template  Located template path.
+ * @param array  $templates Array of templates to attempt to load.
+ *
+ * @return string The BP Block Users template path.
+ */
+function tba_bp_block_user_settings_load_template_filter( $template, $templates ) {
+	_deprecated_function(
+		'tba_bp_block_user_settings_load_template_filter',
+		'0.2.0',
+		'BPBU_Template_Stack::settings_load_template_filter'
+	);
+	return BPBU_Template_Stack::settings_load_template_filter( $template, $templates );
+}
+
+/**
+ * Return the BP Block Users template directory.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @return string The BP Block Users template directory.
+ */
+function tba_bp_block_user_get_template_directory() {
+	_deprecated_function(
+		'tba_bp_block_user_get_template_directory',
+		'0.2.0',
+		'BPBU_Template_Stack::get_template_directory'
+	);
+	return BPBU_Template_Stack::get_template_directory();
+}
+
+/**
+ * Loads the block user settings screen.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ */
+function tba_bp_settings_screen_block_user() {
+	_deprecated_function(
+		'tba_bp_settings_screen_block_user',
+		'0.2.0',
+		'BPBU_Template_Stack::settings_screen_block_user'
+	);
+	BPBU_Template_Stack::settings_screen_block_user();
+}
