@@ -22,17 +22,16 @@ defined( 'ABSPATH' ) || exit;
  */
 function bpbu_init() {
 
-	// Only supported in BP 2.1.2+
-	if ( version_compare( bp_get_version(), '2.1.2', '>=' ) ) {
+	// Only supported in BP 2.4.0+.
+	if ( version_compare( bp_get_version(), '2.4.0', '>=' ) ) {
 
 		require plugin_dir_path( __FILE__ ) . 'classes/class-bpbu-component.php';
 
 		add_action( 'bp_loaded', 'bpbu_setup_component' );
 
-	// Show admin notice for users on BP 2.1.1 and below.
 	} else {
 
-		$older_version_notice = sprintf( __( 'Hey! BP Block Users requires BuddyPress 2.1.2 or higher.', 'bp-block-users' ) );
+		$older_version_notice = sprintf( __( 'Hey! BP Block Users requires BuddyPress 2.4.0 or higher.', 'bp-block-users' ) );
 		add_action( 'admin_notices', create_function( '', "
 			echo '<div class=\"error\"><p>" . $older_version_notice . "</p></div>';
 		" ) );
