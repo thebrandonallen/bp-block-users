@@ -178,7 +178,7 @@ if ( class_exists( 'BP_Component' ) ) {
 
 			// Set up the sub nav args array.
 			$nav = array(
-				'name'            => __( 'Block User', 'bp-block-users' ),
+				'name'            => __( 'Block Member', 'bp-block-users' ),
 				'slug'            => 'block-user',
 				'parent_url'      => $settings_link,
 				'parent_slug'     => $slug,
