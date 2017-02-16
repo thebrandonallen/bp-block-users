@@ -17,8 +17,10 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Only load the plugin code if BuddyPress is activated.
+ *
+ * @since 0.2.0
  */
-function tba_bp_block_users_init() {
+function bpbu_init() {
 
 	// Only supported in BP 2.1.2+
 	if ( version_compare( bp_get_version(), '2.1.2', '>=' ) ) {
@@ -37,7 +39,7 @@ function tba_bp_block_users_init() {
 		return;
 	}
 }
-add_action( 'bp_include', 'tba_bp_block_users_init' );
+add_action( 'bp_include', 'bpbu_init' );
 
 /**
  * Load the translation file for current language. Checks the BP Block Users
@@ -47,22 +49,20 @@ add_action( 'bp_include', 'tba_bp_block_users_init' );
  * will be removed on BP Block Users updates. If you're creating custom
  * translation files, please use the global language folder (ie - wp-content/languages/plugins).
  *
- * @return void
+ * @since 0.2.0
  */
-function tba_bp_block_users_load_textdomain() {
+function bpbu_load_textdomain() {
 
 	// Look in wp-content/plugins/bp-block-users/languages first
 	// fallback to wp-content/languages/plugins
 	load_plugin_textdomain( 'bp-block-users', false, dirname( __FILE__ ) . '/languages/' );
 }
-add_action( 'plugins_loaded', 'tba_bp_block_users_load_textdomain' );
+add_action( 'plugins_loaded', 'bpbu_load_textdomain' );
 
 /**
  * Loads the Block Users component into the $bp global.
  *
  * @since 0.2.0
- *
- * @return void
  */
 function bpbu_setup_component() {
 
