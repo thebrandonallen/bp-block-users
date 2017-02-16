@@ -2,8 +2,6 @@
 module.exports = function(grunt) {
 	var SOURCE_DIR = '',
 		BUILD_DIR = 'build/',
-		CURRENT_TIME = new Date(),
-		CURRENT_YEAR = CURRENT_TIME.getFullYear(),
 
 		BPBU_EXCLUDED_MISC = [
 			'!**/bin/**',
@@ -82,7 +80,7 @@ module.exports = function(grunt) {
 					domainPath: '/languages',
 					mainFile: 'bp-block-users.php',
 					exclude: ['build/.*'],
-					potComments: 'Copyright (C) ' + CURRENT_YEAR + ' Brandon Allen\nThis file is distributed under the same license as the BP Block Users package.',
+					potComments: 'Copyright (C) 2015-<%= grunt.template.today("UTC:yyyy") %> Brandon Allen\nThis file is distributed under the same license as the BP Block Users package.',
 					potFilename: 'bp-block-users.pot',
 					potHeaders: {
 						poedit: true,
