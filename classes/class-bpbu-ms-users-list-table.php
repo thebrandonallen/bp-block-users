@@ -220,7 +220,7 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 		 */
 		protected function column_cb( $user = null ) {
 		?>
-			<label class="screen-reader-text" for="blocked-user-<?php echo intval( $user->ID ); ?>"><?php printf( esc_html__( 'Select user: %s', 'bp-block-user' ), $user->user_login ); ?></label>
+			<label class="screen-reader-text" for="blocked-user-<?php echo intval( $user->ID ); ?>"><?php printf( esc_html__( 'Select user: %s', 'bp-block-users' ), $user->user_login ); ?></label>
 			<input type="checkbox" id="blocked-user-<?php echo intval( $user->ID ) ?>" name="allblockedusers[]" value="<?php echo esc_attr( $user->ID ) ?>" />
 			<?php
 		}

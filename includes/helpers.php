@@ -123,9 +123,9 @@ function bpbu_deprecated_hook( $hook, $version, $replacement = null, $message = 
 	if ( WP_DEBUG && apply_filters( 'bpbu_deprecated_hook_trigger_error', true ) ) {
 		$message = empty( $message ) ? '' : ' ' . $message;
 		if ( ! is_null( $replacement ) ) {
-			trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead.' ), $hook, $version, $replacement ) . $message );
+			trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead.', 'bp-block-users' ), $hook, $version, $replacement ) . $message );
 		} else {
-			trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since version %2$s with no alternative available.' ), $hook, $version ) . $message );
+			trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since version %2$s with no alternative available.', 'bp-block-users' ), $hook, $version ) . $message );
 		}
 	}
 }

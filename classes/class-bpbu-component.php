@@ -378,7 +378,7 @@ if ( class_exists( 'BP_Component' ) ) {
 				array( $user_id, &$user ),
 				'0.2.0',
 				'bpbu_prevent_blocked_user_login',
-				__( 'This is now a filter, rather than an action.' )
+				__( 'This is now a filter, rather than an action.', 'bp-block-users' )
 			);
 
 			/**
