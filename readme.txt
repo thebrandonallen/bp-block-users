@@ -37,8 +37,17 @@ For bug reports or to submit patches or translation files, visit https://github.
 == Changelog ==
 
 = 0.2.0 ({{release_date}}) =
+The short story is that everything is deprecated! Yikes! This was a quick experiment to satisfy an immediate need. Turns out, it had staying power.
+
+That brings us to 0.2.0. All functions have been renamed with a better prefix `bpbu_`, or they have been moved into separate classes. BP Block Users is now a first class citizen on BuddyPress, and is loaded as a component.
+
+All that being said, the plugin should work the same or better than before!
+
 * Bumped minimum required WordPress version to 4.3.0.
 * Bumped minimum required BuddyPress version to 2.4.0.
+* BP Block Users is now loaded as a BuddyPress component.
+* Added a blocked users list table to `Users` admin screen.
+* Improved handling of blocked users.
 
 = 0.1.0 (2015-09-22) =
 * Initial release.
