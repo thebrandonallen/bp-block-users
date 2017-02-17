@@ -148,7 +148,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 		// Add a referer.
 		$args['wp_http_referer'] = urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) );
 
-		$is_blocked = tba_bp_is_user_blocked( $user->ID );
+		$is_blocked = BPBU_User::is_blocked( $user->ID );
 
 		if ( $is_blocked ) {
 			$args['action'] = 'unblock';
@@ -200,7 +200,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 		}
 
 		// Set up the blocked users view variables.
-		$count = count( tba_bp_get_blocked_user_ids() );
+		$count = count( BPBU_User::get_blocked_user_ids() );
 		$url   = add_query_arg( 'page', 'bp-block-users', $base_url );
 		$text  = sprintf( _x( 'Blocked %s', 'blocked users', 'bp-block-users' ), '<span class="count">(' . number_format_i18n( $count ) . ')</span>' );
 
@@ -456,7 +456,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 
 			// Unblock only if allowed.
 			if ( $this->current_user_can_block( $user_id ) ) {
-				$unblocked = tba_bp_unblock_user( $user_id );
+				$unblocked = BPBU_User::unblock( $user_id );
 			}
 
 			// Set the array key.

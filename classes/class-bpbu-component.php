@@ -310,7 +310,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			}
 
 			// If the user is blocked, set to `no`.
-			if ( 'no' !== $retval && tba_bp_is_user_blocked( $user_id ) ) {
+			if ( 'no' !== $retval && BPBU_User::is_blocked( $user_id ) ) {
 				$retval = 'no';
 			}
 
@@ -358,13 +358,13 @@ if ( class_exists( 'BP_Component' ) ) {
 			$user_id = (int) $user->ID;
 
 			// If the user is blocked, set the wp-login.php error message.
-			if ( tba_bp_is_user_blocked( $user_id ) ) {
+			if ( BPBU_User::is_blocked( $user_id ) ) {
 
 				// Set the default message.
 				$message = __( '<strong>ERROR</strong>: This account has been blocked.', 'bp-block-users' );
 
 				// Check to see if this is a temporary block.
-				$expiration = tba_bp_get_blocked_user_expiration( $user_id, true );
+				$expiration = BPBU_User::get_expiration( $user_id, true );
 				if ( ! empty( $expiration ) ) {
 					$message = __( '<strong>ERROR</strong>: This account has been temporarily blocked.', 'bp-block-users' );
 				}
@@ -452,9 +452,9 @@ if ( class_exists( 'BP_Component' ) ) {
 
 			// Block/unblock the user.
 			if ( $post['block'] ) {
-				tba_bp_block_user( bp_displayed_user_id(), $post['length'], $post['unit'] );
+				BPBU_User::block( bp_displayed_user_id(), $post['length'], $post['unit'] );
 			} else {
-				tba_bp_unblock_user( bp_displayed_user_id() );
+				BPBU_User::unblock( bp_displayed_user_id() );
 			}
 
 			bpbu_do_action_deprecated(

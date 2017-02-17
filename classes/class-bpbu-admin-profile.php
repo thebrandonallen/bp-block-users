@@ -94,7 +94,7 @@ class BPBU_Admin_Profile extends BPBU_Admin {
 				<th scope="row"><?php esc_html_e( 'Block User', 'bp-block-users' ); ?></th>
 				<td>
 					<label for="block-user">
-						<input type="checkbox" name="block-user" id="block-user" value="1" <?php checked( tba_bp_is_user_blocked( $user->ID ) ); ?> />
+						<input type="checkbox" name="block-user" id="block-user" value="1" <?php checked( BPBU_User::is_blocked( $user->ID ) ); ?> />
 						<?php esc_html_e( 'Block this user?', 'bp-block-users' ); ?>
 					</label>
 					<p class="description"><?php tba_bp_block_user_settings_message( $user->ID ); ?></p>
@@ -159,9 +159,9 @@ class BPBU_Admin_Profile extends BPBU_Admin {
 		// Block/unblock the user.
 		$success = null;
 		if ( $post['block'] ) {
-			$success = tba_bp_block_user( $user->ID, $post['length'], $post['unit'] );
-		} elseif ( tba_bp_is_user_blocked( $user->ID ) ) {
-			$success = tba_bp_unblock_user( $user->ID );
+			$success = BPBU_User::block( $user->ID, $post['length'], $post['unit'] );
+		} elseif ( BPBU_User::is_blocked( $user->ID ) ) {
+			$success = BPBU_User::unblock( $user->ID );
 		}
 
 		// Add an error message if there was a failure.

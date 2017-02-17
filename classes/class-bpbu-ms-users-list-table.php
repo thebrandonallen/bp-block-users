@@ -79,7 +79,7 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 			$mode = empty( $_REQUEST['mode'] ) ? 'list' : $_REQUEST['mode'];
 
 			// Set up our user variables.
-			$users_query      = bpbu_get_blocked_users( $args );
+			$users_query      = BPBU_User::get_blocked_users( $args );
 			$this->items      = $users_query->results;
 			$this->user_count = $users_query->total_users;
 
@@ -295,11 +295,11 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 		 */
 		protected function column_expiration( $user = null ) {
 
-			if ( ! tba_bp_is_user_blocked( $user->ID ) ) {
+			if ( ! BPBU_User::is_blocked( $user->ID ) ) {
 				echo esc_html( __( 'Not Blocked', 'bp-block-users' ) );
 			}
 
-			$expiration = tba_bp_get_blocked_user_expiration( $user->ID );
+			$expiration = BPBU_User::get_expiration( $user->ID );
 			$expiration_int = strtotime( $expiration );
 
 			// If the expiration is not a timestamp, the user is blocked indefinitely.

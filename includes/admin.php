@@ -38,7 +38,7 @@ function tba_bp_block_users_settings_fields( $user ) {
 			<th scope="row"><?php esc_html_e( 'Block User', 'bp-block-users' ); ?></th>
 			<td>
 				<label for="block-user">
-					<input type="checkbox" name="block-user" id="block-user" value="1" <?php checked( tba_bp_is_user_blocked( $user->ID ) ); ?> />
+					<input type="checkbox" name="block-user" id="block-user" value="1" <?php checked( BPBU_User::is_blocked( $user->ID ) ); ?> />
 					<?php esc_html_e( 'Block this user?', 'bp-block-users' ); ?>
 				</label>
 				<p class="description"><?php tba_bp_block_user_settings_message( $user->ID ); ?></p>
@@ -109,9 +109,9 @@ function tba_bp_block_users_update_user_settings( $errors, $update, $user ) {
 
 	// Block/unblock the user.
 	if ( ! empty( $block ) ) {
-		tba_bp_block_user( $user->ID, $length, $unit );
+		BPBU_User::block( $user->ID, $length, $unit );
 	} else {
-		tba_bp_unblock_user( $user->ID );
+		BPBU_User::unblock( $user->ID );
 	}
 }
 
@@ -152,7 +152,7 @@ function tba_bp_block_users_row_actions( $actions = array(), $user = null ) {
 	$args['wp_http_referer'] = urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) );
 
 	// Setup the Block/Unblock text.
-	$block_user_text = tba_bp_is_user_blocked( $user->ID ) ? __( 'Unblock', 'bp-block-users' ) : __( 'Block', 'bp-block-users' );
+	$block_user_text = BPBU_User::is_blocked( $user->ID ) ? __( 'Unblock', 'bp-block-users' ) : __( 'Block', 'bp-block-users' );
 
 	// Add query args and setup the Block/Unblock link.
 	$block_user_url  = add_query_arg( $args, buddypress()->members->admin->edit_url . '#block-user' );

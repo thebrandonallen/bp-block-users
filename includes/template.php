@@ -53,12 +53,12 @@ function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
 	$message = $messages[ $location ]['not-blocked'];
 
 	// If the user is not blocked, bail.
-	if ( ! tba_bp_is_user_blocked( $user_id ) ) {
+	if ( ! BPBU_User::is_blocked( $user_id ) ) {
 		return $message;
 	}
 
 	// Get the user block expiration time.
-	$expiration = tba_bp_get_blocked_user_expiration( $user_id );
+	$expiration = BPBU_User::get_expiration( $user_id );
 	$expiration_int = strtotime( $expiration );
 
 	// If the expiration is not a timestamp, the user is blocked indefinitely.
