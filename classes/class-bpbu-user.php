@@ -387,7 +387,6 @@ class BPBU_User {
 		}
 
 		// Get the user's sessions object and destroy all sessions.
-		$manager = WP_Session_Tokens::get_instance( $user_id );
-		$manager->destroy_all();
+		WP_Session_Tokens::get_instance( $user_id )->destroy_all();
 	}
 }
