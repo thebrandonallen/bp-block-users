@@ -6,26 +6,26 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Output the escaped block user settings message.
  *
- * @since 0.1.0
+ * @since 0.2.0
  *
- * @param int $user_id
+ * @param int $user_id The user id.
  *
  * @return void
  */
-function tba_bp_block_user_settings_message( $user_id = 0 ) {
-	echo esc_html( tba_bp_get_block_user_settings_message( $user_id ) );
+function bpbu_block_user_settings_message( $user_id = 0 ) {
+	echo esc_html( bpbu_get_block_user_settings_message( $user_id ) );
 }
 
 /**
  * Return the block user settings message.
  *
- * @since 0.1.0
+ * @since 0.2.0
  *
- * @param int $user_id
+ * @param int $user_id The user id.
  *
  * @return string The `block-user` settings page message.
  */
-function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
+function bpbu_get_block_user_settings_message( $user_id = 0 ) {
 
 	// Set `user_id` to displayed user id, if no id is passed.
 	if ( empty( $user_id ) ) {
@@ -76,25 +76,33 @@ function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
 		$message = sprintf( $messages[ $location ]['timed'], $date, $time );
 	}
 
+	// Fire the deprecated filter.
+	$message = bpbu_apply_filters_deprecated(
+		'tba_bp_get_block_user_settings_message',
+		array( $message, $user_id ),
+		'0.2.0',
+		'bpbu_get_block_user_settings_message'
+	);
+
 	/**
 	 * Filters the return of the BP Block Users found template.
 	 *
-	 * @since 0.1.0
+	 * @since 0.2.0
 	 *
 	 * @param string $message The BP Block User settings message.
 	 * @param int    $user_id The user being checked.
 	 */
-	return apply_filters( 'tba_bp_get_block_user_settings_message', $message, $user_id );
+	return apply_filters( 'bpbu_get_block_user_settings_message', $message, $user_id );
 }
 
 /**
  * Display the block user settings message on the `block-user` settings page.
  *
- * @since 0.1.0
+ * @since 0.2.0
  *
  * @return void
  */
-function tba_bp_block_users_show_settings_message() {
+function bpbu_block_users_show_settings_message() {
 
 	// Bail if we're not on the `block-user` settings page.
 	if ( ! bp_is_current_action( 'block-user' ) ) {
@@ -104,9 +112,9 @@ function tba_bp_block_users_show_settings_message() {
 	?>
 
 		<div id="message" class="info">
-			<p><?php tba_bp_block_user_settings_message(); ?></p>
+			<p><?php bpbu_block_user_settings_message(); ?></p>
 		</div>
 
 	<?php
 }
-add_action( 'bp_before_member_settings_template', 'tba_bp_block_users_show_settings_message' );
+add_action( 'bp_before_member_settings_template', 'bpbu_block_users_show_settings_message' );

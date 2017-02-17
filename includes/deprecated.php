@@ -340,3 +340,59 @@ function tba_bp_settings_screen_block_user() {
 	);
 	BPBU_Template_Stack::settings_screen_block_user();
 }
+
+/* Template *******************************************************************/
+
+/**
+ * Output the escaped block user settings message.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @param int $user_id The user id.
+ *
+ * @return void
+ */
+function tba_bp_block_user_settings_message( $user_id = 0 ) {
+	_deprecated_function(
+		'tba_bp_block_user_settings_message',
+		'0.2.0',
+		'bpbu_block_user_settings_message'
+	);
+	echo esc_html( bpbu_get_block_user_settings_message( $user_id ) );
+}
+
+/**
+ * Return the block user settings message.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @param int $user_id The user id.
+ *
+ * @return string The `block-user` settings page message.
+ */
+function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
+	_deprecated_function(
+		'tba_bp_get_block_user_settings_message',
+		'0.2.0',
+		'bpbu_get_block_user_settings_message'
+	);
+	return bpbu_get_block_user_settings_message( $user_id );
+}
+
+/**
+ * Display the block user settings message on the `block-user` settings page.
+ *
+ * @since 0.2.0
+ *
+ * @return void
+ */
+function tba_bp_block_users_show_settings_message() {
+	_deprecated_function(
+		'tba_bp_block_users_show_settings_message',
+		'0.2.0',
+		'bpbu_block_users_show_settings_message'
+	);
+	bpbu_block_users_show_settings_message();
+}

@@ -97,7 +97,7 @@ class BPBU_Admin_Profile extends BPBU_Admin {
 						<input type="checkbox" name="block-user" id="block-user" value="1" <?php checked( BPBU_User::is_blocked( $user->ID ) ); ?> />
 						<?php esc_html_e( 'Block this user?', 'bp-block-users' ); ?>
 					</label>
-					<p class="description"><?php tba_bp_block_user_settings_message( $user->ID ); ?></p>
+					<p class="description"><?php bpbu_block_user_settings_message( $user->ID ); ?></p>
 				</td>
 			</tr></tbody>
 			<tbody><tr>
