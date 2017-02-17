@@ -1,6 +1,6 @@
 <?php
 
-class BPBU_Tests_Actions extends WP_UnitTestCase {
+class BPBU_Tests_Actions extends BP_UnitTestCase {
 
 	function test_tba_bp_block_users_admin_actions() {
 		$this->markTestIncomplete();
