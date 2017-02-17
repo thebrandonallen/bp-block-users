@@ -9,6 +9,63 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+/* Admin **********************************************************************/
+
+/**
+ * Output the block user settings field on admin user edit page.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @param WP_User $user The WP_User object.
+ *
+ * @return void
+ */
+function tba_bp_block_users_settings_fields( $user ) {
+	_deprecated_function(
+		'tba_bp_block_users_settings_fields',
+		'0.2.0'
+	);
+}
+
+/**
+ * Update the block user settings.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @param WP_Error $errors
+ * @param bool     $update
+ * @param WP_User  $user
+ *
+ * @return void
+ */
+function tba_bp_block_users_update_user_settings( $errors, $update, $user ) {
+	_deprecated_function(
+		'tba_bp_block_users_update_user_settings',
+		'0.2.0'
+	);
+}
+
+/**
+ * Add a `Block/Unblock` link to the user row action links.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @param array        $actions An array of row actions.
+ * @param null|WP_User $user    The WP_User object.
+ *
+ * @return array An array of row actions.
+ */
+function tba_bp_block_users_row_actions( $actions = array(), $user = null ) {
+	_deprecated_function(
+		'tba_bp_block_users_row_actions',
+		'0.2.0'
+	);
+	return $actions;
+}
+
 /* User Functions *************************************************************/
 
 /**
