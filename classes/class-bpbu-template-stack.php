@@ -38,7 +38,7 @@ class BPBU_Template_Stack {
 		if ( empty( $template ) ) {
 
 			// Register our template stack.
-			bp_register_template_stack( 'bpbu_get_template_directory', 14 );
+			bp_register_template_stack( 'BPBU_Template_Stack::get_template_directory', 14 );
 
 			// Add the plugins.php file to give us something to inject into.
 			$template = locate_template( 'members/single/plugins.php', false, false );

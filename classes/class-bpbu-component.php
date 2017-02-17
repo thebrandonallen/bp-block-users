@@ -180,7 +180,7 @@ if ( class_exists( 'BP_Component' ) ) {
 				'slug'            => 'block-user',
 				'parent_url'      => $settings_link,
 				'parent_slug'     => $slug,
-				'screen_function' => 'tba_bp_settings_screen_block_user',
+				'screen_function' => 'BPBU_Template_Stack::settings_screen_block_user',
 				'position'        => 85,
 				'user_has_access' => ! is_super_admin( bp_displayed_user_id() ),
 			);
