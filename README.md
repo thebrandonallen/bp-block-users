@@ -36,9 +36,9 @@ For bug reports or to submit patches or translation files, visit https://github.
 
 ## Changelog ##
 
-### 0.2.0 ###
+### 0.2.0 ({{release_date}}) ###
 * Bumped minimum required WordPress version to 4.3.0.
 * Bumped minimum required BuddyPress version to 2.4.0.
 
-### 0.1.0 ###
+### 0.1.0 (2015-09-22) ###
 * Initial release.

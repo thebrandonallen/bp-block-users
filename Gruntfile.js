@@ -139,14 +139,13 @@ module.exports = function(grunt) {
 			build: {
 				files: {
 					'bp-block-users.php': 'bp-block-users.php',
-					'README.md': 'README.md',
 					'readme.txt': 'readme.txt'
 				},
 				options: {
-					replacements: [//{
-					//	pattern: /(\$this->version.*)'(.*)';/gm, // For plugin version variable
-					//	replacement: '$1\'<%= pkg.version %>\';'
-					//},
+					replacements: [{
+						pattern: /\{\{release_date\}\}/gm, // For plugin version variable
+						replacement: '<%= grunt.template.today("UTC:yyyy-mm-dd") %>'
+					},
 					{
 						pattern: /(\* Version:\s*)(.*)$/gm, // For plugin header
 						replacement: '$1<%= pkg.version %>'
@@ -176,7 +175,7 @@ module.exports = function(grunt) {
 	grunt.registerTask( 'readme', ['wp_readme_to_markdown'] );
 
 	// Build tasks.
-	grunt.registerTask( 'build', [ 'clean:all', 'readme', 'checktextdomain', 'string-replace:build', 'makepot', 'copy:files' ] );
+	grunt.registerTask( 'build', [ 'clean:all', 'checktextdomain', 'string-replace:build', 'readme', 'makepot', 'copy:files' ] );
 
 	// PHPUnit test task.
 	grunt.registerMultiTask( 'phpunit', 'Runs PHPUnit tests, including the multisite tests.', function() {
