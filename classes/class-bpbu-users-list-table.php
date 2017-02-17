@@ -84,7 +84,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 			$role = isset( $_REQUEST['role'] ) ? $_REQUEST['role'] : '';
 
 			// Set up our user variables.
-			$users_query      = BPBU_User::get_blocked_users( $args );
+			$users_query      = new WP_User_Query( $args );
 			$this->items      = $users_query->results;
 			$this->user_count = $users_query->total_users;
 

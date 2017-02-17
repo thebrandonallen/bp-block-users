@@ -363,54 +363,6 @@ class BPBU_User {
 	}
 
 	/**
-	 * Returns an array of blocked user `WP_User` objects.
-	 *
-	 * This function is a wrapper for `WP_User_Query` that only returns results for
-	 * users that are blocked. Any ids passed in the `includes` parameter that don't
-	 * belong to a blocked user will be filtered out.
-	 *
-	 * @since 0.2.0
-	 *
-	 * @param array $args Arguments to pass to `WP_User_Query`.
-	 *
-	 * @return WP_User_Query
-	 */
-	public static function get_blocked_users( $args = array() ) {
-
-		// Get the blocked user ids.
-		$user_ids = BPBU_User::get_blocked_user_ids();
-
-		// Set the default user query args.
-		$r = array();
-
-		// Set query vars if we have blocked users.
-		if ( ! empty( $user_ids ) ) {
-
-			// Make sure we have an array.
-			$r = bp_parse_args( $args, array(), 'bpbu_get_blocked_users' );
-
-			// Set the `includes` parameter to only get our blocked user objects.
-			if ( ! empty( $r['include'] ) ) {
-				$r['include'] = array_intersect( (array) $r['include'], $user_ids );
-			} else {
-				$r['include'] = $user_ids;
-			}
-		}
-
-		// Run the user query.
-		$query = new WP_User_Query( $r );
-
-		/**
-		 * Filters the return of the blocked user objects array.
-		 *
-		 * @since 0.2.0
-		 *
-		 * @param WP_User_Query $query The WP_User_Query object.
-		 */
-		return apply_filters( 'bpbu_get_blocked_users', $query );
-	}
-
-	/**
 	 * Destroys all the user sessions for the specified user.
 	 *
 	 * @since 0.2.0
