@@ -329,17 +329,17 @@ function bpbu_get_blocked_users( $args = array() ) {
 	// Get the blocked user ids.
 	$user_ids = tba_bp_get_blocked_user_ids();
 
-	// Set a default user query args.
+	// Set the default user query args.
 	$r = array();
 
 	// Set query vars if we have blocked users.
 	if ( ! empty( $user_ids ) ) {
 
 		// Make sure we have an array.
-		$r = wp_parse_args( $args, array( 'count_total' => true ) );
+		$r = bp_parse_args( $args, array(), 'bpbu_get_blocked_users' );
 
-		// Set the `includes` parameter to get our blocked user objects.
-		if ( isset( $r['include'] ) ) {
+		// Set the `includes` parameter to only get our blocked user objects.
+		if ( ! empty( $r['include'] ) ) {
 			$r['include'] = array_intersect( (array) $r['include'], $user_ids );
 		} else {
 			$r['include'] = $user_ids;
@@ -347,16 +347,16 @@ function bpbu_get_blocked_users( $args = array() ) {
 	}
 
 	// Run the user query.
-	$users = new WP_User_Query( $r );
+	$query = new WP_User_Query( $r );
 
 	/**
 	 * Filters the return of the blocked user objects array.
 	 *
 	 * @since 0.2.0
 	 *
-	 * @param array $users The array of blocked user objects.
+	 * @param WP_User_Query $query The WP_User_Query object.
 	 */
-	return apply_filters( 'bpbu_get_blocked_users', $users );
+	return apply_filters( 'bpbu_get_blocked_users', $query );
 }
 
 /**
