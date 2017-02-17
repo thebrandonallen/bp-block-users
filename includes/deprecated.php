@@ -186,7 +186,7 @@ function tba_bp_get_blocked_user_ids() {
 	return BPBU_User::get_blocked_user_ids( $user_id );
 }
 
-/** Notification Emails *******************************************************/
+/* Notification Emails ********************************************************/
 
 /**
  * Prevent email notifications for blocked users.
@@ -210,7 +210,7 @@ function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $
 	return buddypress()->block_users->block_notifications( $retval, $user_id, $meta_key, $single );
 }
 
-/** Authentication ************************************************************/
+/* Authentication *************************************************************/
 
 /**
  * Prevents the login of a blocked user.
@@ -232,7 +232,7 @@ function tba_bp_prevent_blocked_user_login( $user = null ) {
 	return buddypress()->block_users->prevent_blocked_user_login( $user );
 }
 
-/** Sub-nav/Admin Bar Menus ***************************************************/
+/* Sub-nav/Admin Bar Menus ****************************************************/
 
 /**
  * Add the BP Block Users settings sub nav.
@@ -268,7 +268,7 @@ function tba_bp_block_users_admin_bar_admin_menu() {
 	buddypress()->block_users->setup_settings_admin_bar();
 }
 
-/** Settings Actions **********************************************************/
+/* Settings Actions ***********************************************************/
 
 /**
  * Block/unblock a user when editing from a BP profile page.
