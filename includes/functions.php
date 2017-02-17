@@ -250,40 +250,52 @@ function tba_bp_is_user_blocked( $user_id = 0 ) {
  *
  * @since 0.1.0
  *
- * @todo This should use WP_User_Query with a multi-relational meta query
- *       when WP 4.1 is the minimum.
- *       {@link https://make.wordpress.org/core/2014/10/20/update-on-query-improvements-in-4-1/}
- *
- * @global wpdb The WP database object.
- *
  * @return array An array of blocked user ids.
  */
 function tba_bp_get_blocked_user_ids() {
-	global $wpdb;
 
 	// Get the filtered meta keys.
 	$blocked_key    = bp_get_user_meta_key( 'tba_bp_user_blocked' );
 	$expiration_key = bp_get_user_meta_key( 'tba_bp_user_blocked_expiration' );
+
+	// Get the current time with a 10 second buffer.
+	$expiration_time = gmdate( 'Y-m-d H:i:s', ( time() + 10 ) );
 
 	// Check the cache first.
 	$user_ids = wp_cache_get( 'user_ids', 'bp_block_users' );
 
 	// If the cache is empty, pull from the database.
 	if ( false === $user_ids ) {
-		$sql = $wpdb->prepare(
-			"SELECT DISTINCT `m1`.`user_id`
-				FROM {$wpdb->usermeta} AS `m1`
-				INNER JOIN {$wpdb->usermeta} AS `m2` ON `m1`.`user_id` = `m2`.`user_id`
-				WHERE `m1`.`meta_key` = %s
-					AND `m1`.`meta_value` = '1'
-					AND `m2`.`meta_key` = %s
-					AND ( CAST(`m2`.`meta_value` AS DATETIME) > UTC_TIMESTAMP() OR `m2`.`meta_value` = '0' );",
-			$blocked_key,
-			$expiration_key
-		);
 
 		// Get the ids of all blocked users.
-		$user_ids = array_map( 'absint', $wpdb->get_col( $sql ) );
+		$query = new WP_User_Query( array(
+			'fields'      => 'ID',
+			'count_total' => false,
+			'orderby'     => 'ID',
+			'meta_query'  => array(
+				'relation' => 'AND',
+				array(
+					'key'   => $blocked_key,
+					'value' => 1,
+				),
+				array(
+					'relation' => 'OR',
+					array(
+						'key'   => $expiration_key,
+						'value' => 0,
+					),
+					array(
+						'key'     => $expiration_key,
+						'value'   => $expiration_time,
+						'type'    => 'DATETIME',
+						'compare' => '>',
+					),
+				),
+			),
+		) );
+
+		// Cast as integers.
+		$user_ids = array_map( 'intval', $query->results );
 
 		// Add the user ids to the cache.
 		wp_cache_set( 'user_ids', $user_ids, 'bp_block_users' );
