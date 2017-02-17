@@ -141,20 +141,28 @@ class BPBU_User {
 			$unit = 'indefinitely';
 		}
 
+		// Fire the deprecated filter.
+		$units = bpbu_apply_filters_deprecated(
+			'tba_bp_block_users_expiration_units',
+			array( array(
+				'minutes' => MINUTE_IN_SECONDS,
+				'hours'   => HOUR_IN_SECONDS,
+				'days'    => DAY_IN_SECONDS,
+				'weeks'   => WEEK_IN_SECONDS,
+				'months'  => MONTH_IN_SECONDS,
+			) ),
+			'0.2.0',
+			'bpbu_expiration_units'
+		);
+
 		/**
 		 * Filters the array of time units and their values.
 		 *
-		 * @since 0.1.0
+		 * @since 0.2.0
 		 *
 		 * @param array $units The array of time units and their values.
 		 */
-		$units = apply_filters( 'tba_bp_block_users_expiration_units', array(
-			'minutes' => MINUTE_IN_SECONDS,
-			'hours'   => HOUR_IN_SECONDS,
-			'days'    => DAY_IN_SECONDS,
-			'weeks'   => WEEK_IN_SECONDS,
-			'months'  => MONTH_IN_SECONDS,
-		) );
+		$units = apply_filters( 'bpbu_expiration_units', $units );
 
 		// Set the default expiration.
 		$expiration = 0;
@@ -164,17 +172,25 @@ class BPBU_User {
 			$expiration = gmdate( 'Y-m-d H:i:s', ( time() + ( $length * $units[ $unit ] ) ) );
 		}
 
+		// Fire the deprecated filter.
+		$expiration = bpbu_apply_filters_deprecated(
+			'tba_bp_block_user_expiration_time',
+			array( $expiration, $user_id, $length, $unit ),
+			'0.2.0',
+			'bpbu_update_expiration'
+		);
+
 		/**
 		 * Filters the expiration time of a blocked user.
 		 *
-		 * @since 0.1.0
+		 * @since 0.2.0
 		 *
 		 * @param string $expiration The expiration MySQL timestamp in GMT.
 		 * @param int    $user_id    The blocked user id.
 		 * @param int    $length     The numeric length of time user should be blocked.
 		 * @param string $unit       The unit of time user should be blocked.
 		 */
-		$expiration = apply_filters( 'tba_bp_block_user_expiration_time', $expiration, $user_id, $length, $unit );
+		$expiration = apply_filters( 'bpbu_update_expiration', $expiration, $user_id, $length, $unit );
 
 		// Update the user blocked expiration meta.
 		return bp_update_user_meta( $user_id, 'tba_bp_user_blocked_expiration', $expiration );
@@ -211,16 +227,24 @@ class BPBU_User {
 			$expiration = (int) strtotime( $expiration );
 		}
 
+		// Fire the deprecated filter.
+		$expiration = bpbu_apply_filters_deprecated(
+			'tba_bp_get_blocked_user_expiration',
+			array( $expiration, $user_id ),
+			'0.2.0',
+			'bpbu_get_expiration'
+		);
+
 		/**
 		 * Filters the return of the BP Block Users found template.
 		 *
-		 * @since 0.1.0
+		 * @since 0.2.0
 		 *
 		 * @param string|int $expiration MySQL expiration timestamp. Unix if `$int` is
 		 *                               true. Zero if blocked indefinitely.
 		 * @param int        $user_id    The blocked user id.
 		 */
-		return apply_filters( 'tba_bp_get_blocked_user_expiration', $expiration, $user_id );
+		return apply_filters( 'bpbu_get_expiration', $expiration, $user_id );
 	}
 
 	/**
@@ -255,15 +279,23 @@ class BPBU_User {
 			}
 		}
 
+		// Fire the deprecated filter.
+		$blocked = bpbu_apply_filters_deprecated(
+			'tba_bp_is_user_blocked',
+			array( $blocked, $user_id ),
+			'0.2.0',
+			'bpbu_is_blocked'
+		);
+
 		/**
 		 * Filters the return of the BP Block Users found template.
 		 *
-		 * @since 0.1.0
+		 * @since 0.2.0
 		 *
 		 * @param bool $blocked True if user is blocked.
 		 * @param int  $user_id The blocked user id.
 		 */
-		return (bool) apply_filters( 'bpbu_is_user_blocked', $blocked, $user_id );
+		return (bool) apply_filters( 'bpbu_is_blocked', $blocked, $user_id );
 	}
 
 	/**
@@ -312,10 +344,18 @@ class BPBU_User {
 		// Cast as integers.
 		$user_ids = array_map( 'intval', $query->results );
 
+		// Fire the deprecated filter.
+		$blocked = bpbu_apply_filters_deprecated(
+			'tba_bp_get_blocked_user_ids',
+			array( $user_ids ),
+			'0.2.0',
+			'bpbu_get_blocked_user_ids'
+		);
+
 		/**
 		 * Filters the return of the blocked user ids array.
 		 *
-		 * @since 0.1.0
+		 * @since 0.2.0
 		 *
 		 * @param array $user_ids The array of blocked user ids.
 		 */
