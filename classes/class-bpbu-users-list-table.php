@@ -61,17 +61,23 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 			$per_page   = $this->get_items_per_page( str_replace( '-', '_', "{$this->screen->id}_per_page" ) );
 			$usersearch = isset( $_REQUEST['s'] ) ? wp_unslash( trim( $_REQUEST['s'] ) ) : '';
 
-			$args = array(
-				'offset'  => ( $paged - 1 ) * $per_page,
-				'number'  => $per_page,
-				'search'  => '',
-				'orderby' => $orderby,
-				'order'   => $order,
-			);
+			$blocked_user_ids = BPBU_Admin_List_Tables::$blocked_user_ids;
+			$args             = array();
 
-			// Set up a wildcard search.
-			if ( '' !== $usersearch ) {
-				$args['search'] = '*' . $usersearch . '*';
+			if ( ! empty( $blocked_user_ids ) ) {
+				$args = array(
+					'offset'  => ( $paged - 1 ) * $per_page,
+					'number'  => $per_page,
+					'search'  => '',
+					'orderby' => $orderby,
+					'order'   => $order,
+					'include' => $blocked_user_ids,
+				);
+
+				// Set up a wildcard search.
+				if ( '' !== $usersearch ) {
+					$args['search'] = '*' . $usersearch . '*';
+				}
 			}
 
 			// Set the global.

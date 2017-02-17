@@ -35,6 +35,15 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	public static $list_table;
 
 	/**
+	 * The blocked user ids array.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @var null|array
+	 */
+	public static $blocked_user_ids;
+
+	/**
 	 * Provides access to a single instance of `BPBU_Admin_List_Tables` using the
 	 * singleton pattern.
 	 *
@@ -200,7 +209,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 		}
 
 		// Set up the blocked users view variables.
-		$count = count( BPBU_User::get_blocked_user_ids() );
+		$count = count( self::$blocked_user_ids );
 		$url   = add_query_arg( 'page', 'bp-block-users', $base_url );
 		$text  = sprintf( _x( 'Blocked %s', 'blocked users', 'bp-block-users' ), '<span class="count">(' . number_format_i18n( $count ) . ')</span>' );
 
@@ -242,6 +251,10 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	 * @return WP_Users_List_Table The list table.
 	 */
 	public static function get_list_table() {
+
+		if ( ! isset( self::$blocked_user_ids ) ) {
+			self::$blocked_user_ids = BPBU_User::get_blocked_user_ids();
+		}
 
 		if ( bp_core_do_network_admin() ) {
 			$table_prefix = 'ms-users';
