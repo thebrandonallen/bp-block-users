@@ -208,6 +208,10 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 			$base_url = bp_get_admin_url( 'users.php' );
 		}
 
+		if ( ! isset( self::$blocked_user_ids ) ) {
+			self::$blocked_user_ids = BPBU_User::get_blocked_user_ids();
+		}
+
 		// Set up the blocked users view variables.
 		$count = count( self::$blocked_user_ids );
 		$url   = add_query_arg( 'page', 'bp-block-users', $base_url );
