@@ -275,52 +275,42 @@ class BPBU_User {
 	 */
 	public static function get_blocked_user_ids() {
 
-		// Check the cache first.
-		$user_ids = wp_cache_get( 'user_ids', 'bp_block_users' );
+		// Get the filtered meta keys.
+		$blocked_key    = bp_get_user_meta_key( 'tba_bp_user_blocked' );
+		$expiration_key = bp_get_user_meta_key( 'tba_bp_user_blocked_expiration' );
 
-		// If the cache is empty, pull from the database.
-		if ( false === $user_ids ) {
+		// Get the current time with a 10 second buffer.
+		$expiration_time = gmdate( 'Y-m-d H:i:s', ( time() + 10 ) );
 
-			// Get the filtered meta keys.
-			$blocked_key    = bp_get_user_meta_key( 'tba_bp_user_blocked' );
-			$expiration_key = bp_get_user_meta_key( 'tba_bp_user_blocked_expiration' );
-
-			// Get the current time with a 10 second buffer.
-			$expiration_time = gmdate( 'Y-m-d H:i:s', ( time() + 10 ) );
-
-			// Get the ids of all blocked users.
-			$query = new WP_User_Query( array(
-				'fields'      => 'ID',
-				'count_total' => false,
-				'orderby'     => 'ID',
-				'meta_query'  => array(
-					'relation' => 'AND',
+		// Get the ids of all blocked users.
+		$query = new WP_User_Query( array(
+			'fields'      => 'ID',
+			'count_total' => false,
+			'orderby'     => 'ID',
+			'meta_query'  => array(
+				'relation' => 'AND',
+				array(
+					'key'   => $blocked_key,
+					'value' => 1,
+				),
+				array(
+					'relation' => 'OR',
 					array(
-						'key'   => $blocked_key,
-						'value' => 1,
+						'key'   => $expiration_key,
+						'value' => 0,
 					),
 					array(
-						'relation' => 'OR',
-						array(
-							'key'   => $expiration_key,
-							'value' => 0,
-						),
-						array(
-							'key'     => $expiration_key,
-							'value'   => $expiration_time,
-							'type'    => 'DATETIME',
-							'compare' => '>',
-						),
+						'key'     => $expiration_key,
+						'value'   => $expiration_time,
+						'type'    => 'DATETIME',
+						'compare' => '>',
 					),
 				),
-			) );
+			),
+		) );
 
-			// Cast as integers.
-			$user_ids = array_map( 'intval', $query->results );
-
-			// Add the user ids to the cache.
-			wp_cache_set( 'user_ids', $user_ids, 'bp_block_users' );
-		}
+		// Cast as integers.
+		$user_ids = array_map( 'intval', $query->results );
 
 		/**
 		 * Filters the return of the blocked user ids array.
