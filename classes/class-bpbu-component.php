@@ -70,11 +70,6 @@ if ( class_exists( 'BP_Component' ) ) {
 
 			// Register BP Block Users as an active component.
 			buddypress()->active_components[ $this->id ] = '1';
-
-			// Back-compat for BP < 2.2.0.
-			if ( ! method_exists( 'BP_Component', 'setup_cache_groups' ) ) {
-				$this->setup_cache_groups();
-			}
 		}
 
 		/**
