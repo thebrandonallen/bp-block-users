@@ -403,11 +403,6 @@ if ( class_exists( 'BP_Component' ) ) {
 		 */
 		public function settings_action() {
 
-			// Bail if not a POST action.
-			if ( 'POST' !== strtoupper( $_SERVER['REQUEST_METHOD'] ) ) {
-				return;
-			}
-
 			// Bail if no submit action.
 			if ( ! isset( $_POST['block-user-submit'] ) ) {
 				return;
