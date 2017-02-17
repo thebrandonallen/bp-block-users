@@ -2,7 +2,7 @@
 /**
  * Tests for BPBU_Template_Stack.
  *
- * @package BP_Block Users
+ * @package BP_Block_Users
  * @subpackage Tests
  */
 
