@@ -375,8 +375,8 @@ function bpbu_destroy_user_sessions( $user_id = 0 ) {
  *
  * @since 0.2.0
  */
-function bpbu_clean_cache() {
+function bpbu_clean_user_id_cache() {
 	wp_cache_delete( 'user_ids', 'bp_block_users' );
 }
-add_action( 'tba_bp_blocked_user', 'bpbu_clean_cache' );
-add_action( 'tba_bp_unblocked_user', 'bpbu_clean_cache' );
+add_action( 'tba_bp_blocked_user', 'bpbu_clean_user_id_cache' );
+add_action( 'tba_bp_unblocked_user', 'bpbu_clean_user_id_cache' );
