@@ -254,18 +254,18 @@ function tba_bp_is_user_blocked( $user_id = 0 ) {
  */
 function tba_bp_get_blocked_user_ids() {
 
-	// Get the filtered meta keys.
-	$blocked_key    = bp_get_user_meta_key( 'tba_bp_user_blocked' );
-	$expiration_key = bp_get_user_meta_key( 'tba_bp_user_blocked_expiration' );
-
-	// Get the current time with a 10 second buffer.
-	$expiration_time = gmdate( 'Y-m-d H:i:s', ( time() + 10 ) );
-
 	// Check the cache first.
 	$user_ids = wp_cache_get( 'user_ids', 'bp_block_users' );
 
 	// If the cache is empty, pull from the database.
 	if ( false === $user_ids ) {
+
+		// Get the filtered meta keys.
+		$blocked_key    = bp_get_user_meta_key( 'tba_bp_user_blocked' );
+		$expiration_key = bp_get_user_meta_key( 'tba_bp_user_blocked_expiration' );
+
+		// Get the current time with a 10 second buffer.
+		$expiration_time = gmdate( 'Y-m-d H:i:s', ( time() + 10 ) );
 
 		// Get the ids of all blocked users.
 		$query = new WP_User_Query( array(
