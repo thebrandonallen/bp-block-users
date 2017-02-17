@@ -86,6 +86,7 @@ if ( class_exists( 'BP_Component' ) ) {
 
 			// Classes.
 			require $this->classes_dir . 'class-bpbu-template-stack.php';
+			require $this->classes_dir . 'class-bpbu-user.php';
 
 			// Includes.
 			require $this->includes_dir . 'deprecated.php';

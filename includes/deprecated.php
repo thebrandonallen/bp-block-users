@@ -9,6 +9,126 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+/* User Functions *************************************************************/
+
+/**
+ * Block the specified user and log them out of all current sessions.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @param int    $user_id User to block.
+ * @param int    $length  Numeric length of time to block user.
+ * @param string $unit    Unit of time to block user.
+ *
+ * @return int|bool True or meta id on success, false on failure.
+ */
+function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
+	_deprecated_function(
+		'tba_bp_block_user',
+		'0.2.0',
+		'BPBU_User::block'
+	);
+	return BPBU_User::block( $user_id, $length, $unit );
+}
+
+/**
+ * Unblock the specified user.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @param int $user_id User to block.
+ *
+ * @return bool True on success, false on failure.
+ */
+function tba_bp_unblock_user( $user_id = 0 ) {
+	_deprecated_function(
+		'tba_bp_unblock_user',
+		'0.2.0',
+		'BPBU_User::unblock'
+	);
+	return BPBU_User::unblock( $user_id );
+}
+
+/**
+ * Update the expiration time of the blocked user.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @param int    $user_id User to block.
+ * @param int    $length  Numeric length of time to block user.
+ * @param string $unit    Unit of time to block user.
+ *
+ * @return int|bool True or meta id on success, false on failure.
+ */
+function tba_bp_update_blocked_user_expiration( $user_id = 0, $length = 0, $unit = 'indefinitely' ) {
+	_deprecated_function(
+		'tba_bp_update_blocked_user_expiration',
+		'0.2.0',
+		'BPBU_User::update_expiration'
+	);
+	return BPBU_User::update_expiration( $user_id, $length, $unit );
+}
+
+/**
+ * Return the user's block expiration time.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @param int  $user_id The blocked user.
+ * @param bool $int     Whether to return a Unix timestamp.
+ *
+ * @return mixed MySQL expiration timestamp. Unix if `$int` is true. Zero if
+ *               blocked indefinitely. False on failure.
+ */
+function tba_bp_get_blocked_user_expiration( $user_id = 0, $int = false ) {
+	_deprecated_function(
+		'tba_bp_get_blocked_user_expiration',
+		'0.2.0',
+		'BPBU_User::get_expiration'
+	);
+	return BPBU_User::get_expiration( $user_id, $int );
+}
+
+/**
+ * Check if the specified user is blocked.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @param int $user_id User to check for a block.
+ *
+ * @return bool True if user is blocked.
+ */
+function tba_bp_is_user_blocked( $user_id = 0 ) {
+	_deprecated_function(
+		'tba_bp_is_user_blocked',
+		'0.2.0',
+		'BPBU_User::is_blocked'
+	);
+	return BPBU_User::is_blocked( $user_id );
+}
+
+/**
+ * Return an array of blocked user ids.
+ *
+ * @since 0.1.0
+ * @deprecated 0.2.0
+ *
+ * @return array An array of blocked user ids.
+ */
+function tba_bp_get_blocked_user_ids() {
+	_deprecated_function(
+		'tba_bp_get_blocked_user_ids',
+		'0.2.0',
+		'BPBU_User::get_blocked_user_ids'
+	);
+	return BPBU_User::get_blocked_user_ids( $user_id );
+}
+
 /** Notification Emails *******************************************************/
 
 /**
