@@ -34,9 +34,9 @@ function tba_bp_block_users_settings_fields( $user ) {
  * @since 0.1.0
  * @deprecated 0.2.0
  *
- * @param WP_Error $errors
- * @param bool     $update
- * @param WP_User  $user
+ * @param WP_Error $errors The WP_Error object.
+ * @param bool     $update Whether the user is being updated.
+ * @param WP_User  $user   The WP_User object.
  *
  * @return void
  */
