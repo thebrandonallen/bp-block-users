@@ -14,7 +14,7 @@
  * @group template
  * @group template_stack
  */
-class BPBU_Tests_Template_Stack extends BP_UnitTestCase {
+class BPBU_Tests_BPBU_Template_Stack extends BP_UnitTestCase {
 
 	/**
 	 * Test BPBU_Template_Stack::settings_load_template_filter.

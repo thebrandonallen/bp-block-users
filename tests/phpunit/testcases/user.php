@@ -14,7 +14,7 @@
  * @group functions
  * @group users
  */
-class BPBU_Tests_User extends BP_UnitTestCase {
+class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 
 	/**
 	 * Test BPBU_User::block.
