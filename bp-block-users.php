@@ -90,3 +90,35 @@ function bpbu_setup_component() {
 	 */
 	do_action( 'bpbu_loaded' );
 }
+
+/**
+ * The BP Block Users activation hook.
+ *
+ * @since 0.2.0
+ */
+function bpbu_activation() {
+
+	/**
+	 * Fires on plugin activation.
+	 *
+	 * @since 0.2.0
+	 */
+	do_action( 'bpbu_activation' );
+}
+register_activation_hook( __FILE__, 'bpbu_activation' );
+
+/**
+ * The BP Block Users deactivation hook.
+ *
+ * @since 0.2.0
+ */
+function bpbu_deactivation() {
+
+	/**
+	 * Fires on plugin deactivation.
+	 *
+	 * @since 0.2.0
+	 */
+	do_action( 'bpbu_deactivation' );
+}
+register_deactivation_hook( __FILE__, 'bpbu_deactivation' );
