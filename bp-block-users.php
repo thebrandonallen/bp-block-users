@@ -62,14 +62,12 @@ add_action( 'bp_include', 'bpbu_init' );
  *
  * Note that custom translation files inside the BP Block Users plugin folder
  * will be removed on BP Block Users updates. If you're creating custom
- * translation files, please use the global language folder (ie - wp-content/languages/plugins).
+ * translation files, please use the global language folder, located at
+ * wp-content/languages/plugins.
  *
  * @since 0.2.0
  */
 function bpbu_load_textdomain() {
-
-	// Look in wp-content/plugins/bp-block-users/languages first
-	// fallback to wp-content/languages/plugins
 	load_plugin_textdomain( 'bp-block-users', false, dirname( __FILE__ ) . '/languages/' );
 }
 add_action( 'plugins_loaded', 'bpbu_load_textdomain' );
