@@ -141,16 +141,19 @@ class BPBU_User {
 			$unit = 'indefinitely';
 		}
 
+		// Set up the units array.
+		$units = array(
+			'minutes' => MINUTE_IN_SECONDS,
+			'hours'   => HOUR_IN_SECONDS,
+			'days'    => DAY_IN_SECONDS,
+			'weeks'   => WEEK_IN_SECONDS,
+			'months'  => MONTH_IN_SECONDS,
+		);
+
 		// Fire the deprecated filter.
 		$units = bpbu_apply_filters_deprecated(
 			'tba_bp_block_users_expiration_units',
-			array( array(
-				'minutes' => MINUTE_IN_SECONDS,
-				'hours'   => HOUR_IN_SECONDS,
-				'days'    => DAY_IN_SECONDS,
-				'weeks'   => WEEK_IN_SECONDS,
-				'months'  => MONTH_IN_SECONDS,
-			) ),
+			array( $units ),
 			'0.2.0',
 			'bpbu_expiration_units'
 		);

@@ -27,6 +27,8 @@ defined( 'ABSPATH' ) || exit;
  * @param string $version     The version of BP Block Users that deprecated the hook.
  * @param string $replacement Optional. The hook that should have been used.
  * @param string $message     Optional. A message regarding the change.
+ *
+ * @return mixed
  */
 function bpbu_apply_filters_deprecated( $tag, $args, $version, $replacement = false, $message = null ) {
 
@@ -61,6 +63,8 @@ function bpbu_apply_filters_deprecated( $tag, $args, $version, $replacement = fa
  * @param string $version     The version of BP Block Users that deprecated the hook.
  * @param string $replacement Optional. The hook that should have been used.
  * @param string $message     Optional. A message regarding the change.
+ *
+ * @return void
  */
 function bpbu_do_action_deprecated( $tag, $args, $version, $replacement = false, $message = null ) {
 
@@ -81,7 +85,7 @@ function bpbu_do_action_deprecated( $tag, $args, $version, $replacement = false,
 /**
  * Marks a deprecated action or filter hook as deprecated and throws a notice.
  *
- * Use the 'deprecated_hook_run' action to get the backtrace describing where the
+ * Use the 'bpbu_deprecated_hook_run' action to get the backtrace describing where the
  * deprecated hook was called.
  *
  * Default behavior is to trigger a user error if WP_DEBUG is true.

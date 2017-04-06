@@ -215,6 +215,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 		// Set up the blocked users view variables.
 		$count = count( self::$blocked_user_ids );
 		$url   = add_query_arg( 'page', 'bp-block-users', $base_url );
+		/* translators: 1: Blocked user count */
 		$text  = sprintf( _x( 'Blocked %s', 'blocked users', 'bp-block-users' ), '<span class="count">(' . number_format_i18n( $count ) . ')</span>' );
 
 		$views['blocked'] = sprintf( '<a href="%1$s" class="%2$s">%3$s</a>', esc_url( $url ), $class, $text );
@@ -285,7 +286,12 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	 */
 	private function admin_help() {
 		// The per_page screen option.
-		add_screen_option( 'per_page', array( 'label' => _x( 'Blocked Users', 'Blocked Users per page (screen options)', 'bp-block-users' ) ) );
+		add_screen_option(
+			'per_page',
+			array(
+				'label' => _x( 'Blocked Users', 'Blocked Users per page (screen options)', 'bp-block-users' ),
+			)
+		);
 
 		get_current_screen()->add_help_tab( array(
 			'id'      => 'bp-block-users-overview',
@@ -402,7 +408,10 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 
 				<?php if ( $usersearch ) : ?>
 
-					<span class="subtitle"><?php sprintf( __( 'Search results for &#8220;%s&#8221;', 'bp-block-users' ), esc_html( $usersearch ) ); ?></span>
+					<span class="subtitle"><?php
+						/* translators: The search query string */
+						sprintf( __( 'Search results for &#8220;%s&#8221;', 'bp-block-users' ), esc_html( $usersearch ) );
+					?></span>
 
 				<?php endif; ?>
 

@@ -538,4 +538,4 @@ if ( class_exists( 'BP_Component' ) ) {
 			return $retval;
 		}
 	}
-} // End class exists.
+} // End if().

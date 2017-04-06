@@ -34,7 +34,7 @@ class BPBU_Template_Stack {
 		}
 
 		// No template has been found, so add the plugin's template file to the stack.
-		// https://codex.buddypress.org/plugindev/upgrading-older-plugins-that-bundle-custom-templates-for-bp-1-7/
+		// https://codex.buddypress.org/plugindev/upgrading-older-plugins-that-bundle-custom-templates-for-bp-1-7/.
 		if ( empty( $template ) ) {
 
 			// Register our template stack.
