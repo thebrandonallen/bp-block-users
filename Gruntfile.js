@@ -125,10 +125,11 @@ module.exports = function(grunt) {
 			dev: {
 				files: {
 					'bp-block-users.php': 'bp-block-users.php',
+					'classes/class-bpbu-component.php': 'classes/class-bpbu-component.php'
 				},
 				options: {
 					replacements: [{
-						pattern: /(\$this->version.*)'(.*)';/gm, // For plugin version variable
+						pattern: /(const\sVERSION.*)'(.*)';/gm, // For plugin version variable
 						replacement: '$1\'<%= pkg.version %>\';'
 					},
 					{
@@ -140,12 +141,17 @@ module.exports = function(grunt) {
 			build: {
 				files: {
 					'bp-block-users.php': 'bp-block-users.php',
+					'classes/class-bpbu-component.php': 'classes/class-bpbu-component.php',
 					'readme.txt': 'readme.txt'
 				},
 				options: {
 					replacements: [{
 						pattern: /\{\{release_date\}\}/gm, // For plugin version variable
 						replacement: '<%= grunt.template.today("UTC:yyyy-mm-dd") %>'
+					},
+					{
+						pattern: /(const\sVERSION.*)'(.*)';/gm, // For plugin version variable
+						replacement: '$1\'<%= pkg.version %>\';'
 					},
 					{
 						pattern: /(\* Version:\s*)(.*)$/gm, // For plugin header
