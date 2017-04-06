@@ -129,3 +129,53 @@ function bpbu_deprecated_hook( $hook, $version, $replacement = null, $message = 
 		}
 	}
 }
+
+/**
+ * Marks a deprecated meta key as deprecated and throws a notice.
+ *
+ * Use the 'bpbu_deprecated_meta_key_run' action to get the backtrace describing where the
+ * deprecated hook was called.
+ *
+ * Default behavior is to trigger a user error if WP_DEBUG is true.
+ *
+ * This function is called by the do_action_deprecated() and apply_filters_deprecated()
+ * functions, and so generally does not need to be called directly.
+ *
+ * @since 0.2.0
+ * @access private
+ *
+ * @param string $meta_key    The meta key that was used.
+ * @param string $version     The version of WordPress that deprecated the meta key.
+ * @param string $replacement Optional. The hook that should have been used.
+ * @param string $message     Optional. A message regarding the change.
+ */
+function bpbu_deprecated_meta_key( $meta_key, $version, $replacement = null, $message = null ) {
+	/**
+	 * Fires when a deprecated meta key is requested.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param string $meta_key    The meta key that was requested.
+	 * @param string $replacement The meta key that should be used as a replacement.
+	 * @param string $version     The version of BP Block Users that deprecated the argument used.
+	 * @param string $message     A message regarding the change.
+	 */
+	do_action( 'bpbu_deprecated_meta_key_run', $meta_key, $replacement, $version, $message );
+
+	/**
+	 * Filter whether to trigger deprecated meta key errors.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param bool $trigger Whether to trigger deprecated meta key errors. Requires
+	 *                      `WP_DEBUG` to be defined true.
+	 */
+	if ( WP_DEBUG && apply_filters( 'bpbu_deprecated_meta_key_trigger_error', true ) ) {
+		$message = empty( $message ) ? '' : ' ' . $message;
+		if ( ! is_null( $replacement ) ) {
+			trigger_error( sprintf( __( 'The %1$s meta key is <strong>deprecated</strong> since version %2$s! Use %3$s instead.', 'bp-block-users' ), $hook, $version, $replacement ) . $message );
+		} else {
+			trigger_error( sprintf( __( 'The %1$s meta key is <strong>deprecated</strong> since version %2$s with no alternative available.', 'bp-block-users' ), $hook, $version ) . $message );
+		}
+	}
+}
