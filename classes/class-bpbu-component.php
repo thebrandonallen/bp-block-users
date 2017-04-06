@@ -19,6 +19,14 @@ if ( class_exists( 'BP_Component' ) ) {
 	class BPBU_Component extends BP_Component {
 
 		/**
+		 * The plugin version.
+		 *
+		 * @since 0.2.0
+		 * @var   string
+		 */
+		const VERSION = '0.2.0';
+
+		/**
 		 * The path to BP Block Users includes.
 		 *
 		 * @since 0.2.0
