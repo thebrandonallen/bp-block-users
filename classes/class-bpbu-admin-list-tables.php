@@ -155,7 +155,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 		$args['user_id'] = $user->ID;
 
 		// Add a referer.
-		$args['wp_http_referer'] = urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+		$args['wp_http_referer'] = rawurlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) );
 
 		$is_blocked = BPBU_User::is_blocked( $user->ID );
 
