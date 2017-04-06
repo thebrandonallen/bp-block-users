@@ -11,6 +11,7 @@ module.exports = function(grunt) {
 			'!**/tests/**',
 			'!Gruntfile.js*',
 			'!package.json*',
+			'!phpcs.xml*',
 			'!phpunit.xml*',
 			'!.{editorconfig,gitignore,jshintrc,travis.yml,DS_Store}'
 		];
