@@ -133,6 +133,9 @@ if ( class_exists( 'BP_Component' ) ) {
 			// Prevent the login of a blocked user.
 			add_filter( 'authenticate', array( $this, 'prevent_blocked_user_login' ), 40 );
 
+			// Filter for our deprecated meta keys.
+			add_filter( 'get_user_metadata', array( $this, 'filter_deprecated_meta_keys' ) );
+
 			/* Actions ********************************************************/
 
 			// Add block user settings sub nav.
@@ -464,6 +467,44 @@ if ( class_exists( 'BP_Component' ) ) {
 			 * @since 0.2.0
 			 */
 			do_action( 'bpbu_settings_block_user_after_save' );
+		}
+
+		/**
+		 * Filters the retrieval of user meta to add a fallback for the old user
+		 * meta keys.
+		 *
+		 * @since 0.2.0
+		 *
+		 * @param mixed  $retval   The check return value. Defaults to null.
+		 * @param int    $user_id  The user id.
+		 * @param string $meta_key The user meta key.
+		 * @param bool   $single   Whether to return a single value.
+		 *
+		 * @return mixed False if meta key doesn't exist.
+		 */
+		public function filter_deprecated_meta_keys( $retval, $user_id, $meta_key, $single ) {
+
+			// Setup an array of deprecated keys.
+			$deprecate_keys = array(
+				'tba_bp_user_blocked',
+				'tba_bp_user_blocked_expiration',
+			);
+
+			// Bail if we're not retrieving one of our deprecated keys.
+			if ( ! in_array( $meta_key, $deprecate_keys, true ) ) {
+				return $retval;
+			}
+
+			// Setup our new key.
+			$new_key = 'bpbu_user_blocked';
+			if ( 'tba_bp_user_blocked_expiration' === $meta_key ) {
+				$new_key = 'bpbu_user_blocked_expiration';
+			}
+
+			// Throw a deprecated meta key notice.
+			bpbu_deprecated_meta_key( $meta_key, $version, $new_key );
+
+			return get_user_meta( $user_id, $new_key, $single );
 		}
 
 		/**
