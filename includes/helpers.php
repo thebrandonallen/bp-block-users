@@ -177,9 +177,9 @@ function bpbu_deprecated_meta_key( $meta_key, $version, $replacement = null, $me
 	if ( WP_DEBUG && apply_filters( 'bpbu_deprecated_meta_key_trigger_error', true ) ) {
 		$message = empty( $message ) ? '' : ' ' . $message;
 		if ( ! is_null( $replacement ) ) {
-			trigger_error( sprintf( __( 'The %1$s meta key is <strong>deprecated</strong> since version %2$s! Use %3$s instead.', 'bp-block-users' ), $hook, $version, $replacement ) . $message );
+			trigger_error( sprintf( __( 'The %1$s meta key is <strong>deprecated</strong> since version %2$s! Use %3$s instead.', 'bp-block-users' ), $meta_key, $version, $replacement ) . $message );
 		} else {
-			trigger_error( sprintf( __( 'The %1$s meta key is <strong>deprecated</strong> since version %2$s with no alternative available.', 'bp-block-users' ), $hook, $version ) . $message );
+			trigger_error( sprintf( __( 'The %1$s meta key is <strong>deprecated</strong> since version %2$s with no alternative available.', 'bp-block-users' ), $meta_key, $version ) . $message );
 		}
 	}
 }
