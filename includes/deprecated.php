@@ -183,7 +183,7 @@ function tba_bp_get_blocked_user_ids() {
 		'0.2.0',
 		'BPBU_User::get_blocked_user_ids'
 	);
-	return BPBU_User::get_blocked_user_ids( $user_id );
+	return BPBU_User::get_blocked_user_ids();
 }
 
 /* Notification Emails ********************************************************/
