@@ -35,14 +35,10 @@ class BPBU_User {
 		}
 
 		// Only update the user meta if the user isn't blocked.
-		if ( BPBU_User::is_blocked( $user_id ) ) {
-			$blocked = true;
-		} else {
-			$blocked = bp_update_user_meta( $user_id, 'bpbu_user_blocked', 1 );
-		}
+		$blocked = bp_update_user_meta( $user_id, 'bpbu_user_blocked', 1 );
 
 		// Update the expiration time and clear user sessions.
-		if ( $blocked ) {
+		if ( BPBU_User::is_blocked( $user_id ) ) {
 
 			// Set the user block expiration date.
 			BPBU_User::update_expiration( $user_id, $length, $unit );
@@ -54,7 +50,7 @@ class BPBU_User {
 		// Fire the deprecated action.
 		bpbu_do_action_deprecated(
 			'tba_bp_blocked_user',
-			array( $user_id, $blocked ),
+			array( $user_id ),
 			'0.2.0',
 			'bpbu_user_blocked'
 		);
@@ -67,9 +63,9 @@ class BPBU_User {
 		 * @param int  $user_id The blocked user id.
 		 * @param bool $blocked True on success, false on failure.
 		 */
-		do_action( 'bpbu_user_blocked', $user_id, $blocked );
+		do_action( 'bpbu_user_blocked', $user_id );
 
-		return $blocked;
+		return true;
 	}
 
 	/**
@@ -89,15 +85,13 @@ class BPBU_User {
 		}
 
 		// Unblock the user.
-		$unblocked = bp_delete_user_meta( $user_id, 'bpbu_user_blocked' );
-		if ( $unblocked ) {
-			bp_delete_user_meta( $user_id, 'bpbu_user_blocked_expiration' );
-		}
+		bp_delete_user_meta( $user_id, 'bpbu_user_blocked' );
+		bp_delete_user_meta( $user_id, 'bpbu_user_blocked_expiration' );
 
 		// Fire the deprecated action.
 		bpbu_do_action_deprecated(
 			'tba_bp_unblocked_user',
-			array( $user_id, $unblocked ),
+			array( $user_id ),
 			'0.2.0',
 			'bpbu_user_unblocked'
 		);
@@ -110,9 +104,9 @@ class BPBU_User {
 		 * @param int  $user_id   The unblocked user id.
 		 * @param bool $unblocked True on success, false on failure.
 		 */
-		do_action( 'bpbu_user_unblocked', $user_id, $unblocked );
+		do_action( 'bpbu_user_unblocked', $user_id );
 
-		return $unblocked;
+		return true;
 	}
 
 	/**
