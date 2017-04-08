@@ -20,7 +20,7 @@ class BPBU_Tests_Template extends BP_UnitTestCase {
 	 *
 	 * @covers ::bpbu_block_user_settings_message
 	 */
-	function test_bpbu_block_user_settings_message() {
+	public function test_bpbu_block_user_settings_message() {
 
 		$this->expectOutputString( 'This member is not currently blocked.' );
 		bpbu_block_user_settings_message();
@@ -33,7 +33,7 @@ class BPBU_Tests_Template extends BP_UnitTestCase {
 	 *
 	 * @covers ::bpbu_get_block_user_settings_message
 	 */
-	function test_bpbu_get_block_user_settings_message() {
+	public function test_bpbu_get_block_user_settings_message() {
 
 		// Test the default message.
 		$message = bpbu_get_block_user_settings_message();
@@ -47,7 +47,7 @@ class BPBU_Tests_Template extends BP_UnitTestCase {
 	 *
 	 * @covers ::bpbu_block_users_show_settings_message
 	 */
-	function test_bpbu_block_users_show_settings_message() {
+	public function test_bpbu_block_users_show_settings_message() {
 
 		$this->expectOutputString( '' );
 		bpbu_block_users_show_settings_message();

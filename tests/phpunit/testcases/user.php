@@ -17,6 +17,39 @@
 class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 
 	/**
+	 * The test user.
+	 *
+	 * @var int
+	 */
+	private static $user_id = 0;
+
+	/**
+	 * Set up the test user.
+	 */
+	public static function setUpBeforeClass() {
+		$f = new WP_UnitTest_Factory();
+		self::$user_id = $f->user->create();
+		self::commit_transaction();
+	}
+
+	/**
+	 * Delete the test user.
+	 */
+	public static function tearDownAfterClass() {
+		wp_delete_user( self::$user_id );
+		self::commit_transaction();
+	}
+
+	/**
+	 * Reset blocked user data after each test.
+	 */
+	public function tearDown() {
+		parent::tearDown();
+		bp_delete_user_meta( self::$user_id, 'bpbu_user_blocked' );
+		bp_delete_user_meta( self::$user_id, 'bpbu_user_blocked_expiration' );
+	}
+
+	/**
 	 * Test BPBU_User::block.
 	 *
 	 * @since 0.2.0
@@ -24,7 +57,25 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	 * @covers BPBU_User::block
 	 */
 	public function test_block() {
-		$this->markTestIncomplete();
+
+		// Returns false when no user id is passed.
+		$this->assertFalse( BPBU_User::block() );
+
+		$is_blocked      = BPBU_User::block( self::$user_id );
+		$blocked_meta    = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked', true );
+		$expiration_meta = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
+		$this->assertNotFalse( $is_blocked );
+		$this->assertEquals( '1', $blocked_meta );
+		$this->assertEquals( '0', $expiration_meta );
+
+		$now             = current_time( 'timestamp', 1 );
+		$expiration      = $now + ( 3 * MINUTE_IN_SECONDS );
+		$is_blocked      = BPBU_User::block( self::$user_id, 3, 'minutes' );
+		$blocked_meta    = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked', true );
+		$expiration_meta = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
+		$this->assertNotFalse( $is_blocked );
+		$this->assertEquals( '1', $blocked_meta );
+		$this->assertEquals( gmdate( 'Y-m-d H:i:s', $expiration ), $expiration_meta );
 	}
 
 	/**
@@ -35,7 +86,24 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	 * @covers BPBU_User::unblock
 	 */
 	public function test_unblock() {
-		$this->markTestIncomplete();
+
+		// Returns false when no user id is passed.
+		$this->assertFalse( BPBU_User::unblock() );
+
+		// Block the user.
+		$is_blocked      = BPBU_User::block( self::$user_id );
+		$blocked_meta    = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked', true );
+		$expiration_meta = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
+		$this->assertTrue( $is_blocked );
+		$this->assertEquals( '1', $blocked_meta );
+		$this->assertEmpty( '0', $expiration_meta );
+
+		$is_unblocked    = BPBU_User::unblock( self::$user_id );
+		$blocked_meta    = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked', true );
+		$expiration_meta = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
+		$this->assertTrue( $is_unblocked );
+		$this->assertEmpty( $blocked_meta );
+		$this->assertEmpty( $expiration_meta );
 	}
 
 	/**
@@ -46,7 +114,20 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	 * @covers BPBU_User::update_expiration
 	 */
 	public function test_update_expiration() {
-		$this->markTestIncomplete();
+
+		$this->assertFalse( BPBU_User::update_expiration() );
+
+		$updated = BPBU_User::update_expiration( self::$user_id );
+		$meta    = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
+		$this->assertNotFalse( $updated );
+		$this->assertEquals( '0', $meta );
+
+		$now        = current_time( 'timestamp', 1 );
+		$expiration = $now + ( 3 * MINUTE_IN_SECONDS );
+		$updated    = BPBU_User::update_expiration( self::$user_id, 3, 'minutes' );
+		$meta       = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
+		$this->assertNotFalse( $updated );
+		$this->assertEquals( gmdate( 'Y-m-d H:i:s', $expiration ), $meta );
 	}
 
 	/**
@@ -57,7 +138,23 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	 * @covers BPBU_User::get_expiration
 	 */
 	public function test_get_expiration() {
-		$this->markTestIncomplete();
+
+		// False when no user id is passed.
+		$this->assertFalse( BPBU_User::get_expiration() );
+
+		$this->assertEquals( 0, BPBU_User::get_expiration( self::$user_id ) );
+		$this->assertEquals( 0, BPBU_User::get_expiration( self::$user_id, true ) );
+
+		BPBU_User::block( self::$user_id );
+		$this->assertEquals( 0, BPBU_User::get_expiration( self::$user_id ) );
+		$this->assertEquals( 0, BPBU_User::get_expiration( self::$user_id, true ) );
+
+		$now            = current_time( 'timestamp', 1 );
+		$expiration     = gmdate( 'Y-m-d H:i:s', ( $now + ( 3 * MINUTE_IN_SECONDS ) ) );
+		$expiration_int = $now + ( 3 * MINUTE_IN_SECONDS );
+		BPBU_User::block( self::$user_id, 3, 'minutes' );
+		$this->assertEquals( $expiration, BPBU_User::get_expiration( self::$user_id ) );
+		$this->assertEquals( $expiration_int, BPBU_User::get_expiration( self::$user_id, true ) );
 	}
 
 	/**
@@ -68,7 +165,15 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	 * @covers BPBU_User::is_blocked
 	 */
 	public function test_is_blocked() {
-		$this->markTestIncomplete();
+
+		// Returns false when no user id is passed.
+		$this->assertFalse( BPBU_User::is_blocked() );
+
+		BPBU_User::block( self::$user_id );
+		$this->assertTrue( BPBU_User::is_blocked( self::$user_id ) );
+
+		BPBU_User::unblock( self::$user_id );
+		$this->assertFalse( BPBU_User::is_blocked( self::$user_id ) );
 	}
 
 	/**
@@ -79,18 +184,18 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	 * @covers BPBU_User::get_blocked_user_ids
 	 */
 	public function test_get_blocked_user_ids() {
-		$this->markTestIncomplete();
-	}
 
-	/**
-	 * Test BPBU_User::get_blocked_users.
-	 *
-	 * @since 0.2.0
-	 *
-	 * @covers BPBU_User::get_blocked_users
-	 */
-	public function test_get_blocked_users() {
-		$this->markTestIncomplete();
+		// Returns false when no user id is passed.
+		$this->assertSame( array(), BPBU_User::get_blocked_user_ids() );
+
+		$users = $this->factory->user->create_many( 3 );
+
+		BPBU_User::block( $users[0] );
+		BPBU_User::block( $users[1] );
+		$this->assertEqualSets( array( $users[0], $users[1] ), BPBU_User::get_blocked_user_ids() );
+
+		bp_update_user_meta( $users[1], 'bpbu_user_blocked_expiration', gmdate( 'Y-m-d H:i:s', ( time() - MINUTE_IN_SECONDS ) ) );
+		$this->assertEqualSets( array( $users[0] ), BPBU_User::get_blocked_user_ids() );
 	}
 
 	/**
@@ -101,6 +206,12 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	 * @covers BPBU_User::destroy_sessions
 	 */
 	public function test_destroy_sessions() {
-		$this->markTestIncomplete();
+
+		// Make sure sessions meta exists.
+		update_user_meta( self::$user_id, 'session_tokens', 'sessions' );
+
+		BPBU_User::destroy_sessions( self::$user_id );
+
+		$this->assertEquals( array(), get_user_meta( self::$user_id, 'session_tokens' ) );
 	}
 }
