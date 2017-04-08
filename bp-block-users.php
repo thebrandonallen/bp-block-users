@@ -120,3 +120,10 @@ function bpbu_deactivation() {
 	do_action( 'bpbu_deactivation' );
 }
 register_deactivation_hook( __FILE__, 'bpbu_deactivation' );
+
+/* Constants ******************************************************************/
+
+// `MONTH_IN_SECONDS` wasn't introduced until WP 4.4, so we add it here.
+if ( ! defined( 'MONTH_IN_SECONDS' ) ) {
+	define( 'MONTH_IN_SECONDS', ( 30 * DAY_IN_SECONDS ) );
+}
