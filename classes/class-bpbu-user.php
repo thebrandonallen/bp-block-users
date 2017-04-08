@@ -171,7 +171,7 @@ class BPBU_User {
 		$expiration = 0;
 
 		// Set the expiration time.
-		if ( in_array( $unit, array_keys( $units ), true ) ) {
+		if ( array_key_exists( $unit, $units ) ) {
 			$expiration = gmdate( 'Y-m-d H:i:s', ( time() + ( $length * $units[ $unit ] ) ) );
 		}
 
