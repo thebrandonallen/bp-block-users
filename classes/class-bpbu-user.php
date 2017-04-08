@@ -134,7 +134,7 @@ class BPBU_User {
 		}
 
 		// Validate the length.
-		$length = (int) $length;
+		$length = is_numeric( $length ) ? (int) $length : 0;
 
 		// If no length, set unit to `indefinitely` to prevent immediate expiration.
 		if ( empty( $length ) ) {

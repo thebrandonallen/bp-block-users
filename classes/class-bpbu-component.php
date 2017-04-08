@@ -535,7 +535,7 @@ if ( class_exists( 'BP_Component' ) ) {
 				$retval['block'] = true;
 			}
 
-			if ( isset( $_POST['block-user-length'] ) ) {
+			if ( isset( $_POST['block-user-length'] ) && is_numeric( $_POST['block-user-length'] ) ) {
 				$retval['length'] = absint( $_POST['block-user-length'] );
 			}
 
