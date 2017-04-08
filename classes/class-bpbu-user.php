@@ -35,7 +35,7 @@ class BPBU_User {
 		}
 
 		// Only update the user meta if the user isn't blocked.
-		$blocked = bp_update_user_meta( $user_id, 'bpbu_user_blocked', 1 );
+		bp_update_user_meta( $user_id, 'bpbu_user_blocked', 1 );
 
 		// Update the expiration time and clear user sessions.
 		if ( BPBU_User::is_blocked( $user_id ) ) {
