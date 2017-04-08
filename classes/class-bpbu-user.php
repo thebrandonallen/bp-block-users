@@ -38,7 +38,7 @@ class BPBU_User {
 		if ( BPBU_User::is_blocked( $user_id ) ) {
 			$blocked = true;
 		} else {
-			$blocked = bp_update_user_meta( $user_id, 'tba_bp_user_blocked', 1 );
+			$blocked = bp_update_user_meta( $user_id, 'bpbu_user_blocked', 1 );
 		}
 
 		// Update the expiration time and clear user sessions.
@@ -89,9 +89,9 @@ class BPBU_User {
 		}
 
 		// Unblock the user.
-		$unblocked = bp_delete_user_meta( $user_id, 'tba_bp_user_blocked' );
+		$unblocked = bp_delete_user_meta( $user_id, 'bpbu_user_blocked' );
 		if ( $unblocked ) {
-			bp_delete_user_meta( $user_id, 'tba_bp_user_blocked_expiration' );
+			bp_delete_user_meta( $user_id, 'bpbu_user_blocked_expiration' );
 		}
 
 		// Fire the deprecated action.
@@ -196,7 +196,7 @@ class BPBU_User {
 		$expiration = apply_filters( 'bpbu_update_expiration', $expiration, $user_id, $length, $unit );
 
 		// Update the user blocked expiration meta.
-		return bp_update_user_meta( $user_id, 'tba_bp_user_blocked_expiration', $expiration );
+		return bp_update_user_meta( $user_id, 'bpbu_user_blocked_expiration', $expiration );
 	}
 
 	/**
@@ -218,7 +218,7 @@ class BPBU_User {
 		}
 
 		// Get the user block expiration MySQL timestamp.
-		$expiration = bp_get_user_meta( $user_id, 'tba_bp_user_blocked_expiration', true );
+		$expiration = bp_get_user_meta( $user_id, 'bpbu_user_blocked_expiration', true );
 
 		// If the expiration time is empty, assume an indefinite block.
 		if ( empty( $expiration ) ) {
@@ -267,7 +267,7 @@ class BPBU_User {
 		}
 
 		// Grab the boolean version of the `bp_user_blocked` meta value.
-		$blocked = '1' === bp_get_user_meta( $user_id, 'tba_bp_user_blocked', true );
+		$blocked = '1' === bp_get_user_meta( $user_id, 'bpbu_user_blocked', true );
 
 		// If user is blocked, check the expiration.
 		if ( $blocked ) {
@@ -311,8 +311,8 @@ class BPBU_User {
 	public static function get_blocked_user_ids() {
 
 		// Get the filtered meta keys.
-		$blocked_key    = bp_get_user_meta_key( 'tba_bp_user_blocked' );
-		$expiration_key = bp_get_user_meta_key( 'tba_bp_user_blocked_expiration' );
+		$blocked_key    = bp_get_user_meta_key( 'bpbu_user_blocked' );
+		$expiration_key = bp_get_user_meta_key( 'bpbu_user_blocked_expiration' );
 
 		// Get the current time with a 10 second buffer.
 		$expiration_time = gmdate( 'Y-m-d H:i:s', ( time() + 10 ) );
