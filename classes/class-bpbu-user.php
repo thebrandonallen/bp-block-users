@@ -56,7 +56,7 @@ class BPBU_User {
 			'tba_bp_blocked_user',
 			array( $user_id, $blocked ),
 			'0.2.0',
-			'bpbu_blocked_user'
+			'bpbu_user_blocked'
 		);
 
 		/**
@@ -67,7 +67,7 @@ class BPBU_User {
 		 * @param int  $user_id The blocked user id.
 		 * @param bool $blocked True on success, false on failure.
 		 */
-		do_action( 'bpbu_blocked_user', $user_id, $blocked );
+		do_action( 'bpbu_user_blocked', $user_id, $blocked );
 
 		return $blocked;
 	}
@@ -99,7 +99,7 @@ class BPBU_User {
 			'tba_bp_unblocked_user',
 			array( $user_id, $unblocked ),
 			'0.2.0',
-			'bpbu_unblocked_user'
+			'bpbu_user_unblocked'
 		);
 
 		/**
@@ -110,7 +110,7 @@ class BPBU_User {
 		 * @param int  $user_id   The unblocked user id.
 		 * @param bool $unblocked True on success, false on failure.
 		 */
-		do_action( 'bpbu_unblocked_user', $user_id, $unblocked );
+		do_action( 'bpbu_user_unblocked', $user_id, $unblocked );
 
 		return $unblocked;
 	}
@@ -180,7 +180,7 @@ class BPBU_User {
 			'tba_bp_block_user_expiration_time',
 			array( $expiration, $user_id, $length, $unit ),
 			'0.2.0',
-			'bpbu_update_expiration'
+			'bpbu_update_user_blocked_expiration'
 		);
 
 		/**
@@ -193,7 +193,7 @@ class BPBU_User {
 		 * @param int    $length     The numeric length of time user should be blocked.
 		 * @param string $unit       The unit of time user should be blocked.
 		 */
-		$expiration = apply_filters( 'bpbu_update_expiration', $expiration, $user_id, $length, $unit );
+		$expiration = apply_filters( 'bpbu_update_user_blocked_expiration', $expiration, $user_id, $length, $unit );
 
 		// Update the user blocked expiration meta.
 		return bp_update_user_meta( $user_id, 'bpbu_user_blocked_expiration', $expiration );
@@ -235,7 +235,7 @@ class BPBU_User {
 			'tba_bp_get_blocked_user_expiration',
 			array( $expiration, $user_id ),
 			'0.2.0',
-			'bpbu_get_expiration'
+			'bpbu_get_user_blocked_expiration'
 		);
 
 		/**
@@ -247,7 +247,7 @@ class BPBU_User {
 		 *                               true. Zero if blocked indefinitely.
 		 * @param int        $user_id    The blocked user id.
 		 */
-		return apply_filters( 'bpbu_get_expiration', $expiration, $user_id );
+		return apply_filters( 'bpbu_get_user_blocked_expiration', $expiration, $user_id );
 	}
 
 	/**
@@ -287,7 +287,7 @@ class BPBU_User {
 			'tba_bp_is_user_blocked',
 			array( $blocked, $user_id ),
 			'0.2.0',
-			'bpbu_is_blocked'
+			'bpbu_is_user_blocked'
 		);
 
 		/**
@@ -298,7 +298,7 @@ class BPBU_User {
 		 * @param bool $blocked True if user is blocked.
 		 * @param int  $user_id The blocked user id.
 		 */
-		return (bool) apply_filters( 'bpbu_is_blocked', $blocked, $user_id );
+		return (bool) apply_filters( 'bpbu_is_user_blocked', $blocked, $user_id );
 	}
 
 	/**
