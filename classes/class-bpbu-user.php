@@ -145,7 +145,7 @@ class BPBU_User {
 		);
 
 		// Fire the deprecated filter.
-		$units = bpbu_apply_filters_deprecated(
+		$units = (array) bpbu_apply_filters_deprecated(
 			'tba_bp_block_users_expiration_units',
 			array( $units ),
 			'0.2.0',
@@ -159,7 +159,7 @@ class BPBU_User {
 		 *
 		 * @param array $units The array of time units and their values.
 		 */
-		$units = apply_filters( 'bpbu_expiration_units', $units );
+		$units = (array) apply_filters( 'bpbu_expiration_units', $units );
 
 		// Set the default expiration.
 		$expiration = 0;
@@ -277,7 +277,7 @@ class BPBU_User {
 		}
 
 		// Fire the deprecated filter.
-		$blocked = bpbu_apply_filters_deprecated(
+		$blocked = (bool) bpbu_apply_filters_deprecated(
 			'tba_bp_is_user_blocked',
 			array( $blocked, $user_id ),
 			'0.2.0',
@@ -342,7 +342,7 @@ class BPBU_User {
 		$user_ids = array_map( 'intval', $query->results );
 
 		// Fire the deprecated filter.
-		$blocked = bpbu_apply_filters_deprecated(
+		$user_ids = (array) bpbu_apply_filters_deprecated(
 			'tba_bp_get_blocked_user_ids',
 			array( $user_ids ),
 			'0.2.0',
