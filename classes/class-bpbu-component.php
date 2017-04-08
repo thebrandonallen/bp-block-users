@@ -142,7 +142,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			add_filter( 'authenticate', array( $this, 'prevent_blocked_user_login' ), 40 );
 
 			// Filter for our deprecated meta keys.
-			add_filter( 'get_user_metadata', array( $this, 'filter_deprecated_meta_keys' ) );
+			add_filter( 'get_user_metadata', array( $this, 'filter_deprecated_meta_keys' ), 10, 4 );
 
 			/* Actions ********************************************************/
 
@@ -493,13 +493,13 @@ if ( class_exists( 'BP_Component' ) ) {
 		public function filter_deprecated_meta_keys( $retval, $user_id, $meta_key, $single ) {
 
 			// Setup an array of deprecated keys.
-			$deprecate_keys = array(
-				'tba_bp_user_blocked',
-				'tba_bp_user_blocked_expiration',
+			$deprecated_keys = array(
+				'tba_bp_user_blocked'            => '0.2.0',
+				'tba_bp_user_blocked_expiration' => '0.2.0',
 			);
 
 			// Bail if we're not retrieving one of our deprecated keys.
-			if ( ! in_array( $meta_key, $deprecate_keys, true ) ) {
+			if ( ! array_key_exists( $meta_key, $deprecated_keys ) ) {
 				return $retval;
 			}
 
@@ -510,7 +510,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			}
 
 			// Throw a deprecated meta key notice.
-			bpbu_deprecated_meta_key( $meta_key, $version, $new_key );
+			bpbu_deprecated_meta_key( $meta_key, $deprecated_keys[ $meta_key ], $new_key );
 
 			return get_user_meta( $user_id, $new_key, $single );
 		}
