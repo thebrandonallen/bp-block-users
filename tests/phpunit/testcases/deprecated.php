@@ -24,11 +24,20 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	private static $user_id = 0;
 
 	/**
+	 * The BuddyPress Unit Test Factory.
+	 *
+	 * A static factory will no longer be needed when WP 4.4 is the minimum.
+	 *
+	 * @var int
+	 */
+	private static $bp_factory = null;
+
+	/**
 	 * Set up the test user.
 	 */
 	public static function setUpBeforeClass() {
-		$f = new WP_UnitTest_Factory();
-		self::$user_id = $f->user->create();
+		self::$bp_factory = new BP_UnitTest_Factory();
+		self::$user_id = self::$bp_factory->user->create();
 		self::commit_transaction();
 	}
 
@@ -231,7 +240,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 		// Returns false when no user id is passed.
 		$this->assertSame( array(), tba_bp_get_blocked_user_ids() );
 
-		$users = $this->factory->user->create_many( 3 );
+		$users = self::$bp_factory->user->create_many( 3 );
 
 		BPBU_User::block( $users[0] );
 		BPBU_User::block( $users[1] );
