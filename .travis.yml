@@ -56,7 +56,7 @@ matrix:
   allow_failures:
     - php: nightly
     - php: hhvm
-    - env: env: WP_VERSION=master BP_VERSION=master BPBU_TRAVIS=travis:codecoverage
+    - env: WP_VERSION=master BP_VERSION=master BPBU_TRAVIS=travis:codecoverage
 
 # before_install: Failures in this section will result in build status 'errored'
 before_install:
