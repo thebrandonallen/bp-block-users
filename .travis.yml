@@ -21,42 +21,42 @@ php:
     - 5.3
 
 env:
-    - WP_VERSION=master BP_VERSION=master BPBU_TRAVIS=travis:phpunit
-    - WP_VERSION=4.7 BP_VERSION=master BPBU_TRAVIS=travis:phpunit
-    - WP_VERSION=4.7 BP_VERSION=2.8 BPBU_TRAVIS=travis:phpunit
-    - WP_VERSION=4.7 BP_VERSION=2.4 BPBU_TRAVIS=travis:phpunit
-    - WP_VERSION=4.6 BP_VERSION=master BPBU_TRAVIS=travis:phpunit
-    - WP_VERSION=4.6 BP_VERSION=2.8 BPBU_TRAVIS=travis:phpunit
-    - WP_VERSION=4.6 BP_VERSION=2.4 BPBU_TRAVIS=travis:phpunit
-    - WP_VERSION=4.3 BP_VERSION=master BPBU_TRAVIS=travis:phpunit
-    - WP_VERSION=4.3 BP_VERSION=2.8 BPBU_TRAVIS=travis:phpunit
-    - WP_VERSION=4.3 BP_VERSION=2.4 BPBU_TRAVIS=travis:phpunit
+    - WP_VERSION=master BP_VERSION=master BPBU_TRAVISCI=travis:phpunit
+    - WP_VERSION=4.7 BP_VERSION=master BPBU_TRAVISCI=travis:phpunit
+    - WP_VERSION=4.7 BP_VERSION=2.8 BPBU_TRAVISCI=travis:phpunit
+    - WP_VERSION=4.7 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
+    - WP_VERSION=4.6 BP_VERSION=master BPBU_TRAVISCI=travis:phpunit
+    - WP_VERSION=4.6 BP_VERSION=2.8 BPBU_TRAVISCI=travis:phpunit
+    - WP_VERSION=4.6 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
+    - WP_VERSION=4.3 BP_VERSION=master BPBU_TRAVISCI=travis:phpunit
+    - WP_VERSION=4.3 BP_VERSION=2.8 BPBU_TRAVISCI=travis:phpunit
+    - WP_VERSION=4.3 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
 
 matrix:
   #fast_finish: true
   include:
     - php: nightly
-      env: WP_VERSION=master BP_VERSION=master BPBU_TRAVIS=travis:phpunit
+      env: WP_VERSION=master BP_VERSION=master BPBU_TRAVISCI=travis:phpunit
     - php: hhvm
-      env: WP_VERSION=master BP_VERSION=master BPBU_TRAVIS=travis:phpunit
+      env: WP_VERSION=master BP_VERSION=master BPBU_TRAVISCI=travis:phpunit
     - php: 7.0
-      env: WP_VERSION=master BP_VERSION=master BPBU_TRAVIS=travis:codecoverage
+      env: WP_VERSION=master BP_VERSION=master BPBU_TRAVISCI=travis:codecoverage
     - php: 5.2
-      env: WP_VERSION=4.7 BP_VERSION=2.7 BPBU_TRAVIS=travis:phpunit
+      env: WP_VERSION=4.7 BP_VERSION=2.7 BPBU_TRAVISCI=travis:phpunit
     - php: 5.2
-      env: WP_VERSION=4.7 BP_VERSION=2.4 BPBU_TRAVIS=travis:phpunit
+      env: WP_VERSION=4.7 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
     - php: 5.2
-      env: WP_VERSION=4.6 BP_VERSION=2.7 BPBU_TRAVIS=travis:phpunit
+      env: WP_VERSION=4.6 BP_VERSION=2.7 BPBU_TRAVISCI=travis:phpunit
     - php: 5.2
-      env: WP_VERSION=4.6 BP_VERSION=2.4 BPBU_TRAVIS=travis:phpunit
+      env: WP_VERSION=4.6 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
     - php: 5.2
-      env: WP_VERSION=4.3 BP_VERSION=2.7 BPBU_TRAVIS=travis:phpunit
+      env: WP_VERSION=4.3 BP_VERSION=2.7 BPBU_TRAVISCI=travis:phpunit
     - php: 5.2
-      env: WP_VERSION=4.3 BP_VERSION=2.4 BPBU_TRAVIS=travis:phpunit
+      env: WP_VERSION=4.3 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
   allow_failures:
     - php: nightly
     - php: hhvm
-    - env: WP_VERSION=master BP_VERSION=master BPBU_TRAVIS=travis:codecoverage
+    - env: WP_VERSION=master BP_VERSION=master BPBU_TRAVISCI=travis:codecoverage
 
 # before_install: Failures in this section will result in build status 'errored'
 before_install:
