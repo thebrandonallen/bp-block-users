@@ -3,7 +3,7 @@
 **Donate link:** https://brandonallen.me/donate/  
 **Tags:** buddypress, bp, block, users, block users  
 **Requires at least:** 4.3 (BP 2.4.0)  
-**Tested up to:** 4.7.2 (BP 2.8.0)  
+**Tested up to:** 4.7.3 (BP 2.8.2)  
 **Stable tag:** 0.1.0  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
@@ -39,7 +39,7 @@ For bug reports or to submit patches or translation files, visit https://github.
 ### 0.2.0 ({{release_date}}) ###
 The short story is that everything is deprecated! Yikes!
 
-This plugin was created to satisfy an immediate need, and released on the off chance others might want something like it. Turns out, it had staying power, as there are currently about 195 more people using it than I expected.
+This plugin was created to satisfy an immediate need, and released on the off-chance others might want something like it. Turns out, it had staying power, as there are currently about 195 more people using it than I expected.
 
 That brings us to 0.2.0. All functions have been renamed with a better prefix `bpbu_`, or they have been moved into separate classes. BP Block Users is now a first class citizen on BuddyPress, and is loaded as a component.
 
@@ -50,6 +50,7 @@ All that being said, the plugin should work the same or better than before!
 * BP Block Users is now loaded as a BuddyPress component.
 * Added a blocked users list table to `Users > All Users` admin screen.
 * Improved handling of blocked users.
+* The next version will require PHP 5.3+.
 
 ### 0.1.0 (2015-09-22) ###
 * Initial release.
