@@ -93,7 +93,7 @@ before_script:
   - npm install
   - grunt build
 
-script: grunt "BPBU_TRAVISCI"
+script: grunt "$BPBU_TRAVISCI"
 
 after_script:
   - |
