@@ -116,9 +116,9 @@ module.exports = function(grunt) {
 				cmd: 'phpunit',
 				args: ['-c', 'phpunit.xml.dist']
 			},
-			multisite: {
+			'codecoverage': {
 				cmd: 'phpunit',
-				args: ['-c', 'tests/phpunit/multisite.xml']
+				args: ['-c', 'phpunit.xml.dist', '--coverage-clover=coverage.clover' ]
 			}
 		},
 		'string-replace': {
@@ -192,6 +192,10 @@ module.exports = function(grunt) {
 			opts: { stdio: 'inherit' }
 		}, this.async() );
 	} );
+
+	// Travis CI Tasks.
+	grunt.registerTask( 'travis:phpunit', ['phpunit:default'] );
+	grunt.registerTask( 'travis:codecoverage', 'Runs PHPUnit tasks with code-coverage generation.', ['phpunit:codecoverage'] );
 
 	// Register the default tasks.
 	grunt.registerTask('default', ['watch']);
