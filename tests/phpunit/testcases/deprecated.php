@@ -100,6 +100,9 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	 *
 	 * @since 0.2.0
 	 *
+	 * @TODO Replace assertTrue( false !== $var ) with assertNotFalse( $var )
+	 *       when PHP 5.2 support is dropped.
+	 *
 	 * @covers ::tba_bp_block_user
 	 * @expectedDeprecated tba_bp_block_user
 	 */
@@ -111,7 +114,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 		$is_blocked      = tba_bp_block_user( self::$user_id );
 		$blocked_meta    = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked', true );
 		$expiration_meta = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
-		$this->assertNotFalse( $is_blocked );
+		$this->assertTrue( false !== $is_blocked );
 		$this->assertEquals( '1', $blocked_meta );
 		$this->assertEquals( '0', $expiration_meta );
 
@@ -120,7 +123,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 		$is_blocked      = tba_bp_block_user( self::$user_id, 3, 'minutes' );
 		$blocked_meta    = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked', true );
 		$expiration_meta = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
-		$this->assertNotFalse( $is_blocked );
+		$this->assertTrue( false !== $is_blocked );
 		$this->assertEquals( '1', $blocked_meta );
 		$this->assertEquals( gmdate( 'Y-m-d H:i:s', $expiration ), $expiration_meta );
 	}
@@ -159,6 +162,9 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	 *
 	 * @since 0.2.0
 	 *
+	 * @TODO Replace assertTrue( false !== $var ) with assertNotFalse( $var )
+	 *       when PHP 5.2 support is dropped.
+	 *
 	 * @covers ::tba_bp_update_blocked_user_expiration
 	 * @expectedDeprecated tba_bp_update_blocked_user_expiration
 	 */
@@ -168,14 +174,14 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 
 		$updated = tba_bp_update_blocked_user_expiration( self::$user_id );
 		$meta    = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
-		$this->assertNotFalse( $updated );
+		$this->assertTrue( false !== $updated );
 		$this->assertEquals( '0', $meta );
 
 		$now        = current_time( 'timestamp', 1 );
 		$expiration = $now + ( 3 * MINUTE_IN_SECONDS );
 		$updated    = tba_bp_update_blocked_user_expiration( self::$user_id, 3, 'minutes' );
 		$meta       = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
-		$this->assertNotFalse( $updated );
+		$this->assertTrue( false !== $updated );
 		$this->assertEquals( gmdate( 'Y-m-d H:i:s', $expiration ), $meta );
 	}
 
