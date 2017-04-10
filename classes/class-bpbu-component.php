@@ -493,7 +493,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			// Throw a deprecated meta key notice.
 			_doing_it_wrong(
 				$meta_key,
-				esc_html__( "The '{$meta_key}' meta key was deprecated in version {$version}. Please use '{$new_key}' instead."),
+				esc_html__( "The '{$meta_key}' meta key was deprecated in version {$version}. Please use '{$new_key}' instead.", 'bp-block-users' ),
 				$deprecated_keys[ $meta_key ]
 			);
 
