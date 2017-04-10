@@ -498,7 +498,7 @@ if ( class_exists( 'BP_Component' ) ) {
 					esc_html__( 'The %1$s meta key was deprecated in version %2$s. Please use %3$s instead.', 'bp-block-users' ),
 					esc_html( $meta_key ),
 					esc_html( $version ),
-					esc_html( $new_key ),
+					esc_html( $new_key )
 				),
 				esc_html( $version )
 			);
