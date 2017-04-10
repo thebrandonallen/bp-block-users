@@ -238,28 +238,6 @@ if ( class_exists( 'BP_Component' ) ) {
 			) );
 		}
 
-		/* Cache **************************************************************/
-
-		/**
-		 * Setup cache groups
-		 *
-		 * @since 0.2.0
-		 */
-		public function setup_cache_groups() {
-
-			// Global groups.
-			wp_cache_add_global_groups( array(
-				'bp_block_users'
-			) );
-
-			// Back-compat for BP < 2.2.0.
-			if ( method_exists( 'BP_Component', 'setup_cache_groups' ) ) {
-				parent::setup_cache_groups();
-			} else {
-				add_action( 'bp' . $this->id . 'setup_cache_groups' );
-			}
-		}
-
 		/* Notification Emails ************************************************/
 
 		/**
