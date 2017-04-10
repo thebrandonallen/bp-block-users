@@ -492,9 +492,15 @@ if ( class_exists( 'BP_Component' ) ) {
 
 			// Throw a deprecated meta key notice.
 			_doing_it_wrong(
-				$meta_key,
-				esc_html__( "The '{$meta_key}' meta key was deprecated in version {$version}. Please use '{$new_key}' instead.", 'bp-block-users' ),
-				$deprecated_keys[ $meta_key ]
+				esc_html( $meta_key ),
+				sprintf(
+					/* translators: 1: the meta key, 2: the version, 3: the new meta key */
+					esc_html__( 'The %1$s meta key was deprecated in version %2$s. Please use %3$s instead.', 'bp-block-users' ),
+					esc_html( $meta_key ),
+					esc_html( $version ),
+					esc_html( $new_key ),
+				),
+				esc_html( $version )
 			);
 
 			return get_user_meta( $user_id, $new_key, $single );
