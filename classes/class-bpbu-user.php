@@ -198,13 +198,12 @@ class BPBU_User {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param int  $user_id The blocked user.
-	 * @param bool $int     Whether to return a Unix timestamp.
+	 * @param int $user_id The blocked user.
 	 *
 	 * @return mixed MySQL expiration timestamp. Unix if `$int` is true. Zero if
 	 *               blocked indefinitely. False on failure.
 	 */
-	public static function get_expiration( $user_id = 0, $int = false ) {
+	public static function get_expiration( $user_id = 0 ) {
 
 		// Bail if no user id.
 		if ( empty( $user_id ) ) {
@@ -217,11 +216,6 @@ class BPBU_User {
 		// If the expiration time is empty, assume an indefinite block.
 		if ( empty( $expiration ) ) {
 			$expiration = '3000-01-01 00:00:00';
-		}
-
-		// If we want an integer, convert the MySQL timestamp to a Unix timestamp.
-		if ( $int ) {
-			$expiration = (int) strtotime( $expiration );
 		}
 
 		// Fire the deprecated filter.
@@ -267,7 +261,7 @@ class BPBU_User {
 		if ( $blocked ) {
 
 			// If the user's block has expired, unblock them.
-			$expiration = BPBU_User::get_expiration( $user_id, true );
+			$expiration = (int) strtotime( BPBU_User::get_expiration( $user_id ) );
 			if ( $expiration < time() ) {
 
 				if ( BPBU_User::unblock( $user_id ) ) {

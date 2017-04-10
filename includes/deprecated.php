@@ -143,11 +143,23 @@ function tba_bp_update_blocked_user_expiration( $user_id = 0, $length = 0, $unit
  */
 function tba_bp_get_blocked_user_expiration( $user_id = 0, $int = false ) {
 	_deprecated_function(
-		'tba_bp_get_blocked_user_expiration',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_User::get_expiration'
 	);
-	return BPBU_User::get_expiration( $user_id, $int );
+
+	$expiration = BPBU_User::get_expiration( $user_id );
+
+	if ( false !== $int ) {
+		_deprecated_argument(
+			__FUNCTION__,
+			'0.2.0',
+			esc_html__( 'Use strtotime( $expiration ) instead.', 'bp-block-users' )
+		);
+		$expiration = (int) strtotime( $expiration );
+	}
+
+	return $expiration;
 }
 
 /**

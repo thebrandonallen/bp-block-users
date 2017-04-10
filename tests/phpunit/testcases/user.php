@@ -158,18 +158,15 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 		$this->assertFalse( BPBU_User::get_expiration() );
 
 		$this->assertEquals( '3000-01-01 00:00:00', BPBU_User::get_expiration( self::$user_id ) );
-		$this->assertEquals( 32503680000, BPBU_User::get_expiration( self::$user_id, true ) );
 
 		BPBU_User::block( self::$user_id );
 		$this->assertEquals( '3000-01-01 00:00:00', BPBU_User::get_expiration( self::$user_id ) );
-		$this->assertEquals( 32503680000, BPBU_User::get_expiration( self::$user_id, true ) );
 
 		$now            = current_time( 'timestamp', 1 );
 		$expiration     = gmdate( 'Y-m-d H:i:s', ( $now + ( 3 * MINUTE_IN_SECONDS ) ) );
 		$expiration_int = $now + ( 3 * MINUTE_IN_SECONDS );
 		BPBU_User::block( self::$user_id, 3, 'minutes' );
 		$this->assertEquals( $expiration, BPBU_User::get_expiration( self::$user_id ) );
-		$this->assertEquals( $expiration_int, BPBU_User::get_expiration( self::$user_id, true ) );
 	}
 
 	/**
