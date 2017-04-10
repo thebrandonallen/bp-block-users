@@ -17,7 +17,7 @@
 class BPBU_Tests_BPBU_Template_Stack extends BP_UnitTestCase {
 
 	/**
-	 * Test BPBU_Template_Stack::settings_load_template_filter.
+	 * Test `BPBU_Template_Stack::settings_load_template_filter()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -28,7 +28,7 @@ class BPBU_Tests_BPBU_Template_Stack extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test BPBU_Template_Stack::get_template_directory.
+	 * Test `BPBU_Template_Stack::get_template_directory()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -39,7 +39,7 @@ class BPBU_Tests_BPBU_Template_Stack extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test BPBU_Template_Stack::settings_screen_block_user.
+	 * Test `BPBU_Template_Stack::settings_screen_block_user()`.
 	 *
 	 * @since 0.2.0
 	 *

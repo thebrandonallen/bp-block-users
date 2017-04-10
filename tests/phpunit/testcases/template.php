@@ -14,7 +14,7 @@
 class BPBU_Tests_Template extends BP_UnitTestCase {
 
 	/**
-	 * Test `bpbu_block_user_settings_message()`.`
+	 * Test `bpbu_block_user_settings_message()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -27,7 +27,7 @@ class BPBU_Tests_Template extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test `bpbu_get_block_user_settings_message()`.`
+	 * Test `bpbu_get_block_user_settings_message()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -41,7 +41,7 @@ class BPBU_Tests_Template extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test `bpbu_block_users_show_settings_message()`.`
+	 * Test `bpbu_block_users_show_settings_message()`.
 	 *
 	 * @since 0.2.0
 	 *

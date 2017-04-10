@@ -59,7 +59,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test BPBU_User::block.
+	 * Test `BPBU_User::block()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -91,7 +91,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test BPBU_User::unblock.
+	 * Test `BPBU_User::unblock()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -119,7 +119,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test BPBU_User::update_expiration.
+	 * Test `BPBU_User::update_expiration()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -146,7 +146,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test BPBU_User::get_expiration.
+	 * Test `BPBU_User::get_expiration()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -170,7 +170,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test BPBU_User::is_blocked.
+	 * Test `BPBU_User::is_blocked()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -189,7 +189,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test BPBU_User::get_blocked_user_ids.
+	 * Test `BPBU_User::get_blocked_user_ids()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -211,7 +211,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test BPBU_User::destroy_sessions.
+	 * Test `BPBU_User::destroy_sessions()`.
 	 *
 	 * @since 0.2.0
 	 *

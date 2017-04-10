@@ -286,7 +286,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/* Authentication *********************************************************/
 
 	/**
-	 * Test for `tba_bp_prevent_blocked_user_login()`
+	 * Test for `tba_bp_prevent_blocked_user_login()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -321,7 +321,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/* Sub-nav/Admin Bar Menus ************************************************/
 
 	/**
-	 * Test for `tba_bp_block_user_settings_sub_nav()`
+	 * Test for `tba_bp_block_user_settings_sub_nav()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -332,7 +332,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test for `tba_bp_block_users_admin_bar_admin_menu()`
+	 * Test for `tba_bp_block_users_admin_bar_admin_menu()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -345,7 +345,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/* Settings Actions *******************************************************/
 
 	/**
-	 * Test for `tba_bp_settings_action_block_user()`
+	 * Test for `tba_bp_settings_action_block_user()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -358,7 +358,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/* Template ***************************************************************/
 
 	/**
-	 * Test for `tba_bp_block_user_settings_message()`
+	 * Test for `tba_bp_block_user_settings_message()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -369,7 +369,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test for `tba_bp_get_block_user_settings_message()`
+	 * Test for `tba_bp_get_block_user_settings_message()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -380,7 +380,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test for `tba_bp_block_users_show_settings_message()`
+	 * Test for `tba_bp_block_users_show_settings_message()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -393,7 +393,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/* Theme Compat ***********************************************************/
 
 	/**
-	 * Test for `tba_bp_block_user_settings_load_template_filter()`
+	 * Test for `tba_bp_block_user_settings_load_template_filter()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -404,7 +404,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test for `tba_bp_block_user_get_template_directory()`
+	 * Test for `tba_bp_block_user_get_template_directory()`.
 	 *
 	 * @since 0.2.0
 	 *
@@ -415,7 +415,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	}
 
 	/**
-	 * Test for `tba_bp_settings_screen_block_user()`
+	 * Test for `tba_bp_settings_screen_block_user()`.
 	 *
 	 * @since 0.2.0
 	 *
