@@ -78,7 +78,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 		$expiration_meta = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
 		$this->assertTrue( false !== $is_blocked );
 		$this->assertEquals( '1', $blocked_meta );
-		$this->assertEquals( '0', $expiration_meta );
+		$this->assertEquals( '3000-01-01 00:00:00', $expiration_meta );
 
 		$now             = current_time( 'timestamp', 1 );
 		$expiration      = $now + ( 3 * MINUTE_IN_SECONDS );
@@ -135,7 +135,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 		$updated = BPBU_User::update_expiration( self::$user_id );
 		$meta    = bp_get_user_meta( self::$user_id, 'bpbu_user_blocked_expiration', true );
 		$this->assertTrue( false !== $updated );
-		$this->assertEquals( '0', $meta );
+		$this->assertEquals( '3000-01-01 00:00:00', $meta );
 
 		$now        = current_time( 'timestamp', 1 );
 		$expiration = $now + ( 3 * MINUTE_IN_SECONDS );
@@ -157,12 +157,12 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 		// False when no user id is passed.
 		$this->assertFalse( BPBU_User::get_expiration() );
 
-		$this->assertEquals( 0, BPBU_User::get_expiration( self::$user_id ) );
-		$this->assertEquals( 0, BPBU_User::get_expiration( self::$user_id, true ) );
+		$this->assertEquals( '3000-01-01 00:00:00', BPBU_User::get_expiration( self::$user_id ) );
+		$this->assertEquals( 32503680000, BPBU_User::get_expiration( self::$user_id, true ) );
 
 		BPBU_User::block( self::$user_id );
-		$this->assertEquals( 0, BPBU_User::get_expiration( self::$user_id ) );
-		$this->assertEquals( 0, BPBU_User::get_expiration( self::$user_id, true ) );
+		$this->assertEquals( '3000-01-01 00:00:00', BPBU_User::get_expiration( self::$user_id ) );
+		$this->assertEquals( 32503680000, BPBU_User::get_expiration( self::$user_id, true ) );
 
 		$now            = current_time( 'timestamp', 1 );
 		$expiration     = gmdate( 'Y-m-d H:i:s', ( $now + ( 3 * MINUTE_IN_SECONDS ) ) );

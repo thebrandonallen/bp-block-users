@@ -161,8 +161,8 @@ class BPBU_User {
 		 */
 		$units = (array) apply_filters( 'bpbu_expiration_units', $units );
 
-		// Set the default expiration.
-		$expiration = 0;
+		// In the year 3000...
+		$expiration = '3000-01-01 00:00:00';
 
 		// Set the expiration time.
 		if ( array_key_exists( $unit, $units ) ) {
@@ -216,7 +216,7 @@ class BPBU_User {
 
 		// If the expiration time is empty, assume an indefinite block.
 		if ( empty( $expiration ) ) {
-			$expiration = 0;
+			$expiration = '3000-01-01 00:00:00';
 		}
 
 		// If we want an integer, convert the MySQL timestamp to a Unix timestamp.
@@ -268,7 +268,7 @@ class BPBU_User {
 
 			// If the user's block has expired, unblock them.
 			$expiration = BPBU_User::get_expiration( $user_id, true );
-			if ( ! empty( $expiration ) && $expiration < time() ) {
+			if ( $expiration < time() ) {
 
 				if ( BPBU_User::unblock( $user_id ) ) {
 					$blocked = false;
@@ -323,17 +323,10 @@ class BPBU_User {
 					'value' => 1,
 				),
 				array(
-					'relation' => 'OR',
-					array(
-						'key'   => $expiration_key,
-						'value' => 0,
-					),
-					array(
-						'key'     => $expiration_key,
-						'value'   => $expiration_time,
-						'type'    => 'DATETIME',
-						'compare' => '>',
-					),
+					'key'     => $expiration_key,
+					'value'   => $expiration_time,
+					'type'    => 'DATETIME',
+					'compare' => '>',
 				),
 			),
 		) );

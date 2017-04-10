@@ -301,18 +301,21 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 		 * @since 0.2.0
 		 *
 		 * @param WP_User $user The blocked user data object.
+		 *
+		 * @return void
 		 */
 		protected function column_expiration( $user = null ) {
 
 			if ( ! BPBU_User::is_blocked( $user->ID ) ) {
 				echo esc_html( __( 'Not Blocked', 'bp-block-users' ) );
+				return;
 			}
 
 			$expiration = BPBU_User::get_expiration( $user->ID );
 			$expiration_int = strtotime( $expiration );
 
 			// If the expiration is not a timestamp, the user is blocked indefinitely.
-			if ( empty( $expiration ) ) {
+			if ( '3000-01-01 00:00:00' === $expiration ) {
 				$expiration = __( 'Never', 'bp-block-users' );
 
 			// Display when the user's block will expire.

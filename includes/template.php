@@ -62,7 +62,7 @@ function bpbu_get_block_user_settings_message( $user_id = 0 ) {
 	$expiration_int = strtotime( $expiration );
 
 	// If the expiration is not a timestamp, the user is blocked indefinitely.
-	if ( empty( $expiration ) ) {
+	if ( '3000-01-01 00:00:00' === $expiration ) {
 		$message = $messages[ $location ]['indefinite'];
 
 	// Display when the user's block will expire.

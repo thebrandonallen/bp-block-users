@@ -371,12 +371,12 @@ if ( class_exists( 'BP_Component' ) ) {
 			if ( BPBU_User::is_blocked( $user_id ) ) {
 
 				// Set the default message.
-				$message = __( '<strong>ERROR</strong>: This account has been blocked.', 'bp-block-users' );
+				$message = __( '<strong>ERROR</strong>: This account has been temporarily blocked.', 'bp-block-users' );
 
 				// Check to see if this is a temporary block.
-				$expiration = BPBU_User::get_expiration( $user_id, true );
-				if ( ! empty( $expiration ) ) {
-					$message = __( '<strong>ERROR</strong>: This account has been temporarily blocked.', 'bp-block-users' );
+				$expiration = BPBU_User::get_expiration( $user_id );
+				if ( '3000-01-01 00:00:00' === $expiration ) {
+					$message = __( '<strong>ERROR</strong>: This account has been blocked.', 'bp-block-users' );
 				}
 
 				// Set an error object to short-circuit the authentication process.
