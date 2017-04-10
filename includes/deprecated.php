@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function tba_bp_block_users_settings_fields( $user ) {
 	_deprecated_function(
-		'tba_bp_block_users_settings_fields',
+		__FUNCTION__,
 		'0.2.0'
 	);
 }
@@ -42,7 +42,7 @@ function tba_bp_block_users_settings_fields( $user ) {
  */
 function tba_bp_block_users_update_user_settings( $errors, $update, $user ) {
 	_deprecated_function(
-		'tba_bp_block_users_update_user_settings',
+		__FUNCTION__,
 		'0.2.0'
 	);
 }
@@ -60,7 +60,7 @@ function tba_bp_block_users_update_user_settings( $errors, $update, $user ) {
  */
 function tba_bp_block_users_row_actions( $actions = array(), $user = null ) {
 	_deprecated_function(
-		'tba_bp_block_users_row_actions',
+		__FUNCTION__,
 		'0.2.0'
 	);
 	return $actions;
@@ -82,7 +82,7 @@ function tba_bp_block_users_row_actions( $actions = array(), $user = null ) {
  */
 function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
 	_deprecated_function(
-		'tba_bp_block_user',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_User::block'
 	);
@@ -101,7 +101,7 @@ function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
  */
 function tba_bp_unblock_user( $user_id = 0 ) {
 	_deprecated_function(
-		'tba_bp_unblock_user',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_User::unblock'
 	);
@@ -122,7 +122,7 @@ function tba_bp_unblock_user( $user_id = 0 ) {
  */
 function tba_bp_update_blocked_user_expiration( $user_id = 0, $length = 0, $unit = 'indefinitely' ) {
 	_deprecated_function(
-		'tba_bp_update_blocked_user_expiration',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_User::update_expiration'
 	);
@@ -174,7 +174,7 @@ function tba_bp_get_blocked_user_expiration( $user_id = 0, $int = false ) {
  */
 function tba_bp_is_user_blocked( $user_id = 0 ) {
 	_deprecated_function(
-		'tba_bp_is_user_blocked',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_User::is_blocked'
 	);
@@ -191,7 +191,7 @@ function tba_bp_is_user_blocked( $user_id = 0 ) {
  */
 function tba_bp_get_blocked_user_ids() {
 	_deprecated_function(
-		'tba_bp_get_blocked_user_ids',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_User::get_blocked_user_ids'
 	);
@@ -215,7 +215,7 @@ function tba_bp_get_blocked_user_ids() {
  */
 function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $single ) {
 	_deprecated_function(
-		'tba_bp_block_users_block_notifications',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_Component::block_notifications'
 	);
@@ -237,7 +237,7 @@ function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $
  */
 function tba_bp_prevent_blocked_user_login( $user = null ) {
 	_deprecated_function(
-		'tba_bp_prevent_blocked_user_login',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_Component::prevent_blocked_user_login'
 	);
@@ -256,7 +256,7 @@ function tba_bp_prevent_blocked_user_login( $user = null ) {
  */
 function tba_bp_block_user_settings_sub_nav() {
 	_deprecated_function(
-		'tba_bp_block_user_settings_sub_nav',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_Component::setup_settings_sub_nav'
 	);
@@ -273,7 +273,7 @@ function tba_bp_block_user_settings_sub_nav() {
  */
 function tba_bp_block_users_admin_bar_admin_menu() {
 	_deprecated_function(
-		'tba_bp_block_users_admin_bar_admin_menu',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_Component::setup_settings_admin_bar'
 	);
@@ -292,7 +292,7 @@ function tba_bp_block_users_admin_bar_admin_menu() {
  */
 function tba_bp_settings_action_block_user() {
 	_deprecated_function(
-		'tba_bp_settings_action_block_user',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_Component::settings_action'
 	);
@@ -313,7 +313,7 @@ function tba_bp_settings_action_block_user() {
  */
 function tba_bp_block_user_settings_message( $user_id = 0 ) {
 	_deprecated_function(
-		'tba_bp_block_user_settings_message',
+		__FUNCTION__,
 		'0.2.0',
 		'bpbu_block_user_settings_message'
 	);
@@ -332,7 +332,7 @@ function tba_bp_block_user_settings_message( $user_id = 0 ) {
  */
 function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
 	_deprecated_function(
-		'tba_bp_get_block_user_settings_message',
+		__FUNCTION__,
 		'0.2.0',
 		'bpbu_get_block_user_settings_message'
 	);
@@ -348,7 +348,7 @@ function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
  */
 function tba_bp_block_users_show_settings_message() {
 	_deprecated_function(
-		'tba_bp_block_users_show_settings_message',
+		__FUNCTION__,
 		'0.2.0',
 		'bpbu_block_users_show_settings_message'
 	);
@@ -370,7 +370,7 @@ function tba_bp_block_users_show_settings_message() {
  */
 function tba_bp_block_user_settings_load_template_filter( $template, $templates ) {
 	_deprecated_function(
-		'tba_bp_block_user_settings_load_template_filter',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_Template_Stack::settings_load_template_filter'
 	);
@@ -387,7 +387,7 @@ function tba_bp_block_user_settings_load_template_filter( $template, $templates 
  */
 function tba_bp_block_user_get_template_directory() {
 	_deprecated_function(
-		'tba_bp_block_user_get_template_directory',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_Template_Stack::get_template_directory'
 	);
@@ -402,7 +402,7 @@ function tba_bp_block_user_get_template_directory() {
  */
 function tba_bp_settings_screen_block_user() {
 	_deprecated_function(
-		'tba_bp_settings_screen_block_user',
+		__FUNCTION__,
 		'0.2.0',
 		'BPBU_Template_Stack::settings_screen_block_user'
 	);
