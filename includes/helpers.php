@@ -114,7 +114,7 @@ function bpbu_deprecated_hook( $hook, $version, $replacement = null, $message = 
 	 * @param string $version     The version of BP Block Users that deprecated the argument used.
 	 * @param string $message     A message regarding the change.
 	 */
-	do_action( 'bpbu_deprecated_hook_run', $hook, $replacement, $version, $message );
+	do_action( 'deprecated_hook_run', $hook, $replacement, $version, $message );
 
 	/**
 	 * Filter whether to trigger deprecated hook errors.
@@ -124,7 +124,7 @@ function bpbu_deprecated_hook( $hook, $version, $replacement = null, $message = 
 	 * @param bool $trigger Whether to trigger deprecated hook errors. Requires
 	 *                      `WP_DEBUG` to be defined true.
 	 */
-	if ( WP_DEBUG && apply_filters( 'bpbu_deprecated_hook_trigger_error', true ) ) {
+	if ( WP_DEBUG && apply_filters( 'deprecated_hook_trigger_error', true ) ) {
 		$message = empty( $message ) ? '' : ' ' . $message;
 		if ( ! is_null( $replacement ) ) {
 			trigger_error( sprintf( __( '%1$s is <strong>deprecated</strong> since version %2$s! Use %3$s instead.', 'bp-block-users' ), $hook, $version, $replacement ) . $message );
