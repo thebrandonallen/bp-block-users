@@ -307,14 +307,14 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 		$user             = tba_bp_prevent_blocked_user_login( $userdata );
 		$expected_message = 'This account has been blocked.';
 		$actual_message   = $user->get_error_message( 'bpbu_authentication_blocked' );
-		$this->assertTrue( is_wp_error( $user ) );
+		$this->assertWPError( $user );
 		$this->assertContains( $expected_message, $actual_message );
 
 		BPBU_User::block( self::$user_id, 3, 'minutes' );
 		$user             = tba_bp_prevent_blocked_user_login( $userdata );
 		$expected_message = 'This account has been temporarily blocked.';
 		$actual_message   = $user->get_error_message( 'bpbu_authentication_blocked' );
-		$this->assertTrue( is_wp_error( $user ) );
+		$this->assertWPError( $user );
 		$this->assertContains( $expected_message, $actual_message );
 	}
 
