@@ -22,9 +22,19 @@ if ( class_exists( 'BP_Component' ) ) {
 		 * The plugin version.
 		 *
 		 * @since 0.2.0
-		 * @var   string
+		 *
+		 * @var string
 		 */
 		const VERSION = '0.2.0';
+
+		/**
+		 * The database version.
+		 *
+		 * @since 0.2.0
+		 *
+		 * @var int
+		 */
+		const DB_VERSION = 20;
 
 		/**
 		 * The path to BP Block Users includes.
