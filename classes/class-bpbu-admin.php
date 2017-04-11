@@ -60,6 +60,7 @@ class BPBU_Admin {
 	protected function __construct() {
 		$this->setup_globals();
 		$this->setup_actions();
+		$this->setup_updater();
 
 		BPBU_Admin_Profile::get_instance();
 		BPBU_Admin_List_Tables::get_instance();
@@ -86,6 +87,97 @@ class BPBU_Admin {
 
 		// Display the admin notices.
 		add_action( 'admin_notices', array( $this, 'display_notices' ) );
+	}
+
+	/**
+	 * Setup the update routine.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @return void
+	 */
+	public function setup_updater() {
+
+		// Bail if we're not updating.
+		if ( ! $this->is_update() ) {
+			return;
+		}
+
+		$this->version_updater();
+	}
+
+	/**
+	 * Checks if the install needs updating.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @return bool
+	 */
+	private function is_update() {
+		$db_version_raw = (int) get_option( '_bpbu_db_version', 0 );
+		$retval         = ( $db_version_raw < BPBU_Component::DB_VERSION );
+		return (bool) $retval;
+	}
+
+	/**
+	 * Runs the version updater.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @return void
+	 */
+	private function version_updater() {
+		global $wpdb;
+
+		// Get the current database version.
+		$db_version_raw = (int) get_option( '_bpbu_db_version', 0 );
+
+		// 0.2.0.
+		if ( $db_version_raw < 20 ) {
+
+			// Rename the `tba_bp_user_blocked` meta key.
+			$wpdb->update(
+				$wpdb->usermeta,
+				array(
+					'meta_key' => 'bpbu_user_blocked',
+				),
+				array(
+					'meta_key' => 'tba_bp_user_blocked',
+				),
+				array( '%s' ),
+				array( '%s' )
+			);
+
+			// Rename the `tba_bp_user_blocked_expiration` meta key.
+			$wpdb->update(
+				$wpdb->usermeta,
+				array(
+					'meta_key' => 'bpbu_user_blocked_expiration',
+				),
+				array(
+					'meta_key' => 'tba_bp_user_blocked_expiration',
+				),
+				array( '%s' ),
+				array( '%s' )
+			);
+
+			// Set indefinite expirations to the year 3000.
+			$wpdb->update(
+				$wpdb->usermeta,
+				array(
+					'meta_value' => '3000-01-01 00:00:00',
+				),
+				array(
+					'meta_key'   => 'bpbu_user_blocked_expiration',
+					'meta_value' => '0',
+				),
+				array( '%s' ),
+				array( '%s', '%d' )
+			);
+		}
+
+		// Bump the database version.
+		update_option( '_bpbu_db_version', BPBU_Component::DB_VERSION );
 	}
 
 	/**
