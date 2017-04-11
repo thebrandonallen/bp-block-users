@@ -111,6 +111,10 @@ if ( class_exists( 'BP_Component' ) ) {
 			require $this->includes_dir . 'helpers.php';
 			require $this->includes_dir . 'template.php';
 
+			if ( defined( 'WP_CLI' ) && WP_CLI ) {
+				require $this->classes_dir . 'class-bpbu-cli.php';
+			}
+
 			parent::includes( $includes );
 		}
 
