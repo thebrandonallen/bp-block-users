@@ -150,6 +150,10 @@ module.exports = function(grunt) {
 						replacement: '<%= grunt.template.today("UTC:mmmm d, yyyy") %>'
 					},
 					{
+						pattern: /(Copyright \(C\) 2015\-)[0-9]{4}(.*)/gm,
+						replacement: '$1<%= grunt.template.today("UTC:yyyy") %>$2'
+					},
+					{
 						pattern: /(const\sVERSION.*)'(.*)';/gm, // For plugin version variable
 						replacement: '$1\'<%= pkg.version %>\';'
 					},
