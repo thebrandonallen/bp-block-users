@@ -89,7 +89,7 @@ function bpbu_get_block_user_settings_message( $user_id = 0 ) {
 	);
 
 	/**
-	 * Filters the return of the BP Block Users found template.
+	 * Filters the return of `bpbu_get_block_user_settings_message()`.
 	 *
 	 * @since 1.0.0
 	 *

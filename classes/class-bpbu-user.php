@@ -61,7 +61,6 @@ class BPBU_User {
 		 * @since 1.0.0
 		 *
 		 * @param int  $user_id The blocked user id.
-		 * @param bool $blocked True on success, false on failure.
 		 */
 		do_action( 'bpbu_user_blocked', $user_id );
 
@@ -102,7 +101,6 @@ class BPBU_User {
 		 * @since 1.0.0
 		 *
 		 * @param int  $user_id   The unblocked user id.
-		 * @param bool $unblocked True on success, false on failure.
 		 */
 		do_action( 'bpbu_user_unblocked', $user_id );
 
@@ -200,8 +198,8 @@ class BPBU_User {
 	 *
 	 * @param int $user_id The blocked user.
 	 *
-	 * @return mixed MySQL expiration timestamp. Unix if `$int` is true. Zero if
-	 *               blocked indefinitely. False on failure.
+	 * @return bool|string MySQL timestamp. `3000-01-01 00:00:00` if blocked
+	 *                     indefinitely. False on failure.
 	 */
 	public static function get_expiration( $user_id = 0 ) {
 
@@ -227,13 +225,13 @@ class BPBU_User {
 		);
 
 		/**
-		 * Filters the return of the BP Block Users found template.
+		 * Filters the return of `bpbu_get_user_blocked_expiration()`.
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param string|int $expiration MySQL expiration timestamp. Unix if `$int` is
-		 *                               true. Zero if blocked indefinitely.
-		 * @param int        $user_id    The blocked user id.
+		 * @param bool|string $expiration MySQL timestamp. `3000-01-01 00:00:00` if
+		 *                                blocked indefinitely. False on failure.
+		 * @param int         $user_id    The blocked user id.
 		 */
 		return apply_filters( 'bpbu_get_user_blocked_expiration', $expiration, $user_id );
 	}
@@ -279,7 +277,7 @@ class BPBU_User {
 		);
 
 		/**
-		 * Filters the return of the BP Block Users found template.
+		 * Filters the return of `bpbu_is_user_blocked()`.
 		 *
 		 * @since 1.0.0
 		 *

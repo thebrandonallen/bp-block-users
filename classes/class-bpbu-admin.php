@@ -174,7 +174,7 @@ class BPBU_Admin {
 				array( '%s' ),
 				array( '%s', '%d' )
 			);
-		}
+		} // End if().
 
 		// Bump the database version.
 		update_option( '_bpbu_db_version', BPBU_Component::DB_VERSION );
