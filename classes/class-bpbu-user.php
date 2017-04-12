@@ -12,14 +12,14 @@ defined( 'ABSPATH' ) || exit;
 /**
  * BP Block Users User class.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 class BPBU_User {
 
 	/**
 	 * Block the specified user and log them out of all current sessions.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param int    $user_id User to block.
 	 * @param int    $length  Numeric length of time to block user.
@@ -51,14 +51,14 @@ class BPBU_User {
 		bpbu_do_action_deprecated(
 			'tba_bp_blocked_user',
 			array( $user_id ),
-			'0.2.0',
+			'1.0.0',
 			'bpbu_user_blocked'
 		);
 
 		/**
 		 * Fires after a user is blocked.
 		 *
-		 * @since 0.1.0
+		 * @since 1.0.0
 		 *
 		 * @param int  $user_id The blocked user id.
 		 * @param bool $blocked True on success, false on failure.
@@ -71,7 +71,7 @@ class BPBU_User {
 	/**
 	 * Unblock the specified user.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param int $user_id User to block.
 	 *
@@ -92,14 +92,14 @@ class BPBU_User {
 		bpbu_do_action_deprecated(
 			'tba_bp_unblocked_user',
 			array( $user_id ),
-			'0.2.0',
+			'1.0.0',
 			'bpbu_user_unblocked'
 		);
 
 		/**
 		 * Fires after a user is unblocked.
 		 *
-		 * @since 0.1.0
+		 * @since 1.0.0
 		 *
 		 * @param int  $user_id   The unblocked user id.
 		 * @param bool $unblocked True on success, false on failure.
@@ -112,7 +112,7 @@ class BPBU_User {
 	/**
 	 * Update the expiration time of the blocked user.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param int    $user_id User to block.
 	 * @param int    $length  Numeric length of time to block user.
@@ -148,14 +148,14 @@ class BPBU_User {
 		$units = (array) bpbu_apply_filters_deprecated(
 			'tba_bp_block_users_expiration_units',
 			array( $units ),
-			'0.2.0',
+			'1.0.0',
 			'bpbu_expiration_units'
 		);
 
 		/**
 		 * Filters the array of time units and their values.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param array $units The array of time units and their values.
 		 */
@@ -173,14 +173,14 @@ class BPBU_User {
 		$expiration = bpbu_apply_filters_deprecated(
 			'tba_bp_block_user_expiration_time',
 			array( $expiration, $user_id, $length, $unit ),
-			'0.2.0',
+			'1.0.0',
 			'bpbu_update_user_blocked_expiration'
 		);
 
 		/**
 		 * Filters the expiration time of a blocked user.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param string $expiration The expiration MySQL timestamp in GMT.
 		 * @param int    $user_id    The blocked user id.
@@ -196,7 +196,7 @@ class BPBU_User {
 	/**
 	 * Return the user's block expiration time.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @param int $user_id The blocked user.
 	 *
@@ -222,14 +222,14 @@ class BPBU_User {
 		$expiration = bpbu_apply_filters_deprecated(
 			'tba_bp_get_blocked_user_expiration',
 			array( $expiration, $user_id ),
-			'0.2.0',
+			'1.0.0',
 			'bpbu_get_user_blocked_expiration'
 		);
 
 		/**
 		 * Filters the return of the BP Block Users found template.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param string|int $expiration MySQL expiration timestamp. Unix if `$int` is
 		 *                               true. Zero if blocked indefinitely.
@@ -241,7 +241,7 @@ class BPBU_User {
 	/**
 	 * Check if the specified user is blocked.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @param int $user_id User to check for a block.
 	 *
@@ -274,14 +274,14 @@ class BPBU_User {
 		$blocked = (bool) bpbu_apply_filters_deprecated(
 			'tba_bp_is_user_blocked',
 			array( $blocked, $user_id ),
-			'0.2.0',
+			'1.0.0',
 			'bpbu_is_user_blocked'
 		);
 
 		/**
 		 * Filters the return of the BP Block Users found template.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param bool $blocked True if user is blocked.
 		 * @param int  $user_id The blocked user id.
@@ -292,7 +292,7 @@ class BPBU_User {
 	/**
 	 * Return an array of blocked user ids.
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 *
 	 * @return array An array of blocked user ids.
 	 */
@@ -332,14 +332,14 @@ class BPBU_User {
 		$user_ids = (array) bpbu_apply_filters_deprecated(
 			'tba_bp_get_blocked_user_ids',
 			array( $user_ids ),
-			'0.2.0',
+			'1.0.0',
 			'bpbu_get_blocked_user_ids'
 		);
 
 		/**
 		 * Filters the return of the blocked user ids array.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param array $user_ids The array of blocked user ids.
 		 */
@@ -349,7 +349,7 @@ class BPBU_User {
 	/**
 	 * Destroys all the user sessions for the specified user.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param int $user_id The blocked user.
 	 *

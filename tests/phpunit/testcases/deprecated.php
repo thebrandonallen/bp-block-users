@@ -2,7 +2,7 @@
 /**
  * BP Block Users tests for deprecated functions.
  *
- * @since 0.2.0
+ * @since 1.0.0
  *
  * @group functions
  * @group deprecated
@@ -57,7 +57,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_block_users_settings_fields()`
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_block_users_settings_fields
 	 */
@@ -68,7 +68,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_block_users_update_user_settings()`
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_block_users_update_user_settings
 	 */
@@ -79,7 +79,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_block_users_row_actions()`
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_block_users_row_actions
 	 */
@@ -92,7 +92,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_block_user()`
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @TODO Replace assertTrue( false !== $var ) with assertNotFalse( $var )
 	 *       when PHP 5.2 support is dropped.
@@ -125,7 +125,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_unblock_user()`
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_unblock_user
 	 * @expectedDeprecated tba_bp_unblock_user
@@ -154,7 +154,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_update_blocked_user_expiration()`
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @TODO Replace assertTrue( false !== $var ) with assertNotFalse( $var )
 	 *       when PHP 5.2 support is dropped.
@@ -182,7 +182,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_get_blocked_user_expiration()`
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_get_blocked_user_expiration
 	 * @expectedDeprecated tba_bp_get_blocked_user_expiration
@@ -210,7 +210,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_is_user_blocked()`
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_is_user_blocked
 	 * @expectedDeprecated tba_bp_is_user_blocked
@@ -230,7 +230,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_get_blocked_user_ids()`
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_get_blocked_user_ids
 	 * @expectedDeprecated tba_bp_get_blocked_user_ids
@@ -255,7 +255,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_block_users_block_notifications()`
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_block_users_block_notifications
 	 * @expectedDeprecated tba_bp_block_users_block_notifications
@@ -282,7 +282,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_prevent_blocked_user_login()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_prevent_blocked_user_login
 	 * @expectedDeprecated tba_bp_prevent_blocked_user_login
@@ -317,7 +317,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_block_user_settings_sub_nav()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_block_user_settings_sub_nav
 	 */
@@ -328,7 +328,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_block_users_admin_bar_admin_menu()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_block_users_admin_bar_admin_menu
 	 */
@@ -341,7 +341,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_settings_action_block_user()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_settings_action_block_user
 	 */
@@ -354,7 +354,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_block_user_settings_message()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_block_user_settings_message
 	 */
@@ -365,7 +365,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_get_block_user_settings_message()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_get_block_user_settings_message
 	 */
@@ -376,7 +376,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_block_users_show_settings_message()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_block_users_show_settings_message
 	 */
@@ -389,7 +389,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_block_user_settings_load_template_filter()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_block_user_settings_load_template_filter
 	 */
@@ -400,7 +400,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_block_user_get_template_directory()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_block_user_get_template_directory
 	 */
@@ -411,7 +411,7 @@ class BPBU_Tests_Deprecated extends BP_UnitTestCase {
 	/**
 	 * Test for `tba_bp_settings_screen_block_user()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers ::tba_bp_settings_screen_block_user
 	 */

@@ -12,14 +12,14 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Load BP Block Users admin area.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 class BPBU_Admin_List_Tables extends BPBU_Admin {
 
 	/**
 	 * The BP Block Users Admin List Tables instance.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @var BPBU_Admin_List_Tables
 	 */
@@ -28,7 +28,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * The BP Block Users list table.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @var WP_Users_List_Table
 	 */
@@ -37,7 +37,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * The blocked user ids array.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @var null|array
 	 */
@@ -47,7 +47,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	 * Provides access to a single instance of `BPBU_Admin_List_Tables` using the
 	 * singleton pattern.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @return BPBU_Admin_List_Tables
 	 */
@@ -62,7 +62,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * Constructor method.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	protected function __construct() {
 		$this->setup_actions();
@@ -71,7 +71,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * Set admin-related actions and filters.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -100,7 +100,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * Create the All Users > Manage Blocked Users submenu.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	public function admin_menu() {
 
@@ -129,7 +129,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * Add a `Block/Unblock` link to the user row action links.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param array        $actions An array of row actions.
 	 * @param null|WP_User $user    The WP_User object.
@@ -184,7 +184,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * Filter the WP Users List Table views to include blocked users.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param array $views WP List Table views.
 	 *
@@ -226,7 +226,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * Display the admin preferences about blocked users pagination.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param int    $value     The current pagination value.
 	 * @param string $option    The pagination option.
@@ -251,7 +251,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * Load the BP Block Users List table.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @return WP_Users_List_Table The list table.
 	 */
@@ -282,7 +282,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * Set up the admin help.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	private function admin_help() {
 		// The per_page screen option.
@@ -342,7 +342,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	 * setup, including: processing form requests, registering contextual
 	 * help, and setting up screen options.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	public function admin_load() {
 
@@ -352,7 +352,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 		/**
 		 * Fires at the start of the blocked users admin load.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param string $doaction Current bulk action being processed.
 		 */
@@ -372,7 +372,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * This is the list of the Blocked users.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @global $plugin_page
 	 */
@@ -434,7 +434,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	/**
 	 * Handles the bulk or single unblocking.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param string $doaction The current action.
 	 *

@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * This is a copy of `apply_filters_deprecated` introduced in WP 4.6.
  *
- * @since 0.2.0
+ * @since 1.0.0
  *
  * @see bpbu_deprecated_hook()
  *
@@ -54,7 +54,7 @@ function bpbu_apply_filters_deprecated( $tag, $args, $version, $replacement = fa
  *
  * This is a copy of `do_action_deprecated` introduced in WP 4.6.
  *
- * @since 0.2.0
+ * @since 1.0.0
  *
  * @see _deprecated_hook()
  *
@@ -95,7 +95,7 @@ function bpbu_do_action_deprecated( $tag, $args, $version, $replacement = false,
  *
  * This is a copy of `_deprecated_hook` introduced in WP 4.6.
  *
- * @since 0.2.0
+ * @since 1.0.0
  * @access private
  *
  * @param string $hook        The hook that was used.
@@ -107,7 +107,7 @@ function bpbu_deprecated_hook( $hook, $version, $replacement = null, $message = 
 	/**
 	 * Fires when a deprecated hook is called.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param string $hook        The hook that was called.
 	 * @param string $replacement The hook that should be used as a replacement.
@@ -119,7 +119,7 @@ function bpbu_deprecated_hook( $hook, $version, $replacement = null, $message = 
 	/**
 	 * Filter whether to trigger deprecated hook errors.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param bool $trigger Whether to trigger deprecated hook errors. Requires
 	 *                      `WP_DEBUG` to be defined true.

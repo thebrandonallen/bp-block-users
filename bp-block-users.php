@@ -34,7 +34,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Only load the plugin code if BuddyPress is activated.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 function bpbu_init() {
 
@@ -65,7 +65,7 @@ add_action( 'bp_include', 'bpbu_init' );
  * translation files, please use the global language folder, located at
  * wp-content/languages/plugins.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 function bpbu_load_textdomain() {
 	load_plugin_textdomain( 'bp-block-users', false, dirname( __FILE__ ) . '/languages/' );
@@ -75,7 +75,7 @@ add_action( 'plugins_loaded', 'bpbu_load_textdomain' );
 /**
  * Loads the Block Users component into the $bp global.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 function bpbu_setup_component() {
 
@@ -84,7 +84,7 @@ function bpbu_setup_component() {
 	/**
 	 * Fires after the BP Block Users component is loaded.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	do_action( 'bpbu_loaded' );
 }
@@ -92,14 +92,14 @@ function bpbu_setup_component() {
 /**
  * The BP Block Users activation hook.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 function bpbu_activation() {
 
 	/**
 	 * Fires on plugin activation.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	do_action( 'bpbu_activation' );
 }
@@ -108,14 +108,14 @@ register_activation_hook( __FILE__, 'bpbu_activation' );
 /**
  * The BP Block Users deactivation hook.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 function bpbu_deactivation() {
 
 	/**
 	 * Fires on plugin deactivation.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	do_action( 'bpbu_deactivation' );
 }

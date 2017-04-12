@@ -14,14 +14,14 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 	/**
 	 * List table class for blocked users admin page.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	class BPBU_Users_List_Table extends WP_Users_List_Table {
 
 		/**
 		 * Blocked user counts.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @access public
 		 * @var int
@@ -31,7 +31,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * Constructor.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 */
 		public function __construct() {
 			// Define singular and plural labels, as well as whether we support AJAX.
@@ -49,7 +49,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		 * Handles filtering of data, sorting, pagination, and any other data
 		 * manipulation required prior to rendering.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 */
 		public function prepare_items() {
 			global $usersearch, $role;
@@ -100,7 +100,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		 *
 		 * Nice job, clean sheet!
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 */
 		public function no_items() {
 			esc_html_e( 'No blocked users found.', 'bp-block-users' );
@@ -109,7 +109,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * Display the users screen views.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @global string $role The name of role the users screens is filtered by.
 		 */
@@ -141,7 +141,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * Specific bulk actions for blocked users.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 */
 		protected function get_bulk_actions() {
 
@@ -157,14 +157,14 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * Specific blocked users columns.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 */
 		public function get_columns() {
 
 			/**
 			 * Filters the single site blocked users columns.
 			 *
-			 * @since 0.2.0
+			 * @since 1.0.0
 			 *
 			 * @param array $columns Array of columns to display.
 			 */
@@ -183,7 +183,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		 * WP_Users_List_Table will add an extra nav to change user's role.
 		 * As we're dealing with blocked users, we don't need this.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param string $which The location of the bulk actions.
 		 */
@@ -194,7 +194,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * Display blocked users rows.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 */
 		public function display_rows() {
 
@@ -209,7 +209,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * Display a blocked user row.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @see WP_List_Table::single_row() for explanation of params.
 		 *
@@ -227,7 +227,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * Markup for the checkbox used to select items for bulk actions.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param WP_User $user The blocked user data object.
 		 */
@@ -244,7 +244,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * The row actions (delete/activate/email).
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param WP_User $user The blocked user data object.
 		 */
@@ -276,7 +276,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 			/**
 			 * Filters the single site row actions for each user in list.
 			 *
-			 * @since 0.2.0
+			 * @since 1.0.0
 			 *
 			 * @param array   $actions Array of actions and corresponding links.
 			 * @param WP_User $user    The blocked user data object.
@@ -289,7 +289,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * Display user name, if any.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param WP_User $user The blocked user data object.
 		 */
@@ -300,7 +300,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * Display user email.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param WP_User $user The blocked user data object.
 		 */
@@ -311,7 +311,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * Display the block expiration time of user.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param WP_User $user The blocked user data object.
 		 *
@@ -348,7 +348,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 		/**
 		 * Allow plugins to add their custom column.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param WP_User|null $user        The blocked user data object.
 		 * @param string       $column_name The column name.
@@ -360,7 +360,7 @@ if ( class_exists( 'WP_Users_List_Table' ) ) {
 			/**
 			 * Filters the single site custom columns for plugins.
 			 *
-			 * @since 0.2.0
+			 * @since 1.0.0
 			 *
 			 * @param string  $column_name The column name.
 			 * @param WP_User $user        The blocked user data object.

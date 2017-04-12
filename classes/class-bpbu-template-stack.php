@@ -12,14 +12,14 @@ defined( 'ABSPATH' ) || exit;
 /**
  * The BP Block Users Template Stack.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 class BPBU_Template_Stack {
 
 	/**
 	 * Adds BP Block Users template files to the BP template stack.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param string $template  Located template path.
 	 * @param array  $templates Array of templates to attempt to load.
@@ -53,14 +53,14 @@ class BPBU_Template_Stack {
 		$template = bpbu_apply_filters_deprecated(
 			'tba_bp_block_user_settings_load_template_filter',
 			array( $template ),
-			'0.2.0',
+			'1.0.0',
 			'bpbu_settings_load_template_filter'
 		);
 
 		/**
 		 * Filters the return of the BP Block Users found template.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param string $template The BP Block User template.
 		 */
@@ -70,7 +70,7 @@ class BPBU_Template_Stack {
 	/**
 	 * Return the BP Block Users template directory.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @return string The BP Block Users template directory.
 	 */
@@ -81,7 +81,7 @@ class BPBU_Template_Stack {
 	/**
 	 * Loads the block user settings screen.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	public static function settings_screen_block_user() {
 
@@ -89,14 +89,14 @@ class BPBU_Template_Stack {
 		bpbu_do_action_deprecated(
 			'tba_bp_settings_screen_block_user',
 			array(),
-			'0.2.0',
+			'1.0.0',
 			'bpbu_prevent_blocked_user_login'
 		);
 
 		/**
 		 * Fires before BP Block User settings template is loaded.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 */
 		do_action( 'bpbu_settings_screen_block_user' );
 

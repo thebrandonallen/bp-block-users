@@ -16,7 +16,7 @@ class BPBU_Tests_BPBU_Component extends BP_UnitTestCase {
 	/**
 	 * Test `BPBU_Component::prevent_blocked_user_login()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers BPBU_Component::prevent_blocked_user_login
 	 */
@@ -52,7 +52,7 @@ class BPBU_Tests_BPBU_Component extends BP_UnitTestCase {
 	/**
 	 * Test `BPBU_Component::filter_deprecated_meta_keys()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers BPBU_Component::filter_deprecated_meta_keys
 	 * @expectedIncorrectUsage tba_bp_user_blocked

@@ -12,14 +12,14 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Load BP Block Users admin area.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 class BPBU_Admin {
 
 	/**
 	 * The BP Block Users Admin instance.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @var BPBU_Admin
 	 */
@@ -30,7 +30,7 @@ class BPBU_Admin {
 	 *
 	 * Determined by `bp_core_do_network_admin()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @var string
 	 */
@@ -40,7 +40,7 @@ class BPBU_Admin {
 	 * Provides access to a single instance of `BPBU_Admin` using the singleton
 	 * pattern.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @return BPBU_Admin
 	 */
@@ -55,7 +55,7 @@ class BPBU_Admin {
 	/**
 	 * Constructor method.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	protected function __construct() {
 		$this->setup_globals();
@@ -69,7 +69,7 @@ class BPBU_Admin {
 	/**
 	 * Set admin-related globals.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	private function setup_globals() {
 
@@ -79,7 +79,7 @@ class BPBU_Admin {
 	/**
 	 * Set admin-related actions and filters.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -92,7 +92,7 @@ class BPBU_Admin {
 	/**
 	 * Setup the update routine.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -109,7 +109,7 @@ class BPBU_Admin {
 	/**
 	 * Checks if the install needs updating.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @return bool
 	 */
@@ -122,7 +122,7 @@ class BPBU_Admin {
 	/**
 	 * Runs the version updater.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
@@ -132,7 +132,7 @@ class BPBU_Admin {
 		// Get the current database version.
 		$db_version_raw = (int) get_option( '_bpbu_db_version', 0 );
 
-		// 0.2.0.
+		// 1.0.0.
 		if ( $db_version_raw < 20 ) {
 
 			// Rename the `tba_bp_user_blocked` meta key.
@@ -183,7 +183,7 @@ class BPBU_Admin {
 	/**
 	 * Get admin notices when viewing the blocked users page.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @return array An array of notices. Defaults to an empty array.
 	 */
@@ -228,7 +228,7 @@ class BPBU_Admin {
 	/**
 	 * Output our admin notices.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	public function display_notices() {
 
@@ -263,7 +263,7 @@ class BPBU_Admin {
 	 *
 	 * A user can't block themselves, and they must have the `bp_moderate` cap.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param int $user_id ID of the user being (un)blocked.
 	 *
@@ -284,7 +284,7 @@ class BPBU_Admin {
 		/**
 		 * Filters the return of the admin current user can block function.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param bool $retval  True if the user can (un)block.
 		 * @param int  $user_id The user id being (un)blocked.
@@ -295,7 +295,7 @@ class BPBU_Admin {
 	/**
 	 * Remove any query args we don't need.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param string $url The url to be acted upon.
 	 *

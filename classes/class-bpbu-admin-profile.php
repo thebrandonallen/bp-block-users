@@ -12,14 +12,14 @@ defined( 'ABSPATH' ) || exit;
 /**
  * BP Block Users Admin Settings API functions.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 class BPBU_Admin_Profile extends BPBU_Admin {
 
 	/**
 	 * The BP Block Users Admin Profile instance.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @var BPBU_Admin_Profile
 	 */
@@ -29,7 +29,7 @@ class BPBU_Admin_Profile extends BPBU_Admin {
 	 * Provides access to a single instance of `BPBU_Admin_Profile` using the
 	 * singleton pattern.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @return BPBU_Admin_Profile
 	 */
@@ -44,7 +44,7 @@ class BPBU_Admin_Profile extends BPBU_Admin {
 	/**
 	 * Constructor method.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	protected function __construct() {
 		$this->setup_actions();
@@ -53,7 +53,7 @@ class BPBU_Admin_Profile extends BPBU_Admin {
 	/**
 	 * Set admin-related actions and filters.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	public function setup_actions() {
 
@@ -67,7 +67,7 @@ class BPBU_Admin_Profile extends BPBU_Admin {
 	/**
 	 * Output the block user settings field on admin user edit page.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param WP_User $user The WP_User object.
 	 *
@@ -125,7 +125,7 @@ class BPBU_Admin_Profile extends BPBU_Admin {
 	/**
 	 * Update the block user settings.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param WP_Error $errors The errors object.
 	 * @param bool     $update True if the user is being updated.

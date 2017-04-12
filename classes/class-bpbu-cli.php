@@ -17,7 +17,7 @@ if ( ! class_exists( 'WP_CLI' ) ) {
 /**
  * The BP Block Users WP-CLI commands.
  *
- * @since 0.2.0
+ * @since 1.0.0
  */
 class BPBU_CLI extends WP_CLI_Command {
 

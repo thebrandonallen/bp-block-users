@@ -14,23 +14,23 @@ if ( class_exists( 'BP_Component' ) ) {
 	/**
 	 * The BP Block Users Component Class.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 */
 	class BPBU_Component extends BP_Component {
 
 		/**
 		 * The plugin version.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @var string
 		 */
-		const VERSION = '0.2.0';
+		const VERSION = '1.0.0';
 
 		/**
 		 * The database version.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @var int
 		 */
@@ -39,7 +39,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * The path to BP Block Users includes.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @var string $includes_dir
 		 */
@@ -48,7 +48,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * The path to BP Block Users classes.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @var string $classes_dir
 		 */
@@ -59,7 +59,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * Constructor.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param string $file The main BP Block Users file.
 		 */
@@ -93,7 +93,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * Include required files.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param array $includes An array of file names, or file name chunks,
 		 *                        to be parsed and then included.
@@ -121,7 +121,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * Loads and initializes the admin when needed.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @return void
 		 */
@@ -140,7 +140,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * Set up the actions.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 */
 		public function setup_actions() {
 
@@ -177,7 +177,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * Add the BP Block Users settings sub nav.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @return void
 		 */
@@ -217,7 +217,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * Add the `Block User` link to the WP Admin Bar.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @return void
 		 */
@@ -257,7 +257,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * Prevent email notifications for blocked users.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param mixed  $retval   Null or new short-circuited meta value.
 		 * @param int    $user_id  The user id.
@@ -290,14 +290,14 @@ if ( class_exists( 'BP_Component' ) ) {
 			$keys = bpbu_apply_filters_deprecated(
 				'tba_bp_block_users_block_notifications_meta_keys',
 				array( $keys ),
-				'0.2.0',
+				'1.0.0',
 				'bpbu_block_notifications_meta_keys'
 			);
 
 			/**
 			 * Filters the array of notification meta keys to block.
 			 *
-			 * @since 0.2.0
+			 * @since 1.0.0
 			 *
 			 * @param array $keys MySQL expiration timestamp. Unix if `$int` is
 			 */
@@ -320,14 +320,14 @@ if ( class_exists( 'BP_Component' ) ) {
 			$retval = bpbu_apply_filters_deprecated(
 				'tba_bp_block_users_block_notifications_value',
 				array( $retval, $user_id, $meta_key, $single ),
-				'0.2.0',
+				'1.0.0',
 				'bpbu_block_notifications_value'
 			);
 
 			/**
 			 * Filters the return of the notification meta value.
 			 *
-			 * @since 0.2.0
+			 * @since 1.0.0
 			 *
 			 * @param mixed  $retval   Null or new short-circuited meta value.
 			 * @param int    $user_id  The user id.
@@ -342,7 +342,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * Prevents the login of a blocked user.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param null|WP_User $user The WP_User object being authenticated.
 		 *
@@ -379,7 +379,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			bpbu_do_action_deprecated(
 				'tba_bp_prevent_blocked_user_login',
 				array( $user_id, &$user ),
-				'0.2.0',
+				'1.0.0',
 				'bpbu_prevent_blocked_user_login',
 				__( 'This is now a filter, rather than an action.', 'bp-block-users' )
 			);
@@ -387,7 +387,7 @@ if ( class_exists( 'BP_Component' ) ) {
 			/**
 			 * Filters the return of the authenticating user object.
 			 *
-			 * @since 0.2.0
+			 * @since 1.0.0
 			 *
 			 * @param WP_User|WP_Error $user    WP_User object if not blocked. WP_Error object, otherwise.
 			 * @param int              $user_id Whether this is a user update.
@@ -400,7 +400,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * Block/unblock a user when editing from a BP profile page.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @return void
 		 */
@@ -433,14 +433,14 @@ if ( class_exists( 'BP_Component' ) ) {
 			bpbu_do_action_deprecated(
 				'tba_bp_settings_block_user_before_save',
 				array(),
-				'0.2.0',
+				'1.0.0',
 				'bpbu_settings_block_user_before_save'
 			);
 
 			/**
 			 * Fires before the block user settings have been saved.
 			 *
-			 * @since 0.2.0
+			 * @since 1.0.0
 			 */
 			do_action( 'bpbu_settings_block_user_before_save' );
 
@@ -457,14 +457,14 @@ if ( class_exists( 'BP_Component' ) ) {
 			bpbu_do_action_deprecated(
 				'tba_bp_settings_block_user_after_save',
 				array(),
-				'0.2.0',
+				'1.0.0',
 				'bpbu_settings_block_user_after_save'
 			);
 
 			/**
 			 * Fires after the block user settings have been saved.
 			 *
-			 * @since 0.2.0
+			 * @since 1.0.0
 			 */
 			do_action( 'bpbu_settings_block_user_after_save' );
 		}
@@ -473,7 +473,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		 * Filters the retrieval of user meta to add a fallback for the old user
 		 * meta keys.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @param mixed  $retval   The check return value. Defaults to null.
 		 * @param int    $user_id  The user id.
@@ -487,11 +487,11 @@ if ( class_exists( 'BP_Component' ) ) {
 			// Setup an array of deprecated keys.
 			$deprecated_keys = array(
 				'tba_bp_user_blocked' => array(
-					'version' => '0.2.0',
+					'version' => '1.0.0',
 					'new_key' => 'bpbu_user_blocked',
 				),
 				'tba_bp_user_blocked_expiration' => array(
-					'version' => '0.2.0',
+					'version' => '1.0.0',
 					'new_key' => 'bpbu_user_blocked_expiration',
 				),
 			);
@@ -523,7 +523,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		/**
 		 * Gets and validates our block user $_POST variables.
 		 *
-		 * @since 0.2.0
+		 * @since 1.0.0
 		 *
 		 * @return array
 		 */

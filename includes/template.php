@@ -6,7 +6,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Output the escaped block user settings message.
  *
- * @since 0.2.0
+ * @since 1.0.0
  *
  * @param int $user_id The user id.
  *
@@ -19,7 +19,7 @@ function bpbu_block_user_settings_message( $user_id = 0 ) {
 /**
  * Return the block user settings message.
  *
- * @since 0.2.0
+ * @since 1.0.0
  *
  * @param int $user_id The user id.
  *
@@ -80,14 +80,14 @@ function bpbu_get_block_user_settings_message( $user_id = 0 ) {
 	$message = bpbu_apply_filters_deprecated(
 		'tba_bp_get_block_user_settings_message',
 		array( $message, $user_id ),
-		'0.2.0',
+		'1.0.0',
 		'bpbu_get_block_user_settings_message'
 	);
 
 	/**
 	 * Filters the return of the BP Block Users found template.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @param string $message The BP Block User settings message.
 	 * @param int    $user_id The user being checked.
@@ -98,7 +98,7 @@ function bpbu_get_block_user_settings_message( $user_id = 0 ) {
 /**
  * Display the block user settings message on the `block-user` settings page.
  *
- * @since 0.2.0
+ * @since 1.0.0
  *
  * @return void
  */

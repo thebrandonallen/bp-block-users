@@ -9,7 +9,7 @@
 /**
  * The BPBU_Tests_User test class.
  *
- * @since 0.2.0
+ * @since 1.0.0
  *
  * @group functions
  * @group users
@@ -55,7 +55,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	/**
 	 * Test `BPBU_User::block()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @TODO Replace assertTrue( false !== $var ) with assertNotFalse( $var )
 	 *       when PHP 5.2 support is dropped.
@@ -87,7 +87,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	/**
 	 * Test `BPBU_User::unblock()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers BPBU_User::unblock
 	 */
@@ -115,7 +115,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	/**
 	 * Test `BPBU_User::update_expiration()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @TODO Replace assertTrue( false !== $var ) with assertNotFalse( $var )
 	 *       when PHP 5.2 support is dropped.
@@ -142,7 +142,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	/**
 	 * Test `BPBU_User::get_expiration()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers BPBU_User::get_expiration
 	 */
@@ -166,7 +166,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	/**
 	 * Test `BPBU_User::is_blocked()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers BPBU_User::is_blocked
 	 */
@@ -185,7 +185,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	/**
 	 * Test `BPBU_User::get_blocked_user_ids()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers BPBU_User::get_blocked_user_ids
 	 */
@@ -207,7 +207,7 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	/**
 	 * Test `BPBU_User::destroy_sessions()`.
 	 *
-	 * @since 0.2.0
+	 * @since 1.0.0
 	 *
 	 * @covers BPBU_User::destroy_sessions
 	 */

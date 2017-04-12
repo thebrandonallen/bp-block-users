@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
  * Output the block user settings field on admin user edit page.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param WP_User $user The WP_User object.
  *
@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
 function tba_bp_block_users_settings_fields( $user ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0'
+		'1.0.0'
 	);
 }
 
@@ -32,7 +32,7 @@ function tba_bp_block_users_settings_fields( $user ) {
  * Update the block user settings.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param WP_Error $errors The WP_Error object.
  * @param bool     $update Whether the user is being updated.
@@ -43,7 +43,7 @@ function tba_bp_block_users_settings_fields( $user ) {
 function tba_bp_block_users_update_user_settings( $errors, $update, $user ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0'
+		'1.0.0'
 	);
 }
 
@@ -51,7 +51,7 @@ function tba_bp_block_users_update_user_settings( $errors, $update, $user ) {
  * Add a `Block/Unblock` link to the user row action links.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param array        $actions An array of row actions.
  * @param null|WP_User $user    The WP_User object.
@@ -61,7 +61,7 @@ function tba_bp_block_users_update_user_settings( $errors, $update, $user ) {
 function tba_bp_block_users_row_actions( $actions = array(), $user = null ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0'
+		'1.0.0'
 	);
 	return $actions;
 }
@@ -72,7 +72,7 @@ function tba_bp_block_users_row_actions( $actions = array(), $user = null ) {
  * Block the specified user and log them out of all current sessions.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param int    $user_id User to block.
  * @param int    $length  Numeric length of time to block user.
@@ -83,7 +83,7 @@ function tba_bp_block_users_row_actions( $actions = array(), $user = null ) {
 function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_User::block'
 	);
 	return BPBU_User::block( $user_id, $length, $unit );
@@ -93,7 +93,7 @@ function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
  * Unblock the specified user.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param int $user_id User to block.
  *
@@ -102,7 +102,7 @@ function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
 function tba_bp_unblock_user( $user_id = 0 ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_User::unblock'
 	);
 	return BPBU_User::unblock( $user_id );
@@ -112,7 +112,7 @@ function tba_bp_unblock_user( $user_id = 0 ) {
  * Update the expiration time of the blocked user.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param int    $user_id User to block.
  * @param int    $length  Numeric length of time to block user.
@@ -123,7 +123,7 @@ function tba_bp_unblock_user( $user_id = 0 ) {
 function tba_bp_update_blocked_user_expiration( $user_id = 0, $length = 0, $unit = 'indefinitely' ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_User::update_expiration'
 	);
 	return BPBU_User::update_expiration( $user_id, $length, $unit );
@@ -133,7 +133,7 @@ function tba_bp_update_blocked_user_expiration( $user_id = 0, $length = 0, $unit
  * Return the user's block expiration time.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param int  $user_id The blocked user.
  * @param bool $int     Whether to return a Unix timestamp.
@@ -144,7 +144,7 @@ function tba_bp_update_blocked_user_expiration( $user_id = 0, $length = 0, $unit
 function tba_bp_get_blocked_user_expiration( $user_id = 0, $int = false ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_User::get_expiration'
 	);
 
@@ -153,7 +153,7 @@ function tba_bp_get_blocked_user_expiration( $user_id = 0, $int = false ) {
 	if ( false !== $int ) {
 		_deprecated_argument(
 			__FUNCTION__,
-			'0.2.0',
+			'1.0.0',
 			esc_html__( 'Use strtotime( $expiration ) instead.', 'bp-block-users' )
 		);
 		$expiration = (int) strtotime( $expiration );
@@ -166,7 +166,7 @@ function tba_bp_get_blocked_user_expiration( $user_id = 0, $int = false ) {
  * Check if the specified user is blocked.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param int $user_id User to check for a block.
  *
@@ -175,7 +175,7 @@ function tba_bp_get_blocked_user_expiration( $user_id = 0, $int = false ) {
 function tba_bp_is_user_blocked( $user_id = 0 ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_User::is_blocked'
 	);
 	return BPBU_User::is_blocked( $user_id );
@@ -185,14 +185,14 @@ function tba_bp_is_user_blocked( $user_id = 0 ) {
  * Return an array of blocked user ids.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @return array An array of blocked user ids.
  */
 function tba_bp_get_blocked_user_ids() {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_User::get_blocked_user_ids'
 	);
 	return BPBU_User::get_blocked_user_ids();
@@ -204,7 +204,7 @@ function tba_bp_get_blocked_user_ids() {
  * Prevent email notifications for blocked users.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param mixed  $retval   Null or new short-circuited meta value.
  * @param int    $user_id  The user id.
@@ -216,7 +216,7 @@ function tba_bp_get_blocked_user_ids() {
 function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $single ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_Component::block_notifications'
 	);
 	return buddypress()->block_users->block_notifications( $retval, $user_id, $meta_key, $single );
@@ -228,7 +228,7 @@ function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $
  * Prevents the login of a blocked user.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param null|WP_User $user The WP_User object being authenticated.
  *
@@ -238,7 +238,7 @@ function tba_bp_block_users_block_notifications( $retval, $user_id, $meta_key, $
 function tba_bp_prevent_blocked_user_login( $user = null ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_Component::prevent_blocked_user_login'
 	);
 	return buddypress()->block_users->prevent_blocked_user_login( $user );
@@ -250,14 +250,14 @@ function tba_bp_prevent_blocked_user_login( $user = null ) {
  * Add the BP Block Users settings sub nav.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @return void
  */
 function tba_bp_block_user_settings_sub_nav() {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_Component::setup_settings_sub_nav'
 	);
 	buddypress()->block_users->setup_settings_sub_nav();
@@ -267,14 +267,14 @@ function tba_bp_block_user_settings_sub_nav() {
  * Add the `Block User` link to the WP Admin Bar.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @return void
  */
 function tba_bp_block_users_admin_bar_admin_menu() {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_Component::setup_settings_admin_bar'
 	);
 	buddypress()->block_users->setup_settings_admin_bar();
@@ -286,14 +286,14 @@ function tba_bp_block_users_admin_bar_admin_menu() {
  * Block/unblock a user when editing from a BP profile page.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @return void
  */
 function tba_bp_settings_action_block_user() {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_Component::settings_action'
 	);
 	buddypress()->block_users->settings_action();
@@ -305,7 +305,7 @@ function tba_bp_settings_action_block_user() {
  * Output the escaped block user settings message.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param int $user_id The user id.
  *
@@ -314,7 +314,7 @@ function tba_bp_settings_action_block_user() {
 function tba_bp_block_user_settings_message( $user_id = 0 ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'bpbu_block_user_settings_message'
 	);
 	echo esc_html( bpbu_get_block_user_settings_message( $user_id ) );
@@ -324,7 +324,7 @@ function tba_bp_block_user_settings_message( $user_id = 0 ) {
  * Return the block user settings message.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param int $user_id The user id.
  *
@@ -333,7 +333,7 @@ function tba_bp_block_user_settings_message( $user_id = 0 ) {
 function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'bpbu_get_block_user_settings_message'
 	);
 	return bpbu_get_block_user_settings_message( $user_id );
@@ -342,14 +342,14 @@ function tba_bp_get_block_user_settings_message( $user_id = 0 ) {
 /**
  * Display the block user settings message on the `block-user` settings page.
  *
- * @since 0.2.0
+ * @since 1.0.0
  *
  * @return void
  */
 function tba_bp_block_users_show_settings_message() {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'bpbu_block_users_show_settings_message'
 	);
 	bpbu_block_users_show_settings_message();
@@ -361,7 +361,7 @@ function tba_bp_block_users_show_settings_message() {
  * Adds BP Block Users template files to the BP template stack.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @param string $template  Located template path.
  * @param array  $templates Array of templates to attempt to load.
@@ -371,7 +371,7 @@ function tba_bp_block_users_show_settings_message() {
 function tba_bp_block_user_settings_load_template_filter( $template, $templates ) {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_Template_Stack::settings_load_template_filter'
 	);
 	return BPBU_Template_Stack::settings_load_template_filter( $template, $templates );
@@ -381,14 +381,14 @@ function tba_bp_block_user_settings_load_template_filter( $template, $templates 
  * Return the BP Block Users template directory.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  *
  * @return string The BP Block Users template directory.
  */
 function tba_bp_block_user_get_template_directory() {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_Template_Stack::get_template_directory'
 	);
 	return BPBU_Template_Stack::get_template_directory();
@@ -398,12 +398,12 @@ function tba_bp_block_user_get_template_directory() {
  * Loads the block user settings screen.
  *
  * @since 0.1.0
- * @deprecated 0.2.0
+ * @deprecated 1.0.0
  */
 function tba_bp_settings_screen_block_user() {
 	_deprecated_function(
 		__FUNCTION__,
-		'0.2.0',
+		'1.0.0',
 		'BPBU_Template_Stack::settings_screen_block_user'
 	);
 	BPBU_Template_Stack::settings_screen_block_user();
