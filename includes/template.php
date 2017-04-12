@@ -1,4 +1,10 @@
 <?php
+/**
+ * BP Block Users Functions.
+ *
+ * @package BP_Block_Users
+ * @subpackage Template
+ */
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -34,23 +40,22 @@ function bpbu_get_block_user_settings_message( $user_id = 0 ) {
 
 	// Set up our messages array, separated by location.
 	$messages = array(
-		'admin' => array(
-			'not-blocked' => __( 'This user is not currently blocked.', 'bp-block-users' ),
-			'indefinite'  => __( 'This user is blocked indefinitely.', 'bp-block-users' ),
-			'timed'       => __( 'This user is blocked until %1$s at %2$s.', 'bp-block-users' ),
-		),
-		'front' => array(
+		'not-blocked' => __( 'This member is not currently blocked.', 'bp-block-users' ),
+		'indefinite'  => __( 'This member is blocked indefinitely.', 'bp-block-users' ),
+		/* translators: 1: formatted expiration date, 2: formatted expiration time */
+		'timed'       => __( 'This member is blocked until %1$s at %2$s.', 'bp-block-users' ),
+	);
+	if ( is_admin() ) {
+		$messages = array(
 			'not-blocked' => __( 'This member is not currently blocked.', 'bp-block-users' ),
 			'indefinite'  => __( 'This member is blocked indefinitely.', 'bp-block-users' ),
+			/* translators: 1: formatted expiration date, 2: formatted expiration time */
 			'timed'       => __( 'This member is blocked until %1$s at %2$s.', 'bp-block-users' ),
-		),
-	);
-
-	// Set the message location.
-	$location = is_admin() ? 'admin' : 'front';
+		);
+	}
 
 	// Set the default message.
-	$message = $messages[ $location ]['not-blocked'];
+	$message = $messages['not-blocked'];
 
 	// If the user is not blocked, bail.
 	if ( ! BPBU_User::is_blocked( $user_id ) ) {
@@ -59,21 +64,20 @@ function bpbu_get_block_user_settings_message( $user_id = 0 ) {
 
 	// Get the user block expiration time.
 	$expiration = BPBU_User::get_expiration( $user_id );
-	$expiration_int = strtotime( $expiration );
 
-	// If the expiration is not a timestamp, the user is blocked indefinitely.
+	// If the year 3000, the user is blocked indefinitely.
 	if ( '3000-01-01 00:00:00' === $expiration ) {
-		$message = $messages[ $location ]['indefinite'];
+		$message = $messages['indefinite'];
 
 	// Display when the user's block will expire.
-	} elseif ( $expiration_int > time() ) {
+	} elseif ( strtotime( $expiration ) > time() ) {
 
 		// Set the date and time of the block expiration.
-		$date = date_i18n( bp_get_option( 'date_format' ), $expiration_int );
-		$time = get_date_from_gmt( $expiration, bp_get_option( 'time_format' ) );
+		$date = mysql2date( bp_get_option( 'date_format' ), $expiration );
+		$time = mysql2date( bp_get_option( 'time_format' ), $expiration );
 
 		// Set the message with expiration time.
-		$message = sprintf( $messages[ $location ]['timed'], $date, $time );
+		$message = sprintf( $messages['timed'], $date, $time );
 	}
 
 	// Fire the deprecated filter.
