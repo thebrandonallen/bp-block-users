@@ -147,7 +147,7 @@ module.exports = function(grunt) {
 				options: {
 					replacements: [{
 						pattern: /\{\{release_date\}\}/gm, // For plugin version variable
-						replacement: '<%= grunt.template.today("UTC:yyyy-mm-dd") %>'
+						replacement: '<%= grunt.template.today("UTC:mmmm d, yyyy") %>'
 					},
 					{
 						pattern: /(const\sVERSION.*)'(.*)';/gm, // For plugin version variable
