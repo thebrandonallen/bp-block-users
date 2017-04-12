@@ -4,7 +4,7 @@
 **Tags:** buddypress, bp, block, users, block users  
 **Requires at least:** 4.3 (BP 2.4.0)  
 **Tested up to:** 4.7.3 (BP 2.8.2)  
-**Stable tag:** 0.1.0  
+**Stable tag:** 1.0.0  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -46,7 +46,7 @@ In reality, the changes made in version `1.0.0` were drastic enough, that the ve
 
 ### 1.0.0 ###
 
-* Release date: TDB
+* Release date: April 12, 2017
 
 * **TLDR**
 
@@ -58,7 +58,7 @@ In reality, the changes made in version `1.0.0` were drastic enough, that the ve
 
 	That brings us to version `1.0.0`. *All* functions from version `0.1.0` have been deprecated. The deprecated functions will still perform as they did in `0.1.0`, but they will throw a deprecation warning when using `WP_DEBUG`.
 
-	If you were using the plugin as-is, with no custom functionality built on top, then you don't need to do anything further. If you were using any of the functions/filters/hooks from version `0.1.0` for custom functionality, please see the [Upgrading to 1.0.0](https://example.com/upgrading-to-0-2-0) wiki page.
+	If you were using the plugin as-is, with no custom functionality built on top, then you don't need to do anything further. If you were using any of the functions/filters/hooks from version `0.1.0` for custom functionality, please see the [Upgrading to 1.0.0](https://github.com/thebrandonallen/bp-block-users/wiki/Upgrading-to-1.0.0) wiki page.
 
 	Despite these major changes, the plugin should work the same or better than before!
 
@@ -70,13 +70,14 @@ In reality, the changes made in version `1.0.0` were drastic enough, that the ve
 * **Enhancements**
 
 	* BP Block Users is now loaded as a BuddyPress component.
-	* The `Block User` terminology has been changed to `Block Member` on the front-end to be more consistent with BuddyPress terminology. Props @joost-abrahams
+	* The `Block User` terminology has been changed to `Block Member` on the front-end to be more consistent with BuddyPress terminology. Props joost-abrahams [[GH#4](https://github.com/thebrandonallen/bp-block-users/pull/4)].
 	* Added a blocked users list table to `Users > All Users` admin screen.
 	* Added WP-CLI commands. Enter `wp bp-block-users --help` in your terminal for usage details.
 
 * **Future Updates**
 
 	* The next major version will require PHP 5.3+.
+	* Deprecated functions, filters, and actions will be removed in a future release. The target right now is version `1.3.0`. Upgrade any code you've written against version `0.1.0`.
 
 ### 0.1.0 ###
 

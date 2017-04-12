@@ -7,7 +7,7 @@
  * Author URI:      https://github.com/thebrandonallen
  * Text Domain:     bp-block-users
  * Domain Path:     /languages
- * Version:         0.1.0
+ * Version:         1.0.0
  *
  * Copyright (C) 2015-2017 Brandon Allen (https://github.com/thebrandonallen)
  *
