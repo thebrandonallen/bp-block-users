@@ -2,8 +2,8 @@
 **Contributors:** [thebrandonallen](https://profiles.wordpress.org/thebrandonallen)  
 **Donate link:** https://brandonallen.me/donate/  
 **Tags:** buddypress, bp, block, users, block users  
-**Requires at least:** 4.3 (BP 2.4.0)  
-**Tested up to:** 4.7.3 (BP 2.8.2)  
+**Requires at least:** 4.3  
+**Tested up to:** 4.8  
 **Stable tag:** 1.0.0  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/old-licenses/gpl-2.0.html  
