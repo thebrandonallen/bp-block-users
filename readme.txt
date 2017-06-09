@@ -6,7 +6,7 @@ Requires at least: 4.3 (BP 2.4.0)
 Tested up to: 4.7.3 (BP 2.8.2)
 Stable tag: 1.0.0
 License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 Allows BuddyPress administrators to block users indefinitely, or for a specified period of time.
 
