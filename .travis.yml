@@ -22,36 +22,46 @@ php:
   - 5.3
 
 env:
-  - WP_VERSION=master BP_VERSION=master BPBU_TRAVISCI=travis:phpunit
-  - WP_VERSION=4.8 BP_VERSION=master BPBU_TRAVISCI=travis:phpunit
-  - WP_VERSION=4.8 BP_VERSION=2.8 BPBU_TRAVISCI=travis:phpunit
-  - WP_VERSION=4.8 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
-  - WP_VERSION=4.7 BP_VERSION=master BPBU_TRAVISCI=travis:phpunit
-  - WP_VERSION=4.7 BP_VERSION=2.8 BPBU_TRAVISCI=travis:phpunit
-  - WP_VERSION=4.7 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
-  - WP_VERSION=4.4 BP_VERSION=master BPBU_TRAVISCI=travis:phpunit
-  - WP_VERSION=4.4 BP_VERSION=2.8 BPBU_TRAVISCI=travis:phpunit
-  - WP_VERSION=4.4 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
+  global:
+    - BPBU_TRAVISCI=travis:phpunit
+  matrix:
+    - WP_VERSION=master BP_VERSION=master
+    - WP_VERSION=4.8 BP_VERSION=master
+    - WP_VERSION=4.8 BP_VERSION=2.8
+    - WP_VERSION=4.8 BP_VERSION=2.4
+    - WP_VERSION=4.7 BP_VERSION=master
+    - WP_VERSION=4.7 BP_VERSION=2.8
+    - WP_VERSION=4.7 BP_VERSION=2.4
+    - WP_VERSION=4.4 BP_VERSION=master
+    - WP_VERSION=4.4 BP_VERSION=2.8
+    - WP_VERSION=4.4 BP_VERSION=2.4
 
 matrix:
   fast_finish: true
   include:
     - php: nightly
-      env: WP_VERSION=master BP_VERSION=master BPBU_TRAVISCI=travis:phpunit
+      env: WP_VERSION=master BP_VERSION=master
     - php: 7.0
       env: WP_VERSION=master BP_VERSION=master BPBU_TRAVISCI=travis:codecoverage
     - php: 5.2
-      env: WP_VERSION=4.8 BP_VERSION=2.7 BPBU_TRAVISCI=travis:phpunit
+      env: WP_VERSION=4.8 BP_VERSION=2.7
     - php: 5.2
-      env: WP_VERSION=4.8 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
+      env: WP_VERSION=4.8 BP_VERSION=2.4
     - php: 5.2
-      env: WP_VERSION=4.7 BP_VERSION=2.7 BPBU_TRAVISCI=travis:phpunit
+      env: WP_VERSION=4.7 BP_VERSION=2.7
     - php: 5.2
-      env: WP_VERSION=4.7 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
+      env: WP_VERSION=4.7 BP_VERSION=2.4
     - php: 5.2
-      env: WP_VERSION=4.4 BP_VERSION=2.7 BPBU_TRAVISCI=travis:phpunit
+      env: WP_VERSION=4.4 BP_VERSION=2.7
     - php: 5.2
-      env: WP_VERSION=4.4 BP_VERSION=2.4 BPBU_TRAVISCI=travis:phpunit
+      env: WP_VERSION=4.4 BP_VERSION=2.4
+  exclude:
+    - php: 7.1
+      env: WP_VERSION=4.4 BP_VERSION=master
+    - php: 7.1
+      env: WP_VERSION=4.4 BP_VERSION=2.8
+    - php: 7.1
+      env: WP_VERSION=4.4 BP_VERSION=2.4
   allow_failures:
     - php: nightly
     - env: WP_VERSION=master BP_VERSION=master BPBU_TRAVISCI=travis:codecoverage
