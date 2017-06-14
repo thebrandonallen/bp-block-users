@@ -4,7 +4,7 @@ Donate link: https://brandonallen.me/donate/
 Tags: buddypress, bp, block, users, block users
 Requires at least: 4.3
 Tested up to: 4.8
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -45,7 +45,7 @@ In reality, the changes made in version `1.0.0` were drastic enough, that the ve
 == Changelog ==
 
 = 1.0.1 =
-* Release date: TBD
+* Release date: 2017-06-14
 * Update compatability to WordPress 4.8
 
 = 1.0.0 =

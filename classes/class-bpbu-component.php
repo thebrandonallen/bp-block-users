@@ -25,7 +25,7 @@ if ( class_exists( 'BP_Component' ) ) {
 		 *
 		 * @var string
 		 */
-		const VERSION = '1.0.0';
+		const VERSION = '1.0.1';
 
 		/**
 		 * The database version.
