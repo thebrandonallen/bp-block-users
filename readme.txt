@@ -50,7 +50,7 @@ In reality, the changes made in version `1.0.0` were drastic enough, that the ve
 
 = 1.0.0 =
 
-* Release date: April 12, 2017
+* Release date: 2017-04-12
 
 * **TLDR**
 
@@ -85,5 +85,5 @@ In reality, the changes made in version `1.0.0` were drastic enough, that the ve
 
 = 0.1.0 =
 
-* Release date: September 22, 2015
+* Release date: 2015-09-22
 * Initial release.
