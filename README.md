@@ -46,7 +46,7 @@ In reality, the changes made in version `1.0.0` were drastic enough, that the ve
 
 ### 1.0.1 ###
 * Release date: 2017-06-14
-* Update compatability to WordPress 4.8
+* Update compatibility to WordPress 4.8
 
 ### 1.0.0 ###
 
