@@ -44,6 +44,10 @@ In reality, the changes made in version `1.0.0` were drastic enough, that the ve
 
 == Changelog ==
 
+= 1.0.1 =
+* Release date: TBD
+* Update compatability to WordPress 4.8
+
 = 1.0.0 =
 
 * Release date: April 12, 2017
