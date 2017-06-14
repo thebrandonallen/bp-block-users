@@ -12,7 +12,7 @@ DB_HOST=${4-localhost}
 WP_VERSION=${5-latest}
 BP_VERSION=${6-master}
 
-WP_CORE_DIR=/tmp/wordpress/
+WP_CORE_DIR=/tmp/wordpress
 BP_CORE_DIR=$WP_CORE_DIR/src/wp-content/plugins/buddypress
 BPBU_SLUG=$(basename $(pwd))
 BPBU_DIR=$WP_CORE_DIR/src/wp-content/plugins/$BPBU_SLUG
