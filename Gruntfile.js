@@ -164,6 +164,10 @@ module.exports = function(grunt) {
 					{
 						pattern: /(Stable tag:[\*\ ]*)(.*\S)/gim, // For readme.*
 						replacement: '$1<%= pkg.version %>'
+					},
+					{
+						pattern: /(\*\sRelease\sdate:\s)TBD$/gm,
+						replacement: '$1<%= grunt.template.today("yyyy-mm-dd") %>'
 					}]
 				}
 			}
