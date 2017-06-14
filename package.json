@@ -1,6 +1,11 @@
 {
+  "name": "bp-block-users",
+  "version": "1.0.0",
+  "main": "Gruntfile.js",
   "author": "Brandon Allen",
   "description": "A BuddyPress plugin giving adminstrators the ability to block users.",
+  "license": "GPL-2.0",
+  "repository": "github:thebrandonallen/bp-block-users",
   "devDependencies": {
     "grunt": "~1.0.1",
     "grunt-checktextdomain": "~1.0.0",
@@ -12,12 +17,5 @@
     "grunt-wp-i18n": "~1.0.0",
     "grunt-wp-readme-to-markdown": "~2.0.1",
     "matchdep": "~1.0.1"
-  },
-  "license": "GPL-2.0+",
-  "name": "bp-block-users",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/thebrandonallen/bp-block-users.git"
-  },
-  "version": "1.0.0"
+  }
 }
