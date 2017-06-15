@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 			'!package.json*',
 			'!phpcs.xml*',
 			'!phpunit.xml*',
-			'!.{editorconfig,gitignore,jshintrc,travis.yml,DS_Store}'
+			'!.*'
 		];
 
 	// Load tasks.
