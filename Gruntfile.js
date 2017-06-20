@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 		BUILD_DIR = 'build/',
 
 		BPBU_EXCLUDED_MISC = [
+			'!**/assets/**',
 			'!**/bin/**',
 			'!**/build/**',
 			'!**/coverage/**',
@@ -11,6 +12,7 @@ module.exports = function(grunt) {
 			'!**/tests/**',
 			'!Gruntfile.js*',
 			'!package.json*',
+			'!package-lock.json*',
 			'!phpcs.xml*',
 			'!phpunit.xml*',
 			'!.*'
