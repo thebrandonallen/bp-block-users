@@ -38,13 +38,13 @@ class BPBU_User {
 		bp_update_user_meta( $user_id, 'bpbu_user_blocked', 1 );
 
 		// Update the expiration time and clear user sessions.
-		if ( BPBU_User::is_blocked( $user_id ) ) {
+		if ( self::is_blocked( $user_id ) ) {
 
 			// Set the user block expiration date.
-			BPBU_User::update_expiration( $user_id, $length, $unit );
+			self::update_expiration( $user_id, $length, $unit );
 
 			// Log the user out of all sessions.
-			BPBU_User::destroy_sessions( $user_id );
+			self::destroy_sessions( $user_id );
 		}
 
 		// Fire the deprecated action.
