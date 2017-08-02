@@ -65,6 +65,7 @@ matrix:
     - php: 7.2
       env: WP_VERSION=master BP_VERSION=master
   exclude:
+    - php: 7.1
       env: WP_VERSION=4.4 BP_VERSION=master
     - php: 7.1
       env: WP_VERSION=4.4 BP_VERSION=2.9
