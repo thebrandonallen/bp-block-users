@@ -53,7 +53,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	 */
 	public static function get_instance() {
 		if ( null === self::$instance ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
