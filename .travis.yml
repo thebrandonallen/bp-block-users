@@ -27,13 +27,10 @@ env:
     - BPBU_TRAVISCI=travis:phpunit
   matrix:
     - WP_VERSION=master BP_VERSION=master
-    - WP_VERSION=4.8 BP_VERSION=master
     - WP_VERSION=4.8 BP_VERSION=2.9
     - WP_VERSION=4.8 BP_VERSION=2.5
-    - WP_VERSION=4.7 BP_VERSION=master
     - WP_VERSION=4.7 BP_VERSION=2.9
     - WP_VERSION=4.7 BP_VERSION=2.5
-    - WP_VERSION=4.4 BP_VERSION=master
     - WP_VERSION=4.4 BP_VERSION=2.9
     - WP_VERSION=4.4 BP_VERSION=2.5
 
@@ -80,8 +77,6 @@ matrix:
     - php: 7.2
       env: WP_VERSION=master BP_VERSION=master
   exclude:
-    - php: 7.1
-      env: WP_VERSION=4.4 BP_VERSION=master
     - php: 7.1
       env: WP_VERSION=4.4 BP_VERSION=2.9
     - php: 7.1
