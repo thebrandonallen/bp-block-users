@@ -38,8 +38,8 @@ defined( 'ABSPATH' ) || exit;
  */
 function bpbu_init() {
 
-	// Only supported in BP 2.4.0+.
-	if ( version_compare( bp_get_version(), '2.4.0', '>=' ) ) {
+	// Only supported in BP 2.5.0+.
+	if ( version_compare( bp_get_version(), '2.5.0', '>=' ) ) {
 
 		require plugin_dir_path( __FILE__ ) . 'classes/class-bpbu-component.php';
 
