@@ -66,9 +66,10 @@ add_action( 'bp_include', 'bpbu_init' );
  * wp-content/languages/plugins.
  *
  * @since 1.0.0
+ * @since 1.1.0 Only check the default WP languages directory.
  */
 function bpbu_load_textdomain() {
-	load_plugin_textdomain( 'bp-block-users', false, dirname( __FILE__ ) . '/languages/' );
+	load_plugin_textdomain( 'bp-block-users' );
 }
 add_action( 'plugins_loaded', 'bpbu_load_textdomain' );
 
