@@ -4,6 +4,7 @@ Donate link: https://brandonallen.me/donate/
 Tags: buddypress, bp, block, users, block users
 Requires at least: 4.4
 Tested up to: 4.8
+Requires PHP: 5.2.4
 Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
