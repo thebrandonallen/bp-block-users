@@ -14,8 +14,8 @@ do_action( 'bp_before_member_settings_template' ); ?>
 	 */
 	do_action( 'bp_members_block_user_before_submit' ); ?>
 
-	<label for="block-user">
-		<input type="checkbox" name="block-user" id="block-user" value="1" <?php checked( BPBU_User::is_blocked( bp_displayed_user_id() ) ); ?> />
+	<label for="block-user-checkbox">
+		<input type="checkbox" name="block-user" id="block-user-checkbox" value="1" <?php checked( BPBU_User::is_blocked( bp_displayed_user_id() ) ); ?> />
 		 <?php esc_html_e( 'Block this member?', 'bp-block-users' ); ?>
 	</label>
 

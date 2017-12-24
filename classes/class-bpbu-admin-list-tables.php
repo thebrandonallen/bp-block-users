@@ -122,8 +122,11 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 			$hook .= '-network';
 		}
 
-		// Add the block users admin loader.
-		add_action( "load-{$hook}", array( $this, 'admin_load' ) );
+		if( isset( $hook ) ) {
+			
+			// Add the block users admin loader.
+			add_action( "load-{$hook}", array( $this, 'admin_load' ) );
+		}
 	}
 
 	/**

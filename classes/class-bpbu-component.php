@@ -248,7 +248,7 @@ if ( class_exists( 'BP_Component' ) ) {
 				'parent' => $menu_id,
 				'id'     => $menu_id . '-block-user',
 				'title'  => __( 'Block User', 'bp-block-users' ),
-				'href'   => trailingslashit( bp_loggedin_user_domain() . bp_get_settings_slug() ) . 'block-user/',
+				'href'   => trailingslashit( bp_displayed_user_domain() . bp_get_settings_slug() ) . 'block-user/',
 			) );
 		}
 
