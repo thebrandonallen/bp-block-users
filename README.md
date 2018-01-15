@@ -45,6 +45,12 @@ In reality, the changes made in version `1.0.0` were drastic enough, that the ve
 
 ## Changelog ##
 
+### 1.0.2 ###
+* Release date: TBD
+* Update compatability to WordPress 4.9.1
+* Fix incorrect Block User link in WP admin bar.
+* Add PHP 7.2 compatability by removing `create_function` usage.
+
 ### 1.0.1 ###
 * Release date: 2017-06-14
 * Update compatibility to WordPress 4.8
