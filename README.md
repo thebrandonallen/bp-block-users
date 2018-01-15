@@ -5,7 +5,7 @@
 **Requires at least:** 4.3  
 **Tested up to:** 4.9.1  
 **Requires PHP:** 5.2.4  
-**Stable tag:** 1.0.1  
+**Stable tag:** 1.0.2  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/old-licenses/gpl-2.0.html  
 
@@ -46,7 +46,7 @@ In reality, the changes made in version `1.0.0` were drastic enough, that the ve
 ## Changelog ##
 
 ### 1.0.2 ###
-* Release date: TBD
+* Release date: 2018-01-15
 * Update compatability to WordPress 4.9.1
 * Fix incorrect Block User link in WP admin bar.
 * Add PHP 7.2 compatability by removing `create_function` usage.

@@ -7,9 +7,9 @@
  * Author URI:      https://github.com/thebrandonallen
  * Text Domain:     bp-block-users
  * Domain Path:     /languages
- * Version:         1.0.1
+ * Version:         1.0.2
  *
- * Copyright (C) 2015-2017  Brandon Allen (https://github.com/thebrandonallen)
+ * Copyright (C) 2015-2018  Brandon Allen (https://github.com/thebrandonallen)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
