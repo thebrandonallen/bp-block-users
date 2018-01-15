@@ -104,6 +104,9 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	 */
 	public function admin_menu() {
 
+		// Set default variable.
+		$hook = '';
+
 		// Only show blocked users where they belong.
 		if ( ! is_multisite() || is_network_admin() ) {
 
@@ -115,18 +118,18 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 				'bp-block-users',
 				array( $this, 'admin_index' )
 			);
+
+			// Append '-network' to each array item if in network admin.
+			$hook .= is_network_admin() ? '-network' : '';
 		}
 
-		// Append '-network' to each array item if in network admin.
-		if ( is_network_admin() ) {
-			$hook .= '-network';
+		// Bail if `$hook` isn't set.
+		if ( empty( $hook ) ) {
+			return;
 		}
 
-		if( isset( $hook ) ) {
-			
-			// Add the block users admin loader.
-			add_action( "load-{$hook}", array( $this, 'admin_load' ) );
-		}
+		// Add the block users admin loader.
+		add_action( "load-{$hook}", array( $this, 'admin_load' ) );
 	}
 
 	/**
