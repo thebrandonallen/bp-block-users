@@ -168,7 +168,7 @@ module.exports = function(grunt) {
 						replacement: '$1<%= pkg.version %>'
 					},
 					{
-						pattern: /(\*\sRelease\sdate:\s)TBD$/gm,
+						pattern: /(\*\sRelease\sdate:\s)(TBD|TBA)$/gm,
 						replacement: '$1<%= grunt.template.today("yyyy-mm-dd") %>'
 					}]
 				}
