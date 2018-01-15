@@ -486,7 +486,7 @@ if ( class_exists( 'BP_Component' ) ) {
 
 			// Setup an array of deprecated keys.
 			$deprecated_keys = array(
-				'tba_bp_user_blocked' => array(
+				'tba_bp_user_blocked'            => array(
 					'version' => '1.0.0',
 					'new_key' => 'bpbu_user_blocked',
 				),

@@ -28,7 +28,7 @@ class BPBU_CLI extends WP_CLI_Command {
 	);
 
 	public function __construct() {
-		$this->fetcher = new \WP_CLI\Fetchers\User;
+		$this->fetcher = new \WP_CLI\Fetchers\User();
 	}
 
 	/**
@@ -72,7 +72,7 @@ class BPBU_CLI extends WP_CLI_Command {
 				$expiration = 'indefinitely';
 			}
 
-			$output_user = new stdClass;
+			$output_user = new stdClass();
 
 			$output_user->ID         = $user->ID;
 			$output_user->user_login = $user->user_login;
@@ -148,7 +148,7 @@ class BPBU_CLI extends WP_CLI_Command {
 
 		$length_message = 'indefintely';
 		if ( 0 !== $length && 'indefintely' !== $unit ) {
-			$unit = ( 1 === $length ) ? trim( $unit, 's' ) : $unit;
+			$unit           = ( 1 === $length ) ? trim( $unit, 's' ) : $unit;
 			$length_message = "for {$length} {$unit}";
 		}
 

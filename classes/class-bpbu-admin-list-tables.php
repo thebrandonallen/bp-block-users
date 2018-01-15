@@ -168,14 +168,14 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 		if ( $is_blocked ) {
 			$args['action'] = 'unblock';
 			$args['page']   = 'bp-block-users';
-			$text = __( 'Unblock', 'bp-block-users' );
-			$url = bp_get_admin_url( 'users.php' );
-			$url = add_query_arg( $args, $url );
-			$url = wp_nonce_url( $url, 'unblock_single' );
+			$text           = __( 'Unblock', 'bp-block-users' );
+			$url            = bp_get_admin_url( 'users.php' );
+			$url            = add_query_arg( $args, $url );
+			$url            = wp_nonce_url( $url, 'unblock_single' );
 		} else {
 			$text = __( 'Block', 'bp-block-users' );
-			$url = get_edit_user_link( $user->ID ) . '#block-user';
-			$url = add_query_arg( $args, $url );
+			$url  = get_edit_user_link( $user->ID ) . '#block-user';
+			$url  = add_query_arg( $args, $url );
 		}
 
 		// Setup the Block/Unblock link.
@@ -204,7 +204,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 			$views['all'] = str_replace( 'class="current"', '', $views['all'] );
 			$class        = 'current';
 		} else {
-			$class        = '';
+			$class = '';
 		}
 
 		// Get the appropriate admin url.
@@ -276,8 +276,8 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 		}
 
 		if ( null === self::$list_table ) {
-			require_once( ABSPATH . "wp-admin/includes/class-wp-{$table_prefix}-list-table.php" );
-			require_once( buddypress()->block_users->classes_dir . "class-bpbu-{$table_prefix}-list-table.php" );
+			require_once ABSPATH . "wp-admin/includes/class-wp-{$table_prefix}-list-table.php";
+			require_once buddypress()->block_users->classes_dir . "class-bpbu-{$table_prefix}-list-table.php";
 
 			self::$list_table = new $list_table();
 		}
@@ -430,7 +430,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 				<?php self::$list_table->search_box( __( 'Search Blocked Users', 'bp-block-users' ), 'bp-block-users' ); ?>
 			</form>
 
-			<form id="bp-block-users-form" action="<?php echo esc_url( $form_url );?>" method="post">
+			<form id="bp-block-users-form" action="<?php echo esc_url( $form_url ); ?>" method="post">
 				<?php self::$list_table->display(); ?>
 			</form>
 		</div>

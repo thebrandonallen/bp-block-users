@@ -171,9 +171,9 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 			 */
 			return apply_filters( 'bpbu_ms_blocked_users_columns', array(
 				'cb'         => '<input type="checkbox" />',
-				'username'   => __( 'Username',   'bp-block-users' ),
-				'name'       => __( 'Name',       'bp-block-users' ),
-				'email'      => __( 'Email',      'bp-block-users' ),
+				'username'   => __( 'Username', 'bp-block-users' ),
+				'name'       => __( 'Name', 'bp-block-users' ),
+				'email'      => __( 'Email', 'bp-block-users' ),
 				'expiration' => __( 'Expiration', 'bp-block-users' ),
 			) );
 		}
@@ -224,7 +224,7 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 				/* translators: User login name */
 				printf( esc_html__( 'Select user: %s', 'bp-block-users' ), esc_html( $user->user_login ) );
 			?></label>
-			<input type="checkbox" id="blocked-user-<?php echo intval( $user->ID ) ?>" name="allblockedusers[]" value="<?php echo esc_attr( $user->ID ) ?>" />
+			<input type="checkbox" id="blocked-user-<?php echo intval( $user->ID ); ?>" name="allblockedusers[]" value="<?php echo esc_attr( $user->ID ); ?>" />
 			<?php
 		}
 
@@ -236,7 +236,7 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 		 * @param WP_User $user The blocked user data object.
 		 */
 		protected function column_username( $user = null ) {
-			$avatar	= get_avatar( $user->user_email, 32 );
+			$avatar = get_avatar( $user->user_email, 32 );
 
 			// Edit user link.
 			$edit_link = get_edit_user_link( $user->ID ) . '#block-user';
@@ -250,7 +250,7 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 			// Unblock user link.
 			$unblock_link = add_query_arg(
 				array(
-					'page'	  => 'bp-block-users',
+					'page'    => 'bp-block-users',
 					'user_id' => $user->ID,
 					'action'  => 'unblock',
 				),
@@ -311,7 +311,7 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 				return;
 			}
 
-			$expiration = BPBU_User::get_expiration( $user->ID );
+			$expiration     = BPBU_User::get_expiration( $user->ID );
 			$expiration_int = strtotime( $expiration );
 
 			// If the expiration is not a timestamp, the user is blocked indefinitely.

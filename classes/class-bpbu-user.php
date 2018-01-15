@@ -259,10 +259,10 @@ class BPBU_User {
 		if ( $blocked ) {
 
 			// If the user's block has expired, unblock them.
-			$expiration = (int) strtotime( BPBU_User::get_expiration( $user_id ) );
+			$expiration = (int) strtotime( self::get_expiration( $user_id ) );
 			if ( $expiration < time() ) {
 
-				if ( BPBU_User::unblock( $user_id ) ) {
+				if ( self::unblock( $user_id ) ) {
 					$blocked = false;
 				}
 			}

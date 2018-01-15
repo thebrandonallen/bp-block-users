@@ -132,7 +132,7 @@ class BPBU_Admin {
 		// Get the current database version.
 		$db_version_raw = (int) get_option( '_bpbu_db_version', 0 );
 
-		// 1.0.0.
+		// Version 1.0.0.
 		if ( $db_version_raw < 20 ) {
 
 			// Rename the `tba_bp_user_blocked` meta key.
@@ -196,7 +196,7 @@ class BPBU_Admin {
 		if ( ! empty( $_REQUEST['updated'] ) && 'unblocked' === $_REQUEST['updated'] ) {
 
 			if ( ! empty( $_REQUEST['unblocked'] ) ) {
-				$unblocked = count( explode( ',', $_REQUEST['unblocked'] ) );
+				$unblocked          = count( explode( ',', $_REQUEST['unblocked'] ) );
 				$notices['updated'] = sprintf(
 					/* translators: Unblocked users count */
 					_nx( '%s user unblocked.', '%s users unblocked.',
@@ -209,7 +209,7 @@ class BPBU_Admin {
 			}
 
 			if ( ! empty( $_REQUEST['notunblocked'] ) ) {
-				$notunblocked = count( explode( ',', $_REQUEST['notunblocked'] ) );
+				$notunblocked     = count( explode( ',', $_REQUEST['notunblocked'] ) );
 				$notices['error'] = sprintf(
 					/* translators: Failed unblocked users count */
 					_nx( '%s user not unblocked.', '%s users not unblocked.',
