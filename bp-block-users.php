@@ -46,15 +46,25 @@ function bpbu_init() {
 		add_action( 'bp_loaded', 'bpbu_setup_component' );
 
 	} else {
-
-		$older_version_notice = sprintf( __( 'Hey! BP Block Users requires BuddyPress 2.4.0 or higher.', 'bp-block-users' ) );
-		add_action( 'admin_notices', create_function( '', "
-			echo '<div class=\"error\"><p>" . $older_version_notice . "</p></div>';
-		" ) );
-		return;
+		add_action( 'admin_notices', 'bpbu_display_older_bp_notice' );
 	}
 }
 add_action( 'bp_include', 'bpbu_init' );
+
+/**
+ * Display the notice that BuddyPress is too old.
+ *
+ * Provided as a PHP 7.2 compatability step to replace `create_function`.
+ * Since PHP 5.3 is not the minimum version yet, we need an actual function.
+ *
+ * @since 1.1.0
+ *
+ * @return void
+ */
+function bpbu_display_older_bp_notice() {
+	$older_version_notice = __( 'Hey! BP Block Users requires BuddyPress 2.4.0 or higher.', 'bp-block-users' );
+	echo '<div class=\"error\"><p>"' . esc_html( $older_version_notice ) . '"</p></div>';
+}
 
 /**
  * Load the translation file for current language. Checks the BP Block Users

@@ -44,9 +44,7 @@ class BPBU_Template_Stack {
 			$template = locate_template( 'members/single/plugins.php', false, false );
 
 			// Add a hook so our content will be injected.
-			add_action( 'bp_template_content', create_function( '', "
-			   bp_get_template_part( 'members/single/settings/block-user' );
-			" ) );
+			add_action( 'bp_template_content', 'self::get_template_part' );
 		}
 
 		// Fire the deprecated filter.
@@ -102,5 +100,19 @@ class BPBU_Template_Stack {
 
 		// Load the block user settings template.
 		bp_core_load_template( 'members/single/settings/block-user' );
+	}
+
+	/**
+	 * Get the block user template part.
+	 *
+	 * Provided as a PHP 7.2 compatability step to replace `create_function`.
+	 * Since PHP 5.3 is not the minimum version yet, we need an actual function.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @return void
+	 */
+	public static function get_template_part() {
+		bp_get_template_part( 'members/single/settings/block-user' );
 	}
 }
