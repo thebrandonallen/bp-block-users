@@ -18,6 +18,7 @@ cache:
     - $HOME/.composer/cache
 
 php:
+  - 7.2
   - 7.1
   - 7.0
   - 5.6
@@ -27,12 +28,12 @@ env:
     - BPBU_TRAVISCI=travis:phpunit
   matrix:
     - WP_VERSION=master BP_VERSION=master
+    - WP_VERSION=4.9 BP_VERSION=2.9
+    - WP_VERSION=4.9 BP_VERSION=2.5
     - WP_VERSION=4.8 BP_VERSION=2.9
     - WP_VERSION=4.8 BP_VERSION=2.5
-    - WP_VERSION=4.7 BP_VERSION=2.9
-    - WP_VERSION=4.7 BP_VERSION=2.5
-    - WP_VERSION=4.4 BP_VERSION=2.9
-    - WP_VERSION=4.4 BP_VERSION=2.5
+    - WP_VERSION=4.5 BP_VERSION=2.9
+    - WP_VERSION=4.5 BP_VERSION=2.5
 
 matrix:
   fast_finish: true
@@ -41,49 +42,32 @@ matrix:
       env: WP_VERSION=master BP_VERSION=master
       dist: precise
     - php: 5.3
-      env: WP_VERSION=4.8 BP_VERSION=2.9
+      env: WP_VERSION=4.9 BP_VERSION=2.9
       dist: precise
     - php: 5.3
-      env: WP_VERSION=4.8 BP_VERSION=2.8
+      env: WP_VERSION=4.9 BP_VERSION=2.8
       dist: precise
     - php: 5.3
-      env: WP_VERSION=4.4 BP_VERSION=2.9
+      env: WP_VERSION=4.5 BP_VERSION=2.9
       dist: precise
     - php: 5.3
-      env: WP_VERSION=4.4 BP_VERSION=2.8
-      dist: precise
-    - php: 5.2
-      env: WP_VERSION=4.8 BP_VERSION=2.7
-      dist: precise
-    - php: 5.2
-      env: WP_VERSION=4.8 BP_VERSION=2.5
-      dist: precise
-    - php: 5.2
-      env: WP_VERSION=4.7 BP_VERSION=2.7
-      dist: precise
-    - php: 5.2
-      env: WP_VERSION=4.7 BP_VERSION=2.5
-      dist: precise
-    - php: 5.2
-      env: WP_VERSION=4.4 BP_VERSION=2.7
-      dist: precise
-    - php: 5.2
-      env: WP_VERSION=4.4 BP_VERSION=2.5
+      env: WP_VERSION=4.5 BP_VERSION=2.8
       dist: precise
     - php: 7.1
       env: WP_VERSION=master BP_VERSION=master BPBU_TRAVISCI=travis:codecoverage
     - php: nightly
       env: WP_VERSION=master BP_VERSION=master
-    - php: 7.2
-      env: WP_VERSION=master BP_VERSION=master
   exclude:
-    - php: 7.1
-      env: WP_VERSION=4.4 BP_VERSION=2.9
-    - php: 7.1
-      env: WP_VERSION=4.4 BP_VERSION=2.5
+    - php: 7.2
+      env: WP_VERSION=4.8 BP_VERSION=2.9
+    - php: 7.2
+      env: WP_VERSION=4.8 BP_VERSION=2.5
+    - php: 7.2
+      env: WP_VERSION=4.5 BP_VERSION=2.9
+    - php: 7.2
+      env: WP_VERSION=4.5 BP_VERSION=2.5
   allow_failures:
     - php: nightly
-    - php: 7.2
     - env: WP_VERSION=master BP_VERSION=master BPBU_TRAVISCI=travis:codecoverage
 
 before_install:
@@ -126,15 +110,11 @@ before_script:
       case "$TRAVIS_PHP_VERSION" in
         7.2|7.1|7.0|nightly)
           echo "Using PHPUnit 6.1"
-          composer global require "phpunit/phpunit=6.1.*"
+          composer global require "phpunit/phpunit:^6"
           ;;
         5.6|5.5|5.4|5.3)
           echo "Using PHPUnit 4.8"
-          composer global require "phpunit/phpunit=4.8.*"
-          ;;
-        5.2)
-          # Do nothing, use default PHPUnit 3.6.x
-          echo "Using default PHPUnit, hopefully 3.6"
+          composer global require "phpunit/phpunit:^4"
           ;;
         *)
           echo "No PHPUnit version handling for PHP version $TRAVIS_PHP_VERSION"
