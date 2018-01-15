@@ -2,9 +2,9 @@
 **Contributors:** [thebrandonallen](https://profiles.wordpress.org/thebrandonallen)  
 **Donate link:** https://brandonallen.me/donate/  
 **Tags:** buddypress, bp, block, users, block users  
-**Requires at least:** 4.3  
+**Requires at least:** 4.5  
 **Tested up to:** 4.9.1  
-**Requires PHP:** 5.2.4  
+**Requires PHP:** 5.3  
 **Stable tag:** 1.0.2  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/old-licenses/gpl-2.0.html  
@@ -13,7 +13,7 @@ Allows BuddyPress administrators to block users indefinitely, or for a specified
 
 ## Description ##
 
->This plugin requires BuddyPress 2.4.0+.
+>This plugin requires BuddyPress 2.5.0+.
 
 Sometimes a user in your community needs a some time to cool off. In BuddyPress, spamming or deleting the user is a destructive action, leaving little to no trace that the user existed. BP Block Users allows a capable user (administrators only by default) to block a user from logging into the site. Users can be blocked for a specified period of time, or indefinitely, if administrators need more time to determine the best course of action.
 
