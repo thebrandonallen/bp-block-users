@@ -152,7 +152,7 @@ module.exports = function(grunt) {
 						replacement: '<%= grunt.template.today("UTC:mmmm d, yyyy") %>'
 					},
 					{
-						pattern: /(Copyright \(C\) 2015\-)[0-9]{4}(.*)/gm,
+						pattern: /(Copyright\s\(C\)\s2015\-)[0-9]{4}(.*)/gm,
 						replacement: '$1<%= grunt.template.today("UTC:yyyy") %>$2'
 					},
 					{
