@@ -80,7 +80,7 @@ function tba_bp_block_users_row_actions( $actions = array(), $user = null ) {
  *
  * @return int|bool True or meta id on success, false on failure.
  */
-function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
+function tba_bp_block_user( $user_id = 0, $length = 0, $unit = 'indefinitely' ) {
 	_deprecated_function(
 		__FUNCTION__,
 		'1.0.0',

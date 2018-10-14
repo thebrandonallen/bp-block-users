@@ -101,13 +101,13 @@ class BPBU_CLI extends WP_CLI_Command {
 	 * [--unit=<unit>]
 	 * : The unit of time to block a user.
 	 * ---
-	 * default: indefintely
+	 * default: indefinitely
 	 * options:
 	 *   - minutes
 	 *   - hours
 	 *   - days
 	 *   - months
-	 *   - indefintely
+	 *   - indefinitely
 	 * ---
 	 *
 	 * ## EXAMPLES
@@ -141,13 +141,13 @@ class BPBU_CLI extends WP_CLI_Command {
 		$units = array( 'minutes', 'hours', 'days', 'months' );
 
 		// Get the unit of time to block.
-		$unit = 'indefintely';
+		$unit = 'indefinitely';
 		if ( in_array( $assoc_args['unit'], $units, true ) ) {
 			$unit = $assoc_args['unit'];
 		}
 
-		$length_message = 'indefintely';
-		if ( 0 !== $length && 'indefintely' !== $unit ) {
+		$length_message = 'indefinitely';
+		if ( 0 !== $length && 'indefinitely' !== $unit ) {
 			$unit           = ( 1 === $length ) ? trim( $unit, 's' ) : $unit;
 			$length_message = "for {$length} {$unit}";
 		}

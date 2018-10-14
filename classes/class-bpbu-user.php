@@ -27,7 +27,7 @@ class BPBU_User {
 	 *
 	 * @return int|bool True or meta id on success, false on failure.
 	 */
-	public static function block( $user_id = 0, $length = 0, $unit = 'indefintely' ) {
+	public static function block( $user_id = 0, $length = 0, $unit = 'indefinitely' ) {
 
 		// Bail if no user id.
 		if ( empty( $user_id ) ) {
