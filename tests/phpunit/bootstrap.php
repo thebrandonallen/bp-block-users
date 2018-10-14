@@ -16,11 +16,11 @@ if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
 }
 
 if ( ! file_exists( $_tests_dir . '/includes/functions.php' ) ) {
-	echo "Cannot find develop.wordpress tests.\n";
+	echo "Cannot find develop.WordPress tests.\n";
 	die();
 }
 
-require_once( $_tests_dir . '/includes/functions.php' );
+require_once $_tests_dir . '/includes/functions.php';
 
 /**
  * Compatibility with PHPUnit 6+
@@ -40,7 +40,7 @@ function _bootstrap_bp_block_users() {
 		define( 'BP_TESTS_DIR', dirname( __FILE__ ) . '/../../../buddypress/tests/phpunit' );
 	}
 
-	if ( ! file_exists( BP_TESTS_DIR . '/bootstrap.php' ) )  {
+	if ( ! file_exists( BP_TESTS_DIR . '/bootstrap.php' ) ) {
 		die( 'The BuddyPress Test suite could not be found' );
 	}
 

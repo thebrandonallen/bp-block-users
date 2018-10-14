@@ -12,7 +12,8 @@ do_action( 'bp_before_member_settings_template' ); ?>
 	 *
 	 * @since BuddyPress (1.6.0)
 	 */
-	do_action( 'bp_members_block_user_before_submit' ); ?>
+	do_action( 'bp_members_block_user_before_submit' );
+	?>
 
 	<label for="block-user-checkbox">
 		<input type="checkbox" name="block-user" id="block-user-checkbox" value="1" <?php checked( BPBU_User::is_blocked( bp_displayed_user_id() ) ); ?> />
@@ -47,7 +48,8 @@ do_action( 'bp_before_member_settings_template' ); ?>
 	 *
 	 * @since BuddyPress (1.6.0)
 	 */
-	do_action( 'bp_members_block_user_after_submit' ); ?>
+	do_action( 'bp_members_block_user_after_submit' );
+	?>
 
 	<?php wp_nonce_field( 'block-user' ); ?>
 

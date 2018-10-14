@@ -304,24 +304,26 @@ class BPBU_User {
 		$expiration_time = gmdate( 'Y-m-d H:i:s', ( time() + 10 ) );
 
 		// Get the ids of all blocked users.
-		$query = new WP_User_Query( array(
-			'fields'      => 'ID',
-			'count_total' => false,
-			'orderby'     => 'ID',
-			'meta_query'  => array(
-				'relation' => 'AND',
-				array(
-					'key'   => $blocked_key,
-					'value' => 1,
+		$query = new WP_User_Query(
+			array(
+				'fields'      => 'ID',
+				'count_total' => false,
+				'orderby'     => 'ID',
+				'meta_query'  => array(
+					'relation' => 'AND',
+					array(
+						'key'   => $blocked_key,
+						'value' => 1,
+					),
+					array(
+						'key'     => $expiration_key,
+						'value'   => $expiration_time,
+						'type'    => 'DATETIME',
+						'compare' => '>',
+					),
 				),
-				array(
-					'key'     => $expiration_key,
-					'value'   => $expiration_time,
-					'type'    => 'DATETIME',
-					'compare' => '>',
-				),
-			),
-		) );
+			)
+		);
 
 		// Cast as integers.
 		$user_ids = array_map( 'intval', $query->results );

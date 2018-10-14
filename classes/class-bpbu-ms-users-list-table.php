@@ -35,12 +35,14 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 		 */
 		public function __construct() {
 			// Define singular and plural labels, as well as whether we support AJAX.
-			parent::__construct( array(
-				'ajax'     => false,
-				'plural'   => 'blocked-users',
-				'singular' => 'blocked-user',
-				'screen'   => get_current_screen()->id,
-			) );
+			parent::__construct(
+				array(
+					'ajax'     => false,
+					'plural'   => 'blocked-users',
+					'singular' => 'blocked-user',
+					'screen'   => get_current_screen()->id,
+				)
+			);
 		}
 
 		/**
@@ -90,10 +92,12 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 			$this->user_count = $users_query->total_users;
 
 			// Set our pagination arguments.
-			$this->set_pagination_args( array(
-				'total_items' => $this->user_count,
-				'per_page'    => $per_page,
-			) );
+			$this->set_pagination_args(
+				array(
+					'total_items' => $this->user_count,
+					'per_page'    => $per_page,
+				)
+			);
 		}
 
 		/**
@@ -169,13 +173,16 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 			 *
 			 * @param array $columns Array of columns to display.
 			 */
-			return apply_filters( 'bpbu_ms_blocked_users_columns', array(
-				'cb'         => '<input type="checkbox" />',
-				'username'   => __( 'Username', 'bp-block-users' ),
-				'name'       => __( 'Name', 'bp-block-users' ),
-				'email'      => __( 'Email', 'bp-block-users' ),
-				'expiration' => __( 'Expiration', 'bp-block-users' ),
-			) );
+			return apply_filters(
+				'bpbu_ms_blocked_users_columns',
+				array(
+					'cb'         => '<input type="checkbox" />',
+					'username'   => __( 'Username', 'bp-block-users' ),
+					'name'       => __( 'Name', 'bp-block-users' ),
+					'email'      => __( 'Email', 'bp-block-users' ),
+					'expiration' => __( 'Expiration', 'bp-block-users' ),
+				)
+			);
 		}
 
 		/**
@@ -219,11 +226,13 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 		 * @param WP_User $user The blocked user data object.
 		 */
 		protected function column_cb( $user = null ) {
-		?>
-			<label class="screen-reader-text" for="blocked-user-<?php echo intval( $user->ID ); ?>"><?php
-				/* translators: User login name */
-				printf( esc_html__( 'Select user: %s', 'bp-block-users' ), esc_html( $user->user_login ) );
-			?></label>
+			?>
+			<label class="screen-reader-text" for="blocked-user-<?php echo intval( $user->ID ); ?>">
+				<?php
+					/* translators: User login name */
+					printf( esc_html__( 'Select user: %s', 'bp-block-users' ), esc_html( $user->user_login ) );
+				?>
+			</label>
 			<input type="checkbox" id="blocked-user-<?php echo intval( $user->ID ); ?>" name="allblockedusers[]" value="<?php echo esc_attr( $user->ID ); ?>" />
 			<?php
 		}
@@ -314,11 +323,11 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 			$expiration     = BPBU_User::get_expiration( $user->ID );
 			$expiration_int = strtotime( $expiration );
 
-			// If the expiration is not a timestamp, the user is blocked indefinitely.
+			// Set the message based on the user's expiration.
+			// If the year 3000, the user is blocked indefinitely.
 			if ( '3000-01-01 00:00:00' === $expiration ) {
 				$expiration = __( 'Never', 'bp-block-users' );
 
-			// Display when the user's block will expire.
 			} elseif ( $expiration_int > time() ) {
 
 				// Set the date and time of the block expiration.
@@ -371,4 +380,4 @@ if ( class_exists( 'WP_MS_Users_List_Table' ) ) {
 			return '';
 		}
 	}
-} // End if().
+} // End if.

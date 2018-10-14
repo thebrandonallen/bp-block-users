@@ -27,11 +27,13 @@ class BPBU_Tests_BPBU_User extends BP_UnitTestCase {
 	 * Set up the test user.
 	 */
 	public static function setUpBeforeClass() {
-		$f = new BP_UnitTest_Factory();
-		self::$user_id = $f->user->create( array(
-			'user_login' => 'class_bpbu_user',
-			'user_email' => 'class_bpbu_user@example.com',
-		) );
+		$f             = new BP_UnitTest_Factory();
+		self::$user_id = $f->user->create(
+			array(
+				'user_login' => 'class_bpbu_user',
+				'user_email' => 'class_bpbu_user@example.com',
+			)
+		);
 		self::commit_transaction();
 	}
 

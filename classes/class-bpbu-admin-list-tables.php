@@ -78,7 +78,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 	public function setup_actions() {
 
 		// Add menu item to all users menu.
-		add_action( 'admin_menu',         array( $this, 'admin_menu' ), 5 );
+		add_action( 'admin_menu', array( $this, 'admin_menu' ), 5 );
 		add_action( 'network_admin_menu', array( $this, 'admin_menu' ), 5 );
 
 		// Add a row actions to users listing.
@@ -222,7 +222,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 		$count = count( self::$blocked_user_ids );
 		$url   = add_query_arg( 'page', 'bp-block-users', $base_url );
 		/* translators: 1: Blocked user count */
-		$text  = sprintf( _x( 'Blocked %s', 'blocked users', 'bp-block-users' ), '<span class="count">(' . number_format_i18n( $count ) . ')</span>' );
+		$text = sprintf( _x( 'Blocked %s', 'blocked users', 'bp-block-users' ), '<span class="count">(' . number_format_i18n( $count ) . ')</span>' );
 
 		$views['blocked'] = sprintf( '<a href="%1$s" class="%2$s">%3$s</a>', esc_url( $url ), $class, $text );
 
@@ -299,37 +299,41 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 			)
 		);
 
-		get_current_screen()->add_help_tab( array(
-			'id'      => 'bp-block-users-overview',
-			'title'   => __( 'Overview', 'bp-block-users' ),
-			'content' =>
-				'<p>'
-				. __( 'This is the administration screen for blocked users on your site.', 'bp-block-users' )
-				. '</p><p>'
-				. __( 'From the screen options, you can customize the displayed columns and the pagination of this screen.', 'bp-block-users' )
-				. '</p><p>'
-				. __( 'You can reorder the list of your blocked users by clicking on the Username or Email column headers.', 'bp-block-users' )
-				. '</p><p>'
-				. __( 'Using the search form, you can find blocked users more easily. The Username and Email fields will be included in the search.', 'bp-block-users' )
-				. '</p>',
-		) );
+		get_current_screen()->add_help_tab(
+			array(
+				'id'      => 'bp-block-users-overview',
+				'title'   => __( 'Overview', 'bp-block-users' ),
+				'content' =>
+					'<p>'
+					. __( 'This is the administration screen for blocked users on your site.', 'bp-block-users' )
+					. '</p><p>'
+					. __( 'From the screen options, you can customize the displayed columns and the pagination of this screen.', 'bp-block-users' )
+					. '</p><p>'
+					. __( 'You can reorder the list of your blocked users by clicking on the Username or Email column headers.', 'bp-block-users' )
+					. '</p><p>'
+					. __( 'Using the search form, you can find blocked users more easily. The Username and Email fields will be included in the search.', 'bp-block-users' )
+					. '</p>',
+			)
+		);
 
-		get_current_screen()->add_help_tab( array(
-			'id'      => 'bp-block-users-actions',
-			'title'   => __( 'Actions', 'bp-block-users' ),
-			'content' =>
-				'<p>'
-				. __( 'Hovering over a row in the blocked users list will display action links that allow you to manage blocked users. You can perform the following actions:', 'bp-block-users' )
-				. '</p><ul><li>'
-				. __( '"Edit Expiration" takes you to the confirmation screen before being able to send the activation link to the desired pending account. You can only send the activation email once per day.', 'bp-block-users' )
-				. '</li><li>'
-				. __( '"Unblock" allows you to delete a pending account from your site. You will be asked to confirm this deletion.', 'bp-block-users' )
-				. '</li></ul><p>'
-				. __( 'By clicking on a Username you will be able to activate a pending account from the confirmation screen.', 'bp-block-users' )
-				. '</p><p>'
-				. __( 'Bulk actions allow you to perform these 3 actions for the selected rows.', 'bp-block-users' )
-				. '</p>',
-		) );
+		get_current_screen()->add_help_tab(
+			array(
+				'id'      => 'bp-block-users-actions',
+				'title'   => __( 'Actions', 'bp-block-users' ),
+				'content' =>
+					'<p>'
+					. __( 'Hovering over a row in the blocked users list will display action links that allow you to manage blocked users. You can perform the following actions:', 'bp-block-users' )
+					. '</p><ul><li>'
+					. __( '"Edit Expiration" takes you to the confirmation screen before being able to send the activation link to the desired pending account. You can only send the activation email once per day.', 'bp-block-users' )
+					. '</li><li>'
+					. __( '"Unblock" allows you to delete a pending account from your site. You will be asked to confirm this deletion.', 'bp-block-users' )
+					. '</li></ul><p>'
+					. __( 'By clicking on a Username you will be able to activate a pending account from the confirmation screen.', 'bp-block-users' )
+					. '</p><p>'
+					. __( 'Bulk actions allow you to perform these 3 actions for the selected rows.', 'bp-block-users' )
+					. '</p>',
+			)
+		);
 
 		// Help panel - sidebar links.
 		get_current_screen()->set_help_sidebar(
@@ -414,10 +418,12 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 
 				<?php if ( $usersearch ) : ?>
 
-					<span class="subtitle"><?php
+					<span class="subtitle">
+					<?php
 						/* translators: The search query string */
 						sprintf( __( 'Search results for &#8220;%s&#8221;', 'bp-block-users' ), esc_html( $usersearch ) );
-					?></span>
+					?>
+					</span>
 
 				<?php endif; ?>
 
@@ -434,7 +440,7 @@ class BPBU_Admin_List_Tables extends BPBU_Admin {
 				<?php self::$list_table->display(); ?>
 			</form>
 		</div>
-	<?php
+		<?php
 	}
 
 	/**

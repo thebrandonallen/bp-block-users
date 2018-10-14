@@ -65,11 +65,11 @@ function bpbu_get_block_user_settings_message( $user_id = 0 ) {
 	// Get the user block expiration time.
 	$expiration = BPBU_User::get_expiration( $user_id );
 
+	// Set the message based on the user's expiration.
 	// If the year 3000, the user is blocked indefinitely.
 	if ( '3000-01-01 00:00:00' === $expiration ) {
 		$message = $messages['indefinite'];
 
-	// Display when the user's block will expire.
 	} elseif ( strtotime( $expiration ) > time() ) {
 
 		// Set the date and time of the block expiration.

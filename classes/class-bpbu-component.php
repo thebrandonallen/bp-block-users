@@ -244,12 +244,14 @@ if ( class_exists( 'BP_Component' ) ) {
 			$menu_id = buddypress()->user_admin_menu_id;
 
 			// Add our `Block User` link to the WP admin bar.
-			$wp_admin_bar->add_menu( array(
-				'parent' => $menu_id,
-				'id'     => $menu_id . '-block-user',
-				'title'  => __( 'Block User', 'bp-block-users' ),
-				'href'   => trailingslashit( bp_displayed_user_domain() . bp_get_settings_slug() ) . 'block-user/',
-			) );
+			$wp_admin_bar->add_menu(
+				array(
+					'parent' => $menu_id,
+					'id'     => $menu_id . '-block-user',
+					'title'  => __( 'Block User', 'bp-block-users' ),
+					'href'   => trailingslashit( bp_displayed_user_domain() . bp_get_settings_slug() ) . 'block-user/',
+				)
+			);
 		}
 
 		/* Notification Emails ************************************************/

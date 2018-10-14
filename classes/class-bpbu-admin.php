@@ -199,7 +199,9 @@ class BPBU_Admin {
 				$unblocked          = count( explode( ',', $_REQUEST['unblocked'] ) );
 				$notices['updated'] = sprintf(
 					/* translators: Unblocked users count */
-					_nx( '%s user unblocked.', '%s users unblocked.',
+					_nx(
+						'%s user unblocked.',
+						'%s users unblocked.',
 						$unblocked,
 						'user unblocked',
 						'bp-block-users'
@@ -212,7 +214,9 @@ class BPBU_Admin {
 				$notunblocked     = count( explode( ',', $_REQUEST['notunblocked'] ) );
 				$notices['error'] = sprintf(
 					/* translators: Failed unblocked users count */
-					_nx( '%s user not unblocked.', '%s users not unblocked.',
+					_nx(
+						'%s user not unblocked.',
+						'%s users not unblocked.',
 						$notunblocked,
 						'user not unblocked',
 						'bp-block-users'
@@ -255,7 +259,8 @@ class BPBU_Admin {
 
 			</div>
 
-		<?php endforeach;
+			<?php
+		endforeach;
 	}
 
 	/**
