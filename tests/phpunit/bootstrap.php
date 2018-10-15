@@ -15,6 +15,9 @@ if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
 	$_tests_dir = '/tmp/wordpress-tests-lib';
 }
 
+var_dump('$_tests_dir');
+var_dump($_tests_dir);
+
 if ( ! file_exists( $_tests_dir . '/includes/functions.php' ) ) {
 	echo "Cannot find develop.WordPress tests.\n";
 	die();
