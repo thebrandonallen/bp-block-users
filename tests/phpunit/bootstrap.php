@@ -15,9 +15,6 @@ if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
 	$_tests_dir = '/tmp/wordpress-tests-lib';
 }
 
-var_dump('$_tests_dir');
-var_dump($_tests_dir);
-
 if ( ! file_exists( $_tests_dir . '/includes/functions.php' ) ) {
 	echo "Cannot find develop.WordPress tests.\n";
 	die();
@@ -39,20 +36,15 @@ if ( class_exists( 'PHPUnit\Runner\Version' ) && $_needs_phpunit_back_compat ) {
 
 function _bootstrap_bp_block_users() {
 
-	if ( file_exists( '/tmp/wordpress/wp-content/plugins/buddypress/tests/phpunit/bootstrap.php' ) ) {
-		define( 'BP_TESTS_DIR', '/tmp/wordpress/wp-content/plugins/buddypress/tests/phpunit' );
-	} elseif ( ! defined( 'BP_TESTS_DIR' ) ) {
+	if ( ! defined( 'BP_TESTS_DIR' ) ) {
 		define( 'BP_TESTS_DIR', dirname( __FILE__ ) . '/../../../buddypress/tests/phpunit' );
 	}
-
-	var_dump('BP_TESTS_DIR');
-	var_dump(BP_TESTS_DIR);
 
 	if ( ! file_exists( BP_TESTS_DIR . '/bootstrap.php' ) ) {
 		die( 'The BuddyPress Test suite could not be found' );
 	}
 
-	require BP_TESTS_DIR . '/includes/loader.php';
+	require BP_TESTS_DIR . '/bootstrap.php'
 
 	require dirname( __FILE__ ) . '/../../bp-block-users.php';
 }
