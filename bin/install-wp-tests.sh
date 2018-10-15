@@ -154,7 +154,6 @@ install_db() {
 
 move_bp_block_users() {
 	cd ..
-	pwd
 	mv $BPBU_SLUG $BPBU_DIR
 }
 
