@@ -154,6 +154,7 @@ install_db() {
 
 move_bp_block_users() {
 	cd ..
+	pwd
 	mv $BPBU_SLUG $BPBU_DIR
 }
 
@@ -169,3 +170,4 @@ move_bp_block_users
 install_test_suite
 install_db
 cd $BPBU_DIR
+ls -la $WP_TESTS_DIR
