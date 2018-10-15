@@ -42,6 +42,9 @@ function _bootstrap_bp_block_users() {
 		define( 'BP_TESTS_DIR', dirname( __FILE__ ) . '/../../../buddypress/tests/phpunit' );
 	}
 
+	var_dump('BP_TESTS_DIR');
+	var_dump(BP_TESTS_DIR);
+
 	if ( ! file_exists( BP_TESTS_DIR . '/bootstrap.php' ) ) {
 		die( 'The BuddyPress Test suite could not be found' );
 	}
