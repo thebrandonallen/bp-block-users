@@ -36,7 +36,9 @@ if ( class_exists( 'PHPUnit\Runner\Version' ) && $_needs_phpunit_back_compat ) {
 
 function _bootstrap_bp_block_users() {
 
-	if ( ! defined( 'BP_TESTS_DIR' ) ) {
+	if ( false !== getenv( 'BP_TESTS_DIR' ) ) {
+		$_tests_dir = getenv( 'BP_TESTS_DIR' );
+	} elseif ( ! defined( 'BP_TESTS_DIR' ) ) {
 		define( 'BP_TESTS_DIR', dirname( __FILE__ ) . '/../../../buddypress/tests/phpunit' );
 	}
 
