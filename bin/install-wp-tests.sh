@@ -165,7 +165,7 @@ install_bp() {
 
 install_wp
 install_bp
-#move_bp_block_users
+move_bp_block_users
 install_test_suite
 install_db
 cd $BPBU_DIR
