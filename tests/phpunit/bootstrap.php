@@ -37,7 +37,7 @@ if ( class_exists( 'PHPUnit\Runner\Version' ) && $_needs_phpunit_back_compat ) {
 function _bootstrap_bp_block_users() {
 
 	if ( file_exists( '/tmp/wordpress/wp-content/plugins/buddypress/tests/phpunit/bootstrap.php' ) ) {
-		$_tests_dir = '/tmp/wordpress/wp-content/plugins/buddypress/tests/phpunit';
+		define( 'BP_TESTS_DIR', '/tmp/wordpress/wp-content/plugins/buddypress/tests/phpunit' );
 	} elseif ( ! defined( 'BP_TESTS_DIR' ) ) {
 		define( 'BP_TESTS_DIR', dirname( __FILE__ ) . '/../../../buddypress/tests/phpunit' );
 	}
