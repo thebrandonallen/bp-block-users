@@ -160,7 +160,7 @@ move_bp_block_users() {
 install_bp() {
 	mkdir -p $BP_CORE_DIR
 	git clone --depth=1 --branch="$BP_VERSION" git://buddypress.git.wordpress.org/ $BP_CORE_DIR
-	export BP_TEST_DIR=$BP_CORE_DIR/tests/phpunit
+	export BP_TESTS_DIR=$BP_CORE_DIR/tests/phpunit
 }
 
 install_wp
