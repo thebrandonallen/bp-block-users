@@ -18,9 +18,9 @@ WP_TESTS_DIR=${WP_TESTS_DIR-$TMPDIR/wordpress-tests-lib}
 WP_CORE_DIR=${WP_CORE_DIR-$TMPDIR/wordpress/}
 
 BP_VERSION=${7-master}
-BP_CORE_DIR=$WP_CORE_DIR/wp-content/plugins/buddypress
+BP_CORE_DIR=${WP_CORE_DIR}wp-content/plugins/buddypress
 BPBU_SLUG=$(basename $(pwd))
-BPBU_DIR=$WP_CORE_DIR/wp-content/plugins/$BPBU_SLUG
+BPBU_DIR=${WP_CORE_DIR}wp-content/plugins/${BPBU_SLUG}
 
 download() {
 	if [ `which curl` ]; then
