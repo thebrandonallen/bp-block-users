@@ -44,7 +44,7 @@ function _bootstrap_bp_block_users() {
 		die( 'The BuddyPress Test suite could not be found' );
 	}
 
-	require BP_TESTS_DIR . '/bootstrap.php';
+	require BP_TESTS_DIR . '/includes/loader.php';
 
 	require dirname( __FILE__ ) . '/../../bp-block-users.php';
 }
