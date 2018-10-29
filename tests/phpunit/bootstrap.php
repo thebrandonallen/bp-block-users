@@ -20,6 +20,8 @@ if ( ! file_exists( $_tests_dir . '/includes/functions.php' ) ) {
 	die();
 }
 
+define( 'WP_TESTS_DIR', $_tests_dir );
+
 require_once $_tests_dir . '/includes/functions.php';
 
 /**
