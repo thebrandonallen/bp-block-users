@@ -117,6 +117,13 @@ class BPBU_Admin_Profile extends BPBU_Admin {
 					</select>
 				</td>
 			</tr></tbody>
+			<tbody><tr>
+				<th scope="row"><?php esc_html_e( 'Reason', 'bp-block-users' ); ?></th>
+				<td>
+					<label for="block-user-reason" class="screen-reader-text"><?php esc_html_e( 'The reason the user is being blocked.', 'bp-block-users' ); ?></label>
+					<textarea type="text" name="block-user-reason" id="block-user-reason" value="" size="3" />
+				</td>
+			</tr></tbody>
 		</table>
 
 		<?php
